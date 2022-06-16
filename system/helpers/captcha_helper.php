@@ -73,7 +73,8 @@ if ( ! function_exists('create_captcha'))
 			'word_length'	=> 8,
 			'font_size'	=> 16,
 			'img_id'	=> '',
-			'pool'		=> '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+			// 'pool'		=> '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+			'pool'		=> '0123456789abcdefghijklmnopqrstuvwxyz',
 			'colors'	=> array(
 				'background'	=> array(255,255,255),
 				'border'	=> array(153,102,102),
