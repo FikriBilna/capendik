@@ -62,7 +62,7 @@
                                         <h3 class="font-white" style="text-align:center;">Select Login Portal</h3>
                                         <div class="row" style="margin: 10px 0px;">
                                           <a href="/site/login" target="_blank">
-                                            <button type="button" name="btn-admin" class="btn" style="width:100%;">Staff Login</button>
+                                            <button type="button" name="btn-admin" class="btn" style="width:100%;">Staff Login test</button>
                                           </a>
                                         </div>
                                         <div class="row" style="margin: 10px 0px;">
