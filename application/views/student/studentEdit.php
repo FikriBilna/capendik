@@ -48,6 +48,13 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                         <?php } ?>
                                         <div class="col-md-3">
                                             <div class="form-group">
+                                                <label for="exampleInputEmail1">NISN</label>
+                                                <input id="nisn" name="nisn" placeholder="" type="text" class="form-control"  value="<?php echo set_value('nisn', $student['nisn']); ?>" maxlength="10"/>
+                                                <span class="text-danger"><?php echo form_error('nisn'); ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
                                                 <label for="exampleInputEmail1"><?php echo $this->lang->line('class'); ?></label><small class="req"> *</small>
                                                 <select  id="class_id" name="class_id" class="form-control" >
                                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
@@ -135,9 +142,9 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                     $dob=date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob']));
                                                     }
                                                  ?>
-                                                
+
                                                 <input id="dob" name="dob" placeholder="" type="text" class="form-control date"  value="<?php echo set_value('dob', $dob) ?>" />
-                                           
+
                                                 <span class="text-danger"><?php echo form_error('dob'); ?></span>
                                             </div>
                                         </div>
@@ -201,12 +208,12 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                         <?php } ?>
                                     </div>
                                     <div class="row">
-                                        <?php if ($sch_setting->admission_date) { 
+                                        <?php if ($sch_setting->admission_date) {
                                             $admission_date="";
                                             if($student['admission_date']!='0000-00-00' && $student['admission_date']!=''){
                                                 $admission_date=date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['admission_date']));
                                             }
-                                            
+
                                             ?>
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -340,7 +347,7 @@ if (!empty($siblings)) {
                                             <input type="hidden" name="siblings_counts" class="siblings_counts" value="<?php echo $siblings_counts; ?>">
                                             <?php
                                             if (empty($siblings)) {
-                                                
+
                                             } else {
 
                                                 foreach ($siblings as $sibling_key => $sibling_value) {
@@ -992,7 +999,7 @@ if (!empty($siblings)) {
                 <h4 class="modal-title modal_sibling_title"></h4>
             </div>
             <div class="modal-body modal_sibling_body">
-                <div class="form-horizontal">                   
+                <div class="form-horizontal">
                     <input type="hidden" name="current_student_id" class="current_student_id" value="0">
                     <div class="sibling_content">
                         <div class="col-lg-12">

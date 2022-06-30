@@ -251,7 +251,10 @@ class Student extends Admin_Controller
         }
 
         $this->form_validation->set_rules('firstname', $this->lang->line('first_name'), 'trim|required|xss_clean');
-
+        //NEW DATA
+        // $this->form_validation->set_rules('nisn', 'NISN', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('pob', 'Place Of Birth', 'trim|required|xss_clean');
+        //END NEW DATA
         $this->form_validation->set_rules('gender', $this->lang->line('gender'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('dob', $this->lang->line('date_of_birth'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('class_id', $this->lang->line('class'), 'trim|required|xss_clean');
@@ -316,6 +319,48 @@ class Student extends Admin_Controller
             }
 
             $data_insert = array(
+                //START NEW DATA
+                'nisn'              => $this->input->post('nisn'),
+                'nik'               => $this->input->post('nik'),
+                'preferedname'      => $this->input->post('preferedname'),
+                'pob'               => $this->input->post('pob'), //place of birth
+                'nationality'       => $this->input->post('nationality'),
+                'transportation'    => $this->input->post('transportation'),
+                'vehicle_no'        => $this->input->post('vehicle_no'),
+                'driver_name'       => $this->input->post('driver_name'),
+                'nanny_name'        => $this->input->post('nanny_name'),
+                'father_greetings_name'    => $this->input->post('father_greetings_name'),
+                'father_nik'               => $this->input->post('father_nik'),
+                'father_birthyear'         => $this->input->post('father_birthyear'),
+                'father_last_edu'          => $this->input->post('father_last_edu'),
+                'father_phone2'            => $this->input->post('father_phone2'),
+                'father_email'             => $this->input->post('father_email'),
+                'father_email2'            => $this->input->post('father_email2'),
+                'mother_greetings_name'    => $this->input->post('mother_greetings_name'),
+                'mother_nik'               => $this->input->post('mother_nik'),
+                'mother_birthyear'         => $this->input->post('mother_birthyear'),
+                'mother_last_edu'          => $this->input->post('mother_last_edu'),
+                'mother_phone2'            => $this->input->post('mother_phone2'),
+                'mother_email'             => $this->input->post('mother_email'),
+                'mother_email2'            => $this->input->post('mother_email2'),
+                'guardian_nik'             => $this->input->post('guardian_nik'),
+                'guardian_birthyear'       => $this->input->post('guardian_birthyear'),
+                'guardian_last_edu'        => $this->input->post('guardian_last_edu'),
+                'home_phone'               => $this->input->post('home_phone'),
+                'distance_to_school'       => $this->input->post('distance_to_school'),
+                'registration_type'        => $this->input->post('registration_type'),
+                'enrollment_date'          => $this->input->post('enrollment_date'),
+                'no_ijazah_sd'             => $this->input->post('no_ijazah_sd'),
+                'no_ijazah_smp'            => $this->input->post('no_ijazah_smp'),
+                'no_ijazah_sma'            => $this->input->post('no_ijazah_sma'),
+                'no_shun_sd'               => $this->input->post('no_shun_sd'),
+                'no_shun_smp'              => $this->input->post('no_shun_smp'),
+                'no_shun_sma'              => $this->input->post('no_shun_sma'),
+                'leaving_reason'           => $this->input->post('leaving_reason'),
+                'leaving_date'             => $this->input->post('leaving_date'),
+                'traveltime_hour'              => $this->input->post('traveltime_hour'),
+                'traveltime_minute'            => $this->input->post('traveltime_minute'),
+                // END NEW DATA
                 'firstname'         => $this->input->post('firstname'),
                 'rte'               => $this->input->post('rte'),
                 'state'             => $this->input->post('state'),
@@ -643,6 +688,37 @@ class Student extends Admin_Controller
                     $data_img = array('student_id' => $insert_id, 'title' => $fifth_title, 'doc' => $imp);
                     $this->student_model->adddoc($data_img);
                 }
+
+                // ADD STUDENTS ACHIEVEMENT
+                // if (isset($_FILES["achievement_doc1"]) && !empty($_FILES["achievement_doc1"]["name"])){
+                //   $uploaddir = './uploads/student_documents/'.$insert_id.'/';
+                //   if (!is_dir($uploaddir) && !mkdir($uploaddir)){
+                //     die("Error Creating folder $uploaddir");
+                //   }
+                //   $fileInfo           = pathinfo($_FILES["achievement_doc1"]["name"]);
+                //   $achievement_name1  = $this->input->post('achievement_name1');
+                //   $achievement_year1  = $this->input->post('achievement_year1');
+                //   $achievement_cat1   = $this->input->post('achievement_cat1');
+                //   $achievement_level1 = $this->input->post('achievement_level1');
+                //   $achievement_organizer1 = $this->input->post('achievement_organizer1');
+                //   $achievement_cert_no1   = $this->input->post('achievement_cert_no1');
+                //   $file_name          = $_FILES['achievement_doc1']['name'];
+                //   $exp                = explode(' ', $file_name);
+                //   $imp                = implode('_', $exp);
+                //   $img_name           = $uploaddir . $imp;
+                //
+                //   move_uploaded_file($_FILES["achievement_doc1"]["tmp_name"]. $img_name);
+                //   $data_img = array(
+                //     'student_id'              => $insert_id,
+                //     'achievement_name'        => $achievement_name1,
+                //     'achievement_year'        => $achievement_year1,
+                //     'achievement_cat'         => $achievement_cat1,
+                //     'achievement_level'       => $achievement_level1,
+                //     'achievement_organizer'   => $achievement_organizer1,
+                //     'achievement_cert_no'     => $achievement_cert_no1,
+                //     'achievement_doc'         => $imp
+                //   );
+                // }
 
                 $sender_details = array('student_id' => $insert_id, 'contact_no' => $this->input->post('guardian_phone'), 'email' => $this->input->post('guardian_email'));
                 $this->mailsmsconf->mailsms('student_admission', $sender_details);
@@ -1266,6 +1342,7 @@ class Student extends Admin_Controller
 
             $data = array(
                 'id'                => $id,
+                'nisn'         => $this->input->post('nisn'),
                 'firstname'         => $this->input->post('firstname'),
                 'rte'               => $this->input->post('rte'),
                 'state'             => $this->input->post('state'),

@@ -142,7 +142,10 @@ if ($student['is_active'] == 'no') {
 
 
                             <?php }?>
-
+                            <!-- NISN -->
+                            <li class="list-group-item listnoback">
+                                <b>NISN</b> <a class="pull-right text-aqua"><?php echo $student['nisn']; ?></a>
+                            </li>
                             <li class="list-group-item listnoback">
                                 <b><?php echo $this->lang->line('admission_no'); ?></b> <a class="pull-right text-aqua"><?php echo $student['admission_no']; ?></a>
                             </li>
