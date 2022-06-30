@@ -325,7 +325,7 @@ class Student extends Admin_Controller
                 'preferedname'      => $this->input->post('preferedname'),
                 'pob'               => $this->input->post('pob'), //place of birth
                 'nationality'       => $this->input->post('nationality'),
-                'transportation'    => $this->input->post('transportation'),
+                'transportation_type'    => $this->input->post('transportation_type'),
                 'vehicle_no'        => $this->input->post('vehicle_no'),
                 'driver_name'       => $this->input->post('driver_name'),
                 'nanny_name'        => $this->input->post('nanny_name'),
@@ -349,7 +349,7 @@ class Student extends Admin_Controller
                 'home_phone'               => $this->input->post('home_phone'),
                 'distance_to_school'       => $this->input->post('distance_to_school'),
                 'registration_type'        => $this->input->post('registration_type'),
-                'enrollment_date'          => $this->input->post('enrollment_date'),
+                'enrollment_date'          => $this->customlib->dateFormatToYYYYMMDD($this->input->post('enrollment_date')),
                 'no_ijazah_sd'             => $this->input->post('no_ijazah_sd'),
                 'no_ijazah_smp'            => $this->input->post('no_ijazah_smp'),
                 'no_ijazah_sma'            => $this->input->post('no_ijazah_sma'),
@@ -357,14 +357,21 @@ class Student extends Admin_Controller
                 'no_shun_smp'              => $this->input->post('no_shun_smp'),
                 'no_shun_sma'              => $this->input->post('no_shun_sma'),
                 'leaving_reason'           => $this->input->post('leaving_reason'),
-                'leaving_date'             => $this->input->post('leaving_date'),
-                'traveltime_hour'              => $this->input->post('traveltime_hour'),
-                'traveltime_minute'            => $this->input->post('traveltime_minute'),
+                'leaving_date'             => $this->customlib->dateFormatToYYYYMMDD($this->input->post('leaving_date')),
+                'traveltime_hour'          => $this->input->post('traveltime_hour'),
+                'traveltime_minute'        => $this->input->post('traveltime_minute'),
+                'rt'                       => $this->input->post('rt'),
+                'rw'                       => $this->input->post('rw'),
+                'dusun'                    => $this->input->post('dusun'),
+                'kelurahan'                => $this->input->post('kelurahan'),
+                'kecamatan'                => $this->input->post('kecamatan'),
+                'city'                     => $this->input->post('city'),
+                'state'                    => $this->input->post('state'),
+                'postalcode'               => $this->input->post('postalcode'),
+
                 // END NEW DATA
                 'firstname'         => $this->input->post('firstname'),
                 'rte'               => $this->input->post('rte'),
-                'state'             => $this->input->post('state'),
-                'city'              => $this->input->post('city'),
                 'pincode'           => $this->input->post('pincode'),
                 'cast'              => $this->input->post('cast'),
                 'previous_school'   => $this->input->post('previous_school'),
@@ -690,35 +697,36 @@ class Student extends Admin_Controller
                 }
 
                 // ADD STUDENTS ACHIEVEMENT
-                // if (isset($_FILES["achievement_doc1"]) && !empty($_FILES["achievement_doc1"]["name"])){
-                //   $uploaddir = './uploads/student_documents/'.$insert_id.'/';
-                //   if (!is_dir($uploaddir) && !mkdir($uploaddir)){
-                //     die("Error Creating folder $uploaddir");
-                //   }
-                //   $fileInfo           = pathinfo($_FILES["achievement_doc1"]["name"]);
-                //   $achievement_name1  = $this->input->post('achievement_name1');
-                //   $achievement_year1  = $this->input->post('achievement_year1');
-                //   $achievement_cat1   = $this->input->post('achievement_cat1');
-                //   $achievement_level1 = $this->input->post('achievement_level1');
-                //   $achievement_organizer1 = $this->input->post('achievement_organizer1');
-                //   $achievement_cert_no1   = $this->input->post('achievement_cert_no1');
-                //   $file_name          = $_FILES['achievement_doc1']['name'];
-                //   $exp                = explode(' ', $file_name);
-                //   $imp                = implode('_', $exp);
-                //   $img_name           = $uploaddir . $imp;
-                //
-                //   move_uploaded_file($_FILES["achievement_doc1"]["tmp_name"]. $img_name);
-                //   $data_img = array(
-                //     'student_id'              => $insert_id,
-                //     'achievement_name'        => $achievement_name1,
-                //     'achievement_year'        => $achievement_year1,
-                //     'achievement_cat'         => $achievement_cat1,
-                //     'achievement_level'       => $achievement_level1,
-                //     'achievement_organizer'   => $achievement_organizer1,
-                //     'achievement_cert_no'     => $achievement_cert_no1,
-                //     'achievement_doc'         => $imp
-                //   );
-                // }
+                if (isset($_FILES["achievement_doc1"]) && !empty($_FILES["achievement_doc1"]["name"])){
+                  $uploaddir = './uploads/student_documents/'.$insert_id.'/';
+                  if (!is_dir($uploaddir) && !mkdir($uploaddir)){
+                    die("Error Creating folder $uploaddir");
+                  }
+                  $fileInfo           = pathinfo($_FILES["achievement_doc1"]["name"]);
+                  $achievement_name1  = $this->input->post('achievement_name1');
+                  $achievement_year1  = $this->input->post('achievement_year1');
+                  $achievement_cat1   = $this->input->post('achievement_cat1');
+                  $achievement_level1 = $this->input->post('achievement_level1');
+                  $achievement_organizer1 = $this->input->post('achievement_organizer1');
+                  $achievement_cert_no1   = $this->input->post('achievement_cert_no1');
+                  $file_name          = $_FILES['achievement_doc1']['name'];
+                  $exp                = explode(' ', $file_name);
+                  $imp                = implode('_', $exp);
+                  $img_name           = $uploaddir . $imp;
+
+                  move_uploaded_file($_FILES["achievement_doc1"]["tmp_name"]. $img_name);
+                  $data_img = array(
+                    'student_id'              => $insert_id,
+                    'achievement_name'        => $achievement_name1,
+                    'achievement_year'        => $achievement_year1,
+                    'achievement_cat'         => $achievement_cat1,
+                    'achievement_level'       => $achievement_level1,
+                    'achievement_organizer'   => $achievement_organizer1,
+                    'achievement_cert_no'     => $achievement_cert_no1,
+                    'achievement_doc'         => $imp
+                  );
+                  $this->student_model->addachv($data_img);
+                }
 
                 $sender_details = array('student_id' => $insert_id, 'contact_no' => $this->input->post('guardian_phone'), 'email' => $this->input->post('guardian_email'));
                 $this->mailsmsconf->mailsms('student_admission', $sender_details);

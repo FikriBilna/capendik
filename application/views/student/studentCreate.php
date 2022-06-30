@@ -687,14 +687,80 @@
                                                     </div>
                                                     <span class="text-danger"><?php echo form_error('file'); ?></span></div>
                                             </div>
-<?php } if ($sch_setting->guardian_address) { ?>
-                                            <div class="col-md-4">
-                                                <label for="exampleInputEmail1"><?php echo $this->lang->line('guardian_address'); ?></label>
-                                                <textarea id="guardian_address" name="guardian_address" placeholder="" class="form-control" rows="2"><?php echo set_value('guardian_address'); ?></textarea>
-                                                <span class="text-danger"><?php echo form_error('guardian_address'); ?></span>
-                                            </div>
-                                      </div>
 <?php } ?>
+                                      </div>
+                                        <?php if ($sch_setting->guardian_address) { ?>
+                                          <div class="row">
+                                              <div class="col-md-4">
+                                                <div class="form-group">
+                                                  <label for="exampleInputEmail1"><?php echo $this->lang->line('guardian_address'); ?></label>
+                                                  <textarea id="guardian_address" name="guardian_address" placeholder="" class="form-control" rows="2"><?php echo set_value('guardian_address'); ?></textarea>
+                                                  <span class="text-danger"><?php echo form_error('guardian_address'); ?></span>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-1">
+                                                <div class="form-group">
+                                                  <label for="exampleInputEmail1">RT</label>
+                                                  <input id="rt" name="rt" placeholder="" type="text" class="form-control"  value="<?php echo set_value('rt'); ?>" />
+                                                  <span class="text-danger"><?php echo form_error('rt'); ?></span>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-1">
+                                                <div class="form-group">
+                                                  <label for="exampleInputEmail1">RW</label>
+                                                  <input id="rw" name="rw" placeholder="" type="text" class="form-control"  value="<?php echo set_value('rw'); ?>" />
+                                                  <span class="text-danger"><?php echo form_error('rw'); ?></span>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                  <label for="exampleInputEmail1">Dusun</label>
+                                                  <input id="dusun" name="dusun" placeholder="" type="text" class="form-control"  value="<?php echo set_value('dusun'); ?>" />
+                                                  <span class="text-danger"><?php echo form_error('dusun'); ?></span>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                  <label for="exampleInputEmail1">Kelurahan</label>
+                                                  <input id="kelurahan" name="kelurahan" placeholder="" type="text" class="form-control"  value="<?php echo set_value('kelurahan'); ?>" />
+                                                  <span class="text-danger"><?php echo form_error('kelurahan'); ?></span>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                  <label for="exampleInputEmail1">Kecamatan</label>
+                                                  <input id="kecamatan" name="kecamatan" placeholder="" type="text" class="form-control"  value="<?php echo set_value('kecamatan'); ?>" />
+                                                  <span class="text-danger"><?php echo form_error('kecamatan'); ?></span>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                  <label for="exampleInputEmail1">Kota / Kabupaten</label>
+                                                  <input id="city" name="city" placeholder="" type="text" class="form-control"  value="<?php echo set_value('city'); ?>" />
+                                                  <span class="text-danger"><?php echo form_error('city'); ?></span>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-md-3">
+                                              <div class="form-group">
+                                                <label for="exampleInputEmail1">Negara</label>
+                                                <input id="state" name="state" placeholder="" type="text" class="form-control"  value="<?php echo set_value('state'); ?>" />
+                                                <span class="text-danger"><?php echo form_error('state'); ?></span>
+                                              </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                              <div class="form-group">
+                                                <label for="exampleInputEmail1">Kode Pos</label>
+                                                <input id="postalcode" name="postalcode" placeholder="" type="text" class="form-control"  value="<?php echo set_value('postalcode'); ?>" />
+                                                <span class="text-danger"><?php echo form_error('postalcode'); ?></span>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -723,9 +789,19 @@
                                               </select>
                                             </div>
                                             <div class="col-md-3">
+                                              <label for="exampleInputEmail1">Vehicle Number</label>
+                                              <input id="vehicle_no" name="vehicle_no" placeholder="" type="text" class="form-control"  value="<?php echo set_value('vehicle_no'); ?>" />
+                                              <span class="text-danger"><?php echo form_error('vehicle_no'); ?></span>
+                                            </div>
+                                            <div class="col-md-3">
                                               <label for="exampleInputEmail1">Driver Name</label>
                                               <input id="driver_name" name="driver_name" placeholder="" type="text" class="form-control"  value="<?php echo set_value('driver_name'); ?>" />
                                               <span class="text-danger"><?php echo form_error('driver_name'); ?></span>
+                                            </div>
+                                            <div class="col-md-3">
+                                              <label for="exampleInputEmail1">Nanny Name</label>
+                                              <input id="nanny_name" name="nanny_name" placeholder="" type="text" class="form-control"  value="<?php echo set_value('nanny_name'); ?>" />
+                                              <span class="text-danger"><?php echo form_error('nanny_name'); ?></span>
                                             </div>
                                           </div>
                                       </div>
