@@ -144,6 +144,9 @@ if ($student['is_active'] == 'no') {
                             <?php }?>
                             <!-- NISN -->
                             <li class="list-group-item listnoback">
+                                <b>NIK</b> <a class="pull-right text-aqua"><?php echo $student['nik']; ?></a>
+                            </li>
+                            <li class="list-group-item listnoback">
                                 <b>NISN</b> <a class="pull-right text-aqua"><?php echo $student['nisn']; ?></a>
                             </li>
                             <li class="list-group-item listnoback">
@@ -324,39 +327,67 @@ if ($this->rbac->hasPrivilege('student', 'can_edit')) {
                                 <div class="table-responsive around10 pt0">
                                     <table class="table table-hover table-striped tmb0">
                                         <tbody>
-                                            <?php if ($sch_setting->admission_date) {
-    ?>
+                                            <?php if ($sch_setting->admission_date) {?>
                                             <tr>
                                                 <td class="col-md-4"><?php echo $this->lang->line('admission_date'); ?></td>
                                                 <td class="col-md-5">
                                                     <?php
-if (!empty($student['admission_date'])) {
-
-        echo date($this->customlib->dateformat($student['admission_date']));
-    }
-    ?></td>
+                                                      if (!empty($student['admission_date'])) {
+                                                        echo date($this->customlib->dateformat($student['admission_date']));
+                                                      }
+                                                    ?>
+                                                </td>
                                             </tr>
                                             <?php }?>
                                             <tr>
-                                                <td><?php echo $this->lang->line('date_of_birth'); ?></td>
-                                                <td><?php
-if (!empty($student['dob']) && $student['dob'] != '0000-00-00') {
-    echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob']));
-}
-?></td>
+                                                <td class="col-md-4">Enrollment Date</td>
+                                                <td class="col-md-5">
+                                                    <?php
+                                                      if (!empty($student['enrollment_date'])) {
+                                                        echo date($this->customlib->dateformat($student['enrollment_date']));
+                                                      }
+                                                    ?>
+                                                </td>
                                             </tr>
-                                            <?php if ($sch_setting->category) {
-    ?>
+                                            <tr>
+                                                <td class="col-md-4">Registration Type</td>
+                                                <td class="col-md-5">
+                                                    <?php
+                                                      if (!empty($student['registration_type'])) {
+                                                        if ($student['registration_type'] == '0') {
+                                                          echo "New Student";
+                                                        }else if($student['registration_type'] == '1'){
+                                                          echo "Transfered Student";
+                                                        }
+                                                      }
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><?php echo $this->lang->line('date_of_birth'); ?></td>
+                                                <td>
+                                                  <?php
+                                                    if (!empty($student['dob']) && $student['dob'] != '0000-00-00') {
+                                                      echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob']));
+                                                    }
+                                                  ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Place of Birth</td>
+                                                <td><?php echo $student['pob']; ?></td>
+                                            </tr>
+                                            <?php if ($sch_setting->category) { ?>
                                             <tr>
                                                 <td><?php echo $this->lang->line('category'); ?></td>
                                                 <td>
                                                     <?php
-foreach ($category_list as $value) {
-        if ($student['category_id'] == $value['id']) {
-            echo $value['category'];
-        }
-    }
-    ?>
+                                                      foreach ($category_list as $value) {
+                                                        if ($student['category_id'] == $value['id']) {
+                                                          echo $value['category'];
+                                                        }
+                                                      }
+                                                    ?>
                                                 </td>
                                             </tr>
                                             <?php }if ($sch_setting->mobile_no) {?>
@@ -365,70 +396,69 @@ foreach ($category_list as $value) {
                                                 <td><?php echo $student['mobileno']; ?></td>
                                             </tr>
                                             <?php }
-if ($sch_setting->cast) {
-    ?>
+                                              if ($sch_setting->cast) {
+                                            ?>
                                             <tr>
                                                 <td><?php echo $this->lang->line('cast'); ?></td>
                                                 <td><?php echo $student['cast']; ?></td>
                                             </tr>
                                             <?php
-}
-if
-($sch_setting->religion) {?>
+                                              }
+                                              if ($sch_setting->religion) {
+                                            ?>
                                             <tr>
                                                 <td><?php echo $this->lang->line('religion'); ?></td>
                                                 <td><?php echo $student['religion']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nationality</td>
+                                                <td><?php echo $student['nationality']; ?></td>
                                             </tr>
                                             <?php }if ($sch_setting->student_email) {?>
                                             <tr>
                                                 <td><?php echo $this->lang->line('email'); ?></td>
                                                 <td><?php echo $student['email']; ?></td>
                                             </tr>
-                                            <?php }
-
-?>
+                                            <?php } ?>
                                             <?php
-$cutom_fields_data = get_custom_table_values($student['id'], 'students');
-if (!empty($cutom_fields_data)) {
-    foreach ($cutom_fields_data as $field_key => $field_value) {
-        ?>
+                                              $cutom_fields_data = get_custom_table_values($student['id'], 'students');
+                                              if (!empty($cutom_fields_data)) {
+                                                foreach ($cutom_fields_data as $field_key => $field_value) {
+                                            ?>
                                                     <tr>
                                                         <td><?php echo $field_value->name; ?></td>
                                                         <td>
                                                             <?php
-if (is_string($field_value->field_value) && is_array(json_decode($field_value->field_value, true)) && (json_last_error() == JSON_ERROR_NONE)) {
-            $field_array = json_decode($field_value->field_value);
-            echo "<ul class='student_custom_field'>";
-            foreach ($field_array as $each_key => $each_value) {
-                echo "<li>" . $each_value . "</li>";
-            }
-            echo "</ul>";
-        } else {
-            $display_field = $field_value->field_value;
-
-            if ($field_value->type == "link") {
-                $display_field = "<a href=" . $field_value->field_value . " target='_blank'>" . $field_value->field_value . "</a>";
-            }
-            echo $display_field;
-        }
-        ?>
+                                                              if (is_string($field_value->field_value) && is_array(json_decode($field_value->field_value, true)) && (json_last_error() == JSON_ERROR_NONE)) {
+                                                                $field_array = json_decode($field_value->field_value);
+                                                                echo "<ul class='student_custom_field'>";
+                                                                foreach ($field_array as $each_key => $each_value) {
+                                                                  echo "<li>" . $each_value . "</li>";
+                                                                }
+                                                                echo "</ul>";
+                                                              } else {
+                                                                $display_field = $field_value->field_value;
+                                                                if ($field_value->type == "link") {
+                                                                  $display_field = "<a href=" . $field_value->field_value . " target='_blank'>" . $field_value->field_value . "</a>";
+                                                                }
+                                                                echo $display_field;
+                                                              }
+                                                            ?>
                                                         </td>
                                                     </tr>
 
                                                     <?php
-}
-}
-
-if ($sch_setting->student_note) {
-    ?>
+                                                        }
+                                                      }
+                                                      if ($sch_setting->student_note) {
+                                                    ?>
                                             <tr>
                                                 <td><?php echo $this->lang->line('note'); ?></td>
                                                 <td><?php echo $student['note']; ?></td>
                                             </tr>
                                             <?php
-}
-?>
-
+                                              }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -442,6 +472,38 @@ if ($sch_setting->student_note) {
                                                 <td class="col-md-4"><?php echo $this->lang->line('current_address'); ?></td>
                                                 <td class="col-md-5"><?php echo $student['current_address']; ?></td>
                                             </tr>
+                                            <tr>
+                                                <td class="col-md-4">RT</td>
+                                                <td class="col-md-5"><?php echo $student['rt']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4">RW</td>
+                                                <td class="col-md-5"><?php echo $student['rw']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4">Dusun</td>
+                                                <td class="col-md-5"><?php echo $student['dusun']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4">Kelurahan</td>
+                                                <td class="col-md-5"><?php echo $student['kelurahan']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4">Kecamatan</td>
+                                                <td class="col-md-5"><?php echo $student['kecamatan']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4">Kota / Kabupaten</td>
+                                                <td class="col-md-5"><?php echo $student['city']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4">Postal Code</td>
+                                                <td class="col-md-5"><?php echo $student['postalcode']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4">Negara</td>
+                                                <td class="col-md-5"><?php echo $student['state']; ?></td>
+                                            </tr>
                                             <?php }if ($sch_setting->permanent_address) {?>
                                             <tr>
                                                 <td><?php echo $this->lang->line('permanent_address'); ?></td>
@@ -454,52 +516,155 @@ if ($sch_setting->student_note) {
                             </div>
 
                             <div class="tshadow mb25 bozero">
-                            <?php if (($sch_setting->father_name) || ($sch_setting->father_phone) || ($sch_setting->father_occupation) || ($sch_setting->father_pic) || ($sch_setting->mother_name) || ($sch_setting->mother_phone) || ($sch_setting->mother_occupation) || ($sch_setting->mother_pic) || ($sch_setting->guardian_name) || ($sch_setting->guardian_occupation) || ($sch_setting->guardian_relation) || ($sch_setting->guardian_phone) || ($sch_setting->guardian_email) || ($sch_setting->guardian_pic) || ($sch_setting->guardian_address)) {
-    ?>
+                            <?php
+                              if (($sch_setting->father_name) || ($sch_setting->father_phone) || ($sch_setting->father_occupation) || ($sch_setting->father_pic) || ($sch_setting->mother_name) || ($sch_setting->mother_phone) || ($sch_setting->mother_occupation) || ($sch_setting->mother_pic) || ($sch_setting->guardian_name) || ($sch_setting->guardian_occupation) || ($sch_setting->guardian_relation) || ($sch_setting->guardian_phone) || ($sch_setting->guardian_email) || ($sch_setting->guardian_pic) || ($sch_setting->guardian_address)) {
+                            ?>
                                 <h3 class="pagetitleh2"><?php echo $this->lang->line('parent'); ?> / <?php echo $this->lang->line('guardian_details'); ?> </h3>
                                 <div class="table-responsive around10 pt10">
                                     <table class="table table-hover table-striped tmb0">
-                                        <?php if ($sch_setting->father_name) {
-        ?>
+                                      <?php if ($sch_setting->father_name) { ?>
                                         <tr>
-                                            <td class="col-md-4"><?php echo $this->lang->line('father_name'); ?></td>
-                                            <td class="col-md-5"><?php echo $student['father_name']; ?></td>
-                                            <td rowspan="3"><img class="profile-user-img img-responsive img-circle" src="<?php
-if (!empty($student["father_pic"])) {
-            echo base_url() . $student["father_pic"];
-        } else {
-            echo base_url() . "uploads/student_images/no_image.png";
-        }
-        ?>" ></td>
+                                          <td><?php echo $this->lang->line('father_name'); ?></td>
+                                          <td><?php echo $student['father_name']; ?></td>
+                                          <td rowspan="3">
+                                            <img class="profile-user-img img-responsive img-circle" src="<?php
+                                                if (!empty($student["father_pic"])) {
+                                                    echo base_url() . $student["father_pic"];
+                                                } else {
+                                                    echo base_url() . "uploads/student_images/no_image.png";
+                                                }?>" >
+                                          </td>
                                         </tr>
-                                        <?php }if ($sch_setting->father_phone) {?>
+                                        <tr>
+                                          <td>Greetings Name</td>
+                                          <td>Mr. <?php echo $student['father_greetings_name']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-4">Father NIK</td>
+                                            <td class="col-md-5"><?php echo $student['father_nik']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Father Birth Year</td>
+                                            <td><?php echo $student['father_birthyear']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Father Last Education</td>
+                                            <td>
+                                              <?php
+                                              if (!empty($student['father_last_edu'])) {
+                                                if ($student['father_last_edu'] == '0') {
+                                                  echo "Sekolah Dasar";
+                                                }else if($student['father_last_edu'] == '1'){
+                                                  echo "Sekolah Menengah Pertama";
+                                                }else if($student['father_last_edu'] == '2'){
+                                                  echo "Sekolah Menengah Atas";
+                                                }else if($student['father_last_edu'] == '3'){
+                                                  echo "Diploma 1";
+                                                }else if($student['father_last_edu'] == '4'){
+                                                  echo "Diploma 2";
+                                                }else if($student['father_last_edu'] == '5'){
+                                                  echo "Diploma 3";
+                                                }else if($student['father_last_edu'] == '6'){
+                                                  echo "Strata 1";
+                                                }else if($student['father_last_edu'] == '7'){
+                                                  echo "Strata 2";
+                                                }else if($student['father_last_edu'] == '8'){
+                                                  echo "Strata 3";
+                                                }
+                                              }
+                                              ?>
+                                            </td>
+                                        </tr>
+                                        <?php }if ($sch_setting->father_phone) { ?>
                                         <tr>
                                             <td><?php echo $this->lang->line('father_phone'); ?></td>
                                             <td><?php echo $student['father_phone']; ?></td>
                                         </tr>
-                                        <?php }if ($sch_setting->father_occupation) {?>
+                                        <tr>
+                                            <td><?php echo $this->lang->line('father_phone'); ?> 2</td>
+                                            <td><?php echo $student['father_phone2']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Father Email</td>
+                                            <td><?php echo $student['father_email']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Father Email 2</td>
+                                            <td><?php echo $student['father_email2']; ?></td>
+                                        </tr>
+                                        <?php } if ($sch_setting->father_occupation) {?>
                                         <tr>
                                             <td><?php echo $this->lang->line('father_occupation'); ?></td>
                                             <td><?php echo $student['father_occupation']; ?></td>
                                         </tr>
-                                        <?php }if ($sch_setting->mother_name) {
-        ?>
+                                        <?php }if ($sch_setting->mother_name) {?>
                                         <tr>
                                             <td><?php echo $this->lang->line('mother_name'); ?></td>
                                             <td><?php echo $student['mother_name']; ?></td>
                                             <td rowspan="3"><img class="profile-user-img img-responsive img-circle" src="<?php
-if (!empty($student["mother_pic"])) {
-            echo base_url() . $student["mother_pic"];
-        } else {
-            echo base_url() . "uploads/student_images/no_image.png";
-        }
-        ?>" ></td>
+                                              if (!empty($student["mother_pic"])) {
+                                                echo base_url() . $student["mother_pic"];
+                                              } else {
+                                                echo base_url() . "uploads/student_images/no_image.png";
+                                              }?>" >
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td>Greetings Name</td>
+                                          <td>Ms. <?php echo $student['mother_greetings_name']; ?></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Mother NIK</td>
+                                          <td><?php echo $student['mother_nik']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mother Birth Year</td>
+                                            <td><?php echo $student['mother_birthyear']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mother Last Education</td>
+                                            <td>
+                                              <?php
+                                              if (!empty($student['mother_last_edu'])) {
+                                                if ($student['mother_last_edu'] == '0') {
+                                                  echo "Sekolah Dasar";
+                                                }else if($student['mother_last_edu'] == '1'){
+                                                  echo "Sekolah Menengah Pertama";
+                                                }else if($student['mother_last_edu'] == '2'){
+                                                  echo "Sekolah Menengah Atas";
+                                                }else if($student['mother_last_edu'] == '3'){
+                                                  echo "Diploma 1";
+                                                }else if($student['mother_last_edu'] == '4'){
+                                                  echo "Diploma 2";
+                                                }else if($student['mother_last_edu'] == '5'){
+                                                  echo "Diploma 3";
+                                                }else if($student['mother_last_edu'] == '6'){
+                                                  echo "Strata 1";
+                                                }else if($student['mother_last_edu'] == '7'){
+                                                  echo "Strata 2";
+                                                }else if($student['mother_last_edu'] == '8'){
+                                                  echo "Strata 3";
+                                                }
+                                              }
+                                              ?>
+                                            </td>
                                         </tr>
                                         <?php }if ($sch_setting->mother_phone) {?>
                                         <tr>
                                             <td><?php echo $this->lang->line('mother_phone'); ?></td>
                                             <td><?php echo $student['mother_phone']; ?></td>
-
+                                        </tr>
+                                        <tr>
+                                            <td><?php echo $this->lang->line('mother_phone'); ?> 2</td>
+                                            <td><?php echo $student['mother_phone2']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mother Email</td>
+                                            <td><?php echo $student['mother_email']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mother Email 2</td>
+                                            <td><?php echo $student['mother_email2']; ?></td>
                                         </tr>
                                         <?php }if ($sch_setting->mother_occupation) {?>
                                         <tr>
@@ -508,20 +673,18 @@ if (!empty($student["mother_pic"])) {
                                         </tr>
                                         <?php }?>
                                         <tr>
-
                                             <td><?php if ($sch_setting->guardian_name) {?><?php echo $this->lang->line('guardian_name');} ?></td>
                                             <td><?php if ($sch_setting->guardian_name) {?><?php echo $student['guardian_name'];} ?></td>
-
-
                                             <td rowspan="3">
-                                              <?php if ($sch_setting->guardian_pic) {
-        ?><img class="profile-user-img img-responsive img-circle" src="<?php
-if (!empty($student["guardian_pic"])) {
-            echo base_url() . $student["guardian_pic"];
-        } else {
-            echo base_url() . "uploads/student_images/no_image.png";
-        }
-        ?>" > <?php }?></td>
+                                              <?php if ($sch_setting->guardian_pic) {?>
+                                                <img class="profile-user-img img-responsive img-circle" src="<?php
+                                                  if (!empty($student["guardian_pic"])) {
+                                                    echo base_url() . $student["guardian_pic"];
+                                                  } else {
+                                                    echo base_url() . "uploads/student_images/no_image.png";
+                                                  }?>" >
+                                              <?php }?>
+                                            </td>
 
                                         </tr>
                                         <?php if ($sch_setting->guardian_email) {?>
@@ -555,20 +718,16 @@ if (!empty($student["guardian_pic"])) {
                                 </div>
                             <?php }?>
                             </div>
-                            <?php if ($sch_setting->route_list) {
-    ?>
+                            <?php if ($sch_setting->route_list) {?>
                             <?php
-if ($this->module_lib->hasActive('transport')) {
-
-        if ($student['vehroute_id'] != 0) {
-            ?>
+                              if ($this->module_lib->hasActive('transport')) {
+                                if ($student['vehroute_id'] != 0) {
+                            ?>
                                     <div class="tshadow mb25  bozero">
                                         <h3 class="pagetitleh2"><?php echo $this->lang->line('route') . " " . $this->lang->line('details') ?></h3>
-
                                         <div class="table-responsive around10 pt0">
                                             <table class="table table-hover table-striped tmb0">
                                                 <tbody>
-
                                                     <tr>
                                                         <td  class="col-md-4"><?php echo $this->lang->line('route'); ?></td>
                                                         <td  class="col-md-5"><?php echo $student['route_title']; ?></td>
@@ -585,24 +744,21 @@ if ($this->module_lib->hasActive('transport')) {
                                                         <td><?php echo $this->lang->line('driver_contact'); ?></td>
                                                         <td><?php echo $student['driver_contact']; ?></td>
                                                     </tr>
-
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-
-                                    <?php
-}
-    }}
-?>
+                              <?php
+                                  }
+                                }
+                              }
+                              ?>
                             <?php if ($sch_setting->hostel_id) {
-    if ($this->module_lib->hasActive('hostel')) {
-
-        if ($student['hostel_room_id'] != 0) {
-            ?>
+                              if ($this->module_lib->hasActive('hostel')) {
+                                if ($student['hostel_room_id'] != 0) {
+                            ?>
                                     <div class="tshadow mb25  bozero">
                                         <h3 class="pagetitleh2"><?php echo $this->lang->line('hostel') . " " . $this->lang->line('details') ?></h3>
-
                                         <div class="table-responsive around10 pt0">
                                             <table class="table table-hover table-striped tmb0">
                                                 <tbody>
@@ -622,10 +778,11 @@ if ($this->module_lib->hasActive('transport')) {
                                             </table>
                                         </div>
                                     </div>
-                                    <?php
-}
-    }}
-?>
+                            <?php
+                                  }
+                                }
+                              }
+                            ?>
                             <div class="tshadow mb25  bozero">
                                 <h3 class="pagetitleh2"><?php echo $this->lang->line('miscellaneous_details'); ?></h3>
                                 <div class="table-responsive around10 pt0">
@@ -655,16 +812,32 @@ if ($this->module_lib->hasActive('transport')) {
     ?>
                                             <tr>
                                                 <td  class="col-md-4"><?php echo $this->lang->line('measurement_date'); ?></td>
-                                                <td  class="col-md-5"><?php
-if (!empty($student['measurement_date']) && $student['measurement_date'] != '0000-00-00') {
-        echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['measurement_date']));
-    }
-    ?></td>
+                                                <td  class="col-md-5">
+                                                  <?php
+                                                    if (!empty($student['measurement_date']) && $student['measurement_date'] != '0000-00-00') {
+                                                      echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['measurement_date']));
+                                                    }
+                                                    ?>
+                                                </td>
                                             </tr>
                                             <?php }if ($sch_setting->previous_school_details) {?>
                                             <tr>
                                                 <td  class="col-md-4"><?php echo $this->lang->line('previous_school_details'); ?></td>
                                                 <td  class="col-md-5"><?php echo $student['previous_school']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="col-md-4">Leaving Reason</td>
+                                                <td  class="col-md-5"><?php echo $student['leaving_reason']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="col-md-4">Leaving Date</td>
+                                                <td  class="col-md-5">
+                                                  <?php
+                                                    if (!empty($student['leaving_date']) && $student['leaving_date'] != '0000-00-00') {
+                                                      echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['leaving_date']));
+                                                    }
+                                                    ?>
+                                                </td>
                                             </tr>
                                             <?php }if ($sch_setting->national_identification_no) {?>
                                             <tr>
@@ -692,10 +865,69 @@ if (!empty($student['measurement_date']) && $student['measurement_date'] != '000
                                                 <td><?php echo $student['ifsc_code']; ?></td>
                                             </tr>
                                           <?php }?>
+                                          <tr>
+                                              <td>Distance to School</td>
+                                              <td><?php echo $student['distance_to_school']; ?> KM</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Travelling Time</td>
+                                              <td><?php echo $student['traveltime_hour']; ?>&nbsp;Hours&nbsp;<?php echo $student['traveltime_minute']; ?>&nbsp;Minutes </td>
+                                          </tr>
+                                          <tr>
+                                              <td>No. Ijazah Sekolah Dasar</td>
+                                              <td><?php echo $student['no_ijazah_sd']; ?></td>
+                                          </tr>
+                                          <tr>
+                                              <td>No. SHUN Sekolah Dasar</td>
+                                              <td><?php echo $student['no_shun_sd']; ?></td>
+                                          </tr>
+                                          <tr>
+                                              <td>No. Ijazah Sekolah Menengah Pertama</td>
+                                              <td><?php echo $student['no_ijazah_smp']; ?></td>
+                                          </tr>
+                                          <tr>
+                                              <td>No. SHUN Sekolah Menengah Pertama</td>
+                                              <td><?php echo $student['no_shun_smp']; ?></td>
+                                          </tr>
+                                          <tr>
+                                              <td>No. Ijazah Sekolah Menengah Atas</td>
+                                              <td><?php echo $student['no_ijazah_sma']; ?></td>
+                                          </tr>
+                                          <tr>
+                                              <td>No. SHUN Sekolah Menengah Atas</td>
+                                              <td><?php echo $student['no_shun_sma']; ?></td>
+                                          </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                            <div class="tshadow mb25  bozero">
+                                <h3 class="pagetitleh2">Achievement</h3>
+                                <div class="table-responsive around10 pt0">
+                                    <table class="table table-hover table-striped tmb0">
+                                        <thead>
+                                          <tr>
+                                            <th>#</th>
+                                            <th>Title</th>
+                                            <th>Year</th>
+                                            <th>Category</th>
+                                            <th>Level</th>
+                                            <th>Organizer</th>
+                                            <th>Certificate Number</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <?php
+                                              
+
+                                            ?>
+                                          </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="tab-pane" id="fee">
                             <?php
