@@ -714,7 +714,7 @@ class Student extends Admin_Controller
                   $imp                = implode('_', $exp);
                   $img_name           = $uploaddir . $imp;
 
-                  move_uploaded_file($_FILES["achievement_doc1"]["tmp_name"]. $img_name);
+                  move_uploaded_file($_FILES["achievement_doc1"]["tmp_name"], $img_name);
                   $data_img = array(
                     'student_id'              => $insert_id,
                     'achievement_name'        => $achievement_name1,
@@ -723,6 +723,68 @@ class Student extends Admin_Controller
                     'achievement_level'       => $achievement_level1,
                     'achievement_organizer'   => $achievement_organizer1,
                     'achievement_cert_no'     => $achievement_cert_no1,
+                    'achievement_doc'         => $imp
+                  );
+                  $this->student_model->addachv($data_img);
+                }
+
+                if (isset($_FILES["achievement_doc2"]) && !empty($_FILES["achievement_doc2"]["name"])){
+                  $uploaddir = './uploads/student_documents/'.$insert_id.'/';
+                  if (!is_dir($uploaddir) && !mkdir($uploaddir)){
+                    die("Error Creating folder $uploaddir");
+                  }
+                  $fileInfo           = pathinfo($_FILES["achievement_doc2"]["name"]);
+                  $achievement_name1  = $this->input->post('achievement_name2');
+                  $achievement_year1  = $this->input->post('achievement_year2');
+                  $achievement_cat1   = $this->input->post('achievement_cat2');
+                  $achievement_level1 = $this->input->post('achievement_level2');
+                  $achievement_organizer1 = $this->input->post('achievement_organizer2');
+                  $achievement_cert_no1   = $this->input->post('achievement_cert_no2');
+                  $file_name          = $_FILES['achievement_doc2']['name'];
+                  $exp                = explode(' ', $file_name);
+                  $imp                = implode('_', $exp);
+                  $img_name           = $uploaddir . $imp;
+
+                  move_uploaded_file($_FILES["achievement_doc2"]["tmp_name"], $img_name);
+                  $data_img = array(
+                    'student_id'              => $insert_id,
+                    'achievement_name'        => $achievement_name2,
+                    'achievement_year'        => $achievement_year2,
+                    'achievement_cat'         => $achievement_cat2,
+                    'achievement_level'       => $achievement_level2,
+                    'achievement_organizer'   => $achievement_organizer2,
+                    'achievement_cert_no'     => $achievement_cert_no2,
+                    'achievement_doc'         => $imp
+                  );
+                  $this->student_model->addachv($data_img);
+                }
+
+                if (isset($_FILES["achievement_doc3"]) && !empty($_FILES["achievement_doc3"]["name"])){
+                  $uploaddir = './uploads/student_documents/'.$insert_id.'/';
+                  if (!is_dir($uploaddir) && !mkdir($uploaddir)){
+                    die("Error Creating folder $uploaddir");
+                  }
+                  $fileInfo           = pathinfo($_FILES["achievement_doc3"]["name"]);
+                  $achievement_name1  = $this->input->post('achievement_name3');
+                  $achievement_year1  = $this->input->post('achievement_year3');
+                  $achievement_cat1   = $this->input->post('achievement_cat3');
+                  $achievement_level1 = $this->input->post('achievement_level3');
+                  $achievement_organizer1 = $this->input->post('achievement_organizer3');
+                  $achievement_cert_no1   = $this->input->post('achievement_cert_no3');
+                  $file_name          = $_FILES['achievement_doc3']['name'];
+                  $exp                = explode(' ', $file_name);
+                  $imp                = implode('_', $exp);
+                  $img_name           = $uploaddir . $imp;
+
+                  move_uploaded_file($_FILES["achievement_doc3"]["tmp_name"], $img_name);
+                  $data_img = array(
+                    'student_id'              => $insert_id,
+                    'achievement_name'        => $achievement_name3,
+                    'achievement_year'        => $achievement_year3,
+                    'achievement_cat'         => $achievement_cat3,
+                    'achievement_level'       => $achievement_level3,
+                    'achievement_organizer'   => $achievement_organizer3,
+                    'achievement_cert_no'     => $achievement_cert_no3,
                     'achievement_doc'         => $imp
                   );
                   $this->student_model->addachv($data_img);
@@ -1023,7 +1085,48 @@ class Student extends Admin_Controller
 
         $category = $this->category_model->get();
 
-        $fields = array('admission_no', 'roll_no', 'firstname', 'middlename', 'lastname', 'gender', 'dob', 'category_id', 'religion', 'cast', 'mobileno', 'email', 'admission_date', 'blood_group', 'school_house_id', 'height', 'weight', 'measurement_date', 'father_name', 'father_phone', 'father_occupation', 'mother_name', 'mother_phone', 'mother_occupation', 'guardian_is', 'guardian_name', 'guardian_relation', 'guardian_email', 'guardian_phone', 'guardian_occupation', 'guardian_address', 'current_address', 'permanent_address', 'bank_account_no', 'bank_name', 'ifsc_code', 'adhar_no', 'samagra_id', 'rte', 'previous_school', 'note');
+        $fields = array(
+          'admission_no',
+          'roll_no',
+          'firstname',
+          'middlename',
+          'lastname',
+          'gender',
+          'dob',
+          'category_id',
+          'religion',
+          'cast',
+          'mobileno',
+          'email',
+          'admission_date',
+          'blood_group',
+          'school_house_id',
+          'height',
+          'weight',
+          'measurement_date',
+          'father_name',
+          'father_phone',
+          'father_occupation',
+          'mother_name',
+          'mother_phone',
+          'mother_occupation',
+          'guardian_is',
+          'guardian_name',
+          'guardian_relation',
+          'guardian_email',
+          'guardian_phone',
+          'guardian_occupation',
+          'guardian_address',
+          'current_address',
+          'permanent_address',
+          'bank_account_no',
+          'bank_name',
+          'ifsc_code',
+          'adhar_no',
+          'samagra_id',
+          'rte',
+          'previous_school',
+          'note');
 
         $data["fields"]       = $fields;
         $data['categorylist'] = $category;
@@ -1349,8 +1452,55 @@ class Student extends Admin_Controller
             }
 
             $data = array(
+              //START NEW DATA
+                'nisn'                     => $this->input->post('nisn'),
+                'nik'                      => $this->input->post('nik'),
+                'preferedname'             => $this->input->post('preferedname'),
+                'pob'                      => $this->input->post('pob'), //place of birth
+                'nationality'              => $this->input->post('nationality'),
+                'transportation_type'      => $this->input->post('transportation_type'),
+                'vehicle_no'               => $this->input->post('vehicle_no'),
+                'driver_name'              => $this->input->post('driver_name'),
+                'nanny_name'               => $this->input->post('nanny_name'),
+                'father_greetings_name'    => $this->input->post('father_greetings_name'),
+                'father_nik'               => $this->input->post('father_nik'),
+                'father_birthyear'         => $this->input->post('father_birthyear'),
+                'father_last_edu'          => $this->input->post('father_last_edu'),
+                'father_phone2'            => $this->input->post('father_phone2'),
+                'father_email'             => $this->input->post('father_email'),
+                'father_email2'            => $this->input->post('father_email2'),
+                'mother_greetings_name'    => $this->input->post('mother_greetings_name'),
+                'mother_nik'               => $this->input->post('mother_nik'),
+                'mother_birthyear'         => $this->input->post('mother_birthyear'),
+                'mother_last_edu'          => $this->input->post('mother_last_edu'),
+                'mother_phone2'            => $this->input->post('mother_phone2'),
+                'mother_email'             => $this->input->post('mother_email'),
+                'mother_email2'            => $this->input->post('mother_email2'),
+                'guardian_nik'             => $this->input->post('guardian_nik'),
+                'guardian_birthyear'       => $this->input->post('guardian_birthyear'),
+                'guardian_last_edu'        => $this->input->post('guardian_last_edu'),
+                'home_phone'               => $this->input->post('home_phone'),
+                'distance_to_school'       => $this->input->post('distance_to_school'),
+                'registration_type'        => $this->input->post('registration_type'),
+                'enrollment_date'          => $this->customlib->dateFormatToYYYYMMDD($this->input->post('enrollment_date')),
+                'no_ijazah_sd'             => $this->input->post('no_ijazah_sd'),
+                'no_ijazah_smp'            => $this->input->post('no_ijazah_smp'),
+                'no_ijazah_sma'            => $this->input->post('no_ijazah_sma'),
+                'no_shun_sd'               => $this->input->post('no_shun_sd'),
+                'no_shun_smp'              => $this->input->post('no_shun_smp'),
+                'no_shun_sma'              => $this->input->post('no_shun_sma'),
+                'leaving_reason'           => $this->input->post('leaving_reason'),
+                'leaving_date'             => $this->customlib->dateFormatToYYYYMMDD($this->input->post('leaving_date')),
+                'traveltime_hour'          => $this->input->post('traveltime_hour'),
+                'traveltime_minute'        => $this->input->post('traveltime_minute'),
+                'rt'                       => $this->input->post('rt'),
+                'rw'                       => $this->input->post('rw'),
+                'dusun'                    => $this->input->post('dusun'),
+                'kelurahan'                => $this->input->post('kelurahan'),
+                'kecamatan'                => $this->input->post('kecamatan'),
+                'postalcode'               => $this->input->post('postalcode'),
+              //END NEW DATA
                 'id'                => $id,
-                'nisn'         => $this->input->post('nisn'),
                 'firstname'         => $this->input->post('firstname'),
                 'rte'               => $this->input->post('rte'),
                 'state'             => $this->input->post('state'),

@@ -1154,6 +1154,58 @@
                                                                     <input class="filestyle form-control" type='file' name='achievement_doc1' id="doc1" >
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>2.</td>
+                                                                <td><input type="text" name='achievement_name2' class="form-control" placeholder=""></td>
+                                                                <td>
+                                                                  <select class="form-control" name="achievement_cat2">
+                                                                    <option value="">Select</option>
+                                                                    <option value="0">Sport</option>
+                                                                    <option value="1">Art</option>
+                                                                    <option value="2">Academics</option>
+                                                                  </select>
+                                                                </td>
+                                                                <td>
+                                                                  <select class="form-control" name="achievement_level2">
+                                                                    <option value="">Select</option>
+                                                                    <option value="0">Regional</option>
+                                                                    <option value="1">National</option>
+                                                                    <option value="2">International</option>
+                                                                  </select>
+                                                                </td>
+                                                                <td><input type="text" name='achievement_year2' class="form-control" placeholder=""></td>
+                                                                <td><input type="text" name='achievement_organizer2' class="form-control" placeholder=""></td>
+                                                                <td><input type="text" name='achievement_cert_no2' class="form-control" placeholder=""></td>
+                                                                <td>
+                                                                    <input class="filestyle form-control" type='file' name='achievement_doc2' id="doc1" >
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3.</td>
+                                                                <td><input type="text" name='achievement_name3' class="form-control" placeholder=""></td>
+                                                                <td>
+                                                                  <select class="form-control" name="achievement_cat3">
+                                                                    <option value="">Select</option>
+                                                                    <option value="0">Sport</option>
+                                                                    <option value="1">Art</option>
+                                                                    <option value="2">Academics</option>
+                                                                  </select>
+                                                                </td>
+                                                                <td>
+                                                                  <select class="form-control" name="achievement_level3">
+                                                                    <option value="">Select</option>
+                                                                    <option value="0">Regional</option>
+                                                                    <option value="1">National</option>
+                                                                    <option value="2">International</option>
+                                                                  </select>
+                                                                </td>
+                                                                <td><input type="text" name='achievement_year3' class="form-control" placeholder=""></td>
+                                                                <td><input type="text" name='achievement_organizer3' class="form-control" placeholder=""></td>
+                                                                <td><input type="text" name='achievement_cert_no3' class="form-control" placeholder=""></td>
+                                                                <td>
+                                                                    <input class="filestyle form-control" type='file' name='achievement_doc3' id="doc1" >
+                                                                </td>
+                                                            </tr>
                                                         </tbody></table>
                                                 </div>
                                             </div>

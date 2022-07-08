@@ -150,6 +150,9 @@ if ($student['is_active'] == 'no') {
                                 <b>NISN</b> <a class="pull-right text-aqua"><?php echo $student['nisn']; ?></a>
                             </li>
                             <li class="list-group-item listnoback">
+                                <b>Prefered Name</b> <a class="pull-right text-aqua"><?php echo $student['preferedname']; ?></a>
+                            </li>
+                            <li class="list-group-item listnoback">
                                 <b><?php echo $this->lang->line('admission_no'); ?></b> <a class="pull-right text-aqua"><?php echo $student['admission_no']; ?></a>
                             </li>
                         <?php
@@ -919,7 +922,7 @@ if ($this->rbac->hasPrivilege('student', 'can_edit')) {
                                         <tbody>
                                           <tr>
                                             <?php
-                                              
+
 
                                             ?>
                                           </tr>
