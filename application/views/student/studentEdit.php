@@ -83,7 +83,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                                <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                                 <select  id="section_id" name="section_id" class="form-control" >
                                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
                                                 </select>

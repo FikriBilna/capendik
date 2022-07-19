@@ -20,7 +20,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="row">
-                                    
+
 
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -44,7 +44,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label><?php echo $this->lang->line('section'); ?></label>
+                                                <label>Form</label>
                                                 <select  id="section_id" name="section_id" class="form-control" >
                                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
                                                 </select>
@@ -57,12 +57,12 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                 <button type="submit" class="btn btn-primary btn-sm pull-right" name="class_search" data-loading-text="Please wait.." value=""><i class="fa fa-search"></i> <?php echo $this->lang->line('search'); ?></button>
                                             </div>
                                         </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="row">
-                                   
+
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label><?php echo $this->lang->line('search_by_keyword'); ?></label>
@@ -76,7 +76,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                <button type="submit" class="btn btn-primary btn-sm pull-right" name="keyword_search" data-loading-text="Please wait.." value=""><i class="fa fa-search"></i> <?php echo $this->lang->line('search'); ?></button>
                                             </div>
                                         </div>
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -93,14 +93,14 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                             </div>
                             <div class="box-body">
                                 <div class="table-responsive">
-                                    
-                              
+
+
                                 <table class="table table-striped table-bordered table-hover student-list" data-export-title="<?php echo $this->lang->line('student')." ".$this->lang->line('list'); ?>">
                                     <thead>
 
                                         <tr>
                                             <th><?php echo $this->lang->line('class'); ?></th>
-                                            <th><?php echo $this->lang->line('section'); ?></th>
+                                            <th>Form</th>
 
                                             <th><?php echo $this->lang->line('admission_no'); ?></th>
 
@@ -185,10 +185,10 @@ $(document).ready(function() {
     }
 </script>
 <script type="text/javascript">
-$(document).ready(function(){ 
+$(document).ready(function(){
 $(document).on('submit','.class_search_form',function(e){
     e.preventDefault(); // avoid to execute the actual submit of the form.
-    var $this = $(this).find("button[type=submit]:focus");  
+    var $this = $(this).find("button[type=submit]:focus");
     var form = $(this);
     var url = form.attr('action');
     var form_data = form.serializeArray();
@@ -228,7 +228,7 @@ $(document).on('submit','.class_search_form',function(e){
             $('#class_id').prop('selectedIndex',0);
             $('#section_id').find('option').not(':first').remove();
         }else if (search_type == "class_search") {
-            
+
              $('#search_text').val("");
         }
     }

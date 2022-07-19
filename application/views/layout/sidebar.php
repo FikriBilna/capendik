@@ -159,7 +159,7 @@ if ($this->rbac->hasPrivilege('student_houses', 'can_view')) {
                                 <li class="<?php echo set_Submenu('student/disable_reason'); ?>"><a href="<?php echo base_url(); ?>admin/disable_reason"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('disable') . " " . $this->lang->line('reason'); ?></a></li>
                                 <?php
 }
-        ?>                              
+        ?>
 
 
                         </ul>
@@ -524,7 +524,7 @@ if ($this->module_lib->hasActive('academics')) {
 
         if ($this->rbac->hasPrivilege('section', 'can_view')) {
             ?>
-                                <li class="<?php echo set_Submenu('sections/index'); ?>"><a href="<?php echo base_url(); ?>sections"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('sections'); ?></a></li>
+                                <li class="<?php echo set_Submenu('sections/index'); ?>"><a href="<?php echo base_url(); ?>sections"><i class="fa fa-angle-double-right"></i> Form</a></li>
                                 <?php
 }
         ?>
@@ -653,9 +653,9 @@ if ($this->rbac->hasPrivilege('notice_board', 'can_view')) {
             ?>
                                 <li class="<?php echo set_Submenu('mailsms/index'); ?>"><a href="<?php echo base_url(); ?>admin/mailsms/index"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('email_/_sms_log'); ?></a></li>
                     <?php }?>
-						
+
 							<li class="<?php echo set_Submenu('bulk_mail'); ?>"><a href="<?php echo base_url(); ?>student/bulkmail"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('login_credentials_send'); ?></a></li>
-							
+
                         </ul>
                     </li>
                     <?php

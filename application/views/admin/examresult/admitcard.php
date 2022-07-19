@@ -36,19 +36,19 @@
                                                 ?>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('exam_group_id'); ?></span>
-                                </div>  
+                                </div>
                             </div>
                             <div class="col-sm-6 col-lg-4 col-md-4">
-                                <div class="form-group">  
+                                <div class="form-group">
                                     <label><?php echo $this->lang->line('exam'); ?><small class="req"> *</small></label>
                                     <select  id="exam_id" name="exam_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('exam_id'); ?></span>
-                                </div>  
+                                </div>
                             </div>
                             <div class="col-sm-6 col-lg-4 col-md-4">
-                                <div class="form-group">  
+                                <div class="form-group">
                                     <label><?php echo $this->lang->line('session'); ?><small class="req"> *</small></label>
                                     <select  id="session_id" name="session_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
@@ -65,11 +65,11 @@
                                                 ?>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('session_id'); ?></span>
-                                </div>  
+                                </div>
                             </div>
 
                             <div class="col-sm-6 col-lg-4 col-md-4">
-                                <div class="form-group">  
+                                <div class="form-group">
                                     <label><?php echo $this->lang->line('class'); ?><small class="req"> *</small></label>
                                     <select id="class_id" name="class_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
@@ -86,17 +86,17 @@
                                                 ?>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('class_id'); ?></span>
-                                </div>  
+                                </div>
                             </div>
 
                             <div class="col-sm-6 col-lg-4 col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?><small class="req"> *</small></label>
+                                    <label for="exampleInputEmail1">Form<small class="req"> *</small></label>
                                     <select  id="section_id" name="section_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('section_id'); ?></span>
-                                </div>   
+                                </div>
                             </div>
                             <div class="col-sm-6 col-lg-4 col-md-4">
                                 <div class="form-group">
@@ -116,7 +116,7 @@
                                                 ?>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('admitcard'); ?></span>
-                                </div>   
+                                </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -133,7 +133,7 @@
                         <form method="post" action="<?php echo base_url('admin/examresult/printCard') ?>" id="printCard">
                             <input type="hidden" name="admitcard_template" value="<?php echo $admitcard_template; ?>">
                             <div  class="" >
-                                <div class="box-header ptbnull"></div> 
+                                <div class="box-header ptbnull"></div>
                                 <div class="box-header ptbnull">
                                     <h3 class="box-title titlefix"><i class="fa fa-users"></i> <?php echo $this->lang->line('student'); ?> <?php echo $this->lang->line('list'); ?></h3>
                                     <button  class="btn btn-info btn-sm printSelected pull-right" type="submit" name="generate" title="generate multiple certificate"><?php echo $this->lang->line('generate'); ?></button>
@@ -198,11 +198,11 @@
                                             </tbody>
                                         </table>
 
-                                    </div>                                                                           
-                                </div>                                                         
+                                    </div>
+                                </div>
                             </div>
                         </form>
-                    </div>  
+                    </div>
                     <?php
                 }
                 ?>
@@ -236,7 +236,7 @@
         getSectionByClass(class_id, 0);
     });
 
-    
+
     function getSectionByClass(class_id, section_id) {
 
         if (class_id != "") {
@@ -310,7 +310,7 @@
         var form = $(this);
         var subsubmit_button = $(this).find(':submit');
         var formdata = form.serializeArray();
-  
+
         var list_selected =  $('form#printCard input[name="exam_group_class_batch_exam_student_id[]"]:checked').length;
       if(list_selected > 0){
 

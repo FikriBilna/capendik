@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                        <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                         <select  id="section_id" name="section_id" class="form-control" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                         </select>
@@ -66,7 +66,7 @@
                             if (!empty($timetable)) {
                                 ?>
 
-                                <div class="table-responsive">    
+                                <div class="table-responsive">
                                     <table class="table table-stripped">
                                         <thead>
                                             <tr>
@@ -127,14 +127,14 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>  
+                                </div>
                                 <?php
                             }
                             ?>
 
                         </div>
                     </div>
-                </div>   
+                </div>
                 <?php
             }
             ?>

@@ -119,36 +119,67 @@ if (!empty($student['image'])) {
                                                         <td class="bozero"><?php echo $student['class'] . " (" . $student['section'] . ")" ?> </td>
                                                     </tr>
                                                     <tr>
-                                                        <th><?php echo $this->lang->line('father_name'); ?></th>
-                                                        <td><?php echo $student['father_name']; ?></td>
+                                                        <th><?php echo $this->lang->line('mobile_no'); ?></th>
+                                                        <td><?php echo $student['mobileno']; ?></td>
+                                                        <th><?php echo $this->lang->line('category'); ?></th>
+                                                        <td>
+                                                            <?php
+                                                              foreach ($categorylist as $value) {
+                                                                  if ($student['category_id'] == $value['id']) {
+                                                                      echo $value['category'];
+                                                                  }
+                                                              }
+                                                              ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th><?php echo $this->lang->line('email'); ?></th>
+                                                        <td><?php echo $student['email']; ?></td>
                                                         <th><?php echo $this->lang->line('admission_no'); ?></th>
                                                         <td><?php echo $student['admission_no']; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th><?php echo $this->lang->line('mobile_no'); ?></th>
-                                                        <td><?php echo $student['mobileno']; ?></td>
-                                                        <th><?php echo $this->lang->line('roll_no'); ?></th>
-                                                        <td> <?php echo $student['roll_no']; ?>
-                                                        </td>
+                                                      <th><?php echo $this->lang->line('roll_no'); ?></th>
+                                                      <td> <?php echo $student['roll_no']; ?></td>
+                                                      <?php if ($sch_setting->rte) {?>
+                                                          <th><?php echo $this->lang->line('rte'); ?></th>
+                                                          <td><b class="text-danger"> <?php echo $student['rte']; ?> </b></td>
+                                                      <?php }?>
                                                     </tr>
                                                     <tr>
-                                                        <th><?php echo $this->lang->line('category'); ?></th>
-                                                        <td>
-                                                            <?php
-foreach ($categorylist as $value) {
-    if ($student['category_id'] == $value['id']) {
-        echo $value['category'];
-    }
-}
-?>
-                                                        </td>
-                                                        <?php if ($sch_setting->rte) {?>
-                                                            <th><?php echo $this->lang->line('rte'); ?></th>
-                                                            <td><b class="text-danger"> <?php echo $student['rte']; ?> </b>
-                                                            </td>
-                                                        <?php }?>
+                                                      <th>Parent / Guardian Detail</th>
                                                     </tr>
+                                                    <tr>
+                                                        <th><?php echo $this->lang->line('father_name'); ?></th>
+                                                        <td><?php echo $student['father_name']; ?></td>
+                                                        <th><?php echo $this->lang->line('mother_name'); ?></th>
+                                                        <td><?php echo $student['mother_name']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Father Phone</th>
+                                                        <td><?php echo $student['father_phone'] ?></td>
+                                                        <th><?php echo $this->lang->line('mother_phone'); ?></th>
+                                                        <td><?php echo $student['mother_phone']; ?></td>
 
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Father Email</th>
+                                                        <td><?php echo $student['father_email'] ?></td>
+                                                        <th><?php echo $this->lang->line('mother'); ?> Email</th>
+                                                        <td><?php echo $student['mother_email']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th><?php echo $this->lang->line('guardian_name'); ?></th>
+                                                        <td><?php echo $student['guardian_name']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th><?php echo $this->lang->line('guardian_phone'); ?></th>
+                                                        <td><?php echo $student['guardian_phone']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th><?php echo $this->lang->line('guardian'); ?> Email</th>
+                                                        <td><?php echo $student['guardian_email']; ?></td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>

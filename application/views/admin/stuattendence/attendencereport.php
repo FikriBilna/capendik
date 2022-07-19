@@ -86,7 +86,7 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <div class="row">  
+        <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
                     <!-- <div class="box-header ptbnull"></div> -->
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                        <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                         <select  id="section_id" name="section_id" class="form-control" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                         </select>
@@ -140,8 +140,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button type="submit" name="search" value="search" class="btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-search"></i> <?php echo $this->lang->line('search'); ?></button>
-                                    </div> 
-                                </div>  
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -172,7 +172,7 @@
                                     <div class="download_label"><?php echo $this->lang->line('attendance'); ?> <?php echo $this->lang->line('list') . " ";
                             $this->customlib->get_postmessage();
                                     ?></div>
-                                    <div class="table-responsive">    
+                                    <div class="table-responsive">
                                         <table class="table table-hover table-striped example">
                                             <thead>
                                                 <tr>
@@ -184,18 +184,18 @@
                                                     <th class="noteinput"><?php echo $this->lang->line('attendance'); ?></th>
                                                 </tr>
                                             </thead>
-                                            <tbody> 
+                                            <tbody>
                                                 <?php
                                                 $row_count = 1;
                                                 foreach ($resultlist as $key => $value) {
                                                     ?>
                                                     <tr>
-                                                  
+
                                                         <td> <?php echo $row_count; ?></td>
                                                         <td><?php echo $value['admission_no']; ?>   </td>
                                                         <td><?php echo $value['roll_no']; ?>   </td>
                                                         <td>
-                                  <?php echo 
+                                  <?php echo
                 $this->customlib->getFullName($value['firstname'],$value['middlename'],$value['lastname'],$sch_setting->middlename,$sch_setting->lastname);?>
                                                         </td>
                                                         <td>
@@ -282,8 +282,8 @@
                                     }
                                     ?>
                                 </div>
-                            </div></div> 
-                    </div> 
+                            </div></div>
+                    </div>
                     <?php
                 }
                 ?>

@@ -38,7 +38,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                     <span class="text-danger"><?php echo form_error('class_id'); ?></span>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label><?php echo $this->lang->line('section'); ?></label>
+                                    <label>Form</label>
                                     <select  id="section_id" name="section_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
                                     </select>

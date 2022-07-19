@@ -48,11 +48,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                    <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
 
 
                                     <select class="form-control" id="section_id" name="section">
-                                        <option value=""><?php echo $this->lang->line('select') ?></option> 
+                                        <option value=""><?php echo $this->lang->line('select') ?></option>
                                     </select>
 
                                     <span class="text-danger"><?php echo form_error('section'); ?></span>
@@ -111,7 +111,7 @@
 
                                         <th><?php echo $this->lang->line('class'); ?>
                                         </th>
-                                        <th><?php echo $this->lang->line('section'); ?>
+                                        <th>Form
                                         </th>
                                         <th><?php echo $this->lang->line('class_teacher'); ?>
                                         </th>

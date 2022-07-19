@@ -53,7 +53,7 @@
                                     <span class="text-danger"><?php echo form_error('class_id'); ?></span>
                                 </div>
                                 <div class="form-group"> <!-- Radio group !-->
-                                    <label class="control-label"><?php echo $this->lang->line('sections'); ?></label><small class="req"> *</small>
+                                    <label class="control-label">Form</label><small class="req"> *</small>
                                     <div class="section_checkbox">
                                         <?php echo $this->lang->line('no') . " " . $this->lang->line('section') ?>
                                     </div>
@@ -104,7 +104,7 @@
             } else {
                 echo "12";
             }
-            ?>"> 
+            ?>">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header ptbnull">
@@ -121,7 +121,7 @@
                                 <thead>
                                     <tr>
                                         <th><?php echo $this->lang->line('name'); ?></th>
-                                        <th><?php echo $this->lang->line('class') . " " . $this->lang->line('section'); ?></th>
+                                        <th><?php echo $this->lang->line('class'); ?> Form</th>
                                         <th><?php echo $this->lang->line('subject'); ?></th>
                                         <th class="text-right no_print"><?php echo $this->lang->line('action'); ?></th>
                                     </tr>

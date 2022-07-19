@@ -9,7 +9,7 @@ $language_name = $language["short_code"];
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1> 
+        <h1>
             <i class="fa fa-flask"></i> <?php echo $this->lang->line('manage_lesson_plan'); ?>
         </h1>
     </section>
@@ -26,7 +26,7 @@ $language_name = $language["short_code"];
                                 <?php echo $this->session->flashdata('msg') ?>
                             <?php } ?>
                             <?php echo $this->customlib->getCSRF(); ?>
-                        </div> 
+                        </div>
                         <div class="col-md-3 col-lg-3 col-sm-6">
                             <div class="form-group">
                                 <label><?php echo $this->lang->line('class'); ?></label><small class="req"> *</small>
@@ -49,7 +49,7 @@ $language_name = $language["short_code"];
                         </div>
                         <div class="col-md-3 col-lg-3 col-sm-6">
                             <div class="form-group">
-                                <label><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                <label>Form</label><small class="req"> *</small>
                                 <select  id="secid" name="section_id" class="form-control" >
                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
                                 </select>
@@ -88,12 +88,12 @@ $language_name = $language["short_code"];
                 <div class="box-header">
                     <h3 class="box-title"><i class="fa fa-search"></i> <?php echo $this->lang->line('syllabus') . " " . $this->lang->line('status') . " " . $this->lang->line('for') . ": " . $subject_name; ?></h3>
                 </div>
-                <div class="box-body" id="transfee">    
-                    <div class="table-responsive mailbox-messages"> 
+                <div class="box-body" id="transfee">
+                    <div class="table-responsive mailbox-messages">
 
 
                     <p class="pull-right">
-                    <a class="btn btn-default btn-xs displayinline" id="btnExport" onclick="fnExcelReport();"> <i class="fa fa-file-excel-o"></i> </a>  
+                    <a class="btn btn-default btn-xs displayinline" id="btnExport" onclick="fnExcelReport();"> <i class="fa fa-file-excel-o"></i> </a>
                         <a class="btn btn-default btn-xs displayinline" id="print" onclick="printDiv()" ><i class="fa fa-print"></i></a> </p>
 
 
@@ -124,7 +124,7 @@ $language_name = $language["short_code"];
                                             if (isset($value['topic'])) {
                                                 $topic_count = 1;
                                                 foreach ($value['topic'] as $topic_key => $topic_value) {
-                                                    ?> 
+                                                    ?>
                                                     <li><span><?php echo $losson_count . "." . $topic_count; ?></span><?php echo $topic_value['name']; ?></li>
 
                                                     <?php
@@ -199,7 +199,7 @@ $language_name = $language["short_code"];
                             }
                             ?>
                         </table>
-                    </div><!--./table-responsive-->   
+                    </div><!--./table-responsive-->
 
                 </div>
                 <?php
@@ -239,14 +239,14 @@ $language_name = $language["short_code"];
 
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <input type="submit" class="btn btn-primary pull-right"  value="<?php echo $this->lang->line('save'); ?>"></div> 
+                            <input type="submit" class="btn btn-primary pull-right"  value="<?php echo $this->lang->line('save'); ?>"></div>
                     </form>
                 </div>
 
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 <script type="text/javascript">
 

@@ -12,7 +12,7 @@
         <div class="row">
             <?php
             if ($this->rbac->hasPrivilege('class', 'can_add') || $this->rbac->hasPrivilege('class', 'can_edit')) {
-                ?>  
+                ?>
                 <div class="col-md-4">
                     <!-- Horizontal Form -->
                     <div class="box box-primary">
@@ -49,7 +49,7 @@
                                     <span class="text-danger"><?php echo form_error('class'); ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1"><?php echo $this->lang->line('sections'); ?></label><small class="req"> *</small>
+                                    <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
 
 
                                     <?php
@@ -102,7 +102,7 @@
 
                                         <th><?php echo $this->lang->line('class'); ?>
                                         </th>
-                                        <th><?php echo $this->lang->line('sections'); ?>
+                                        <th>Form
                                         </th>
 
                                         <th class="text-right"><?php echo $this->lang->line('action'); ?></th>
@@ -137,14 +137,14 @@
                                             <td class="mailbox-date pull-right">
                                                 <?php
                                                 if ($this->rbac->hasPrivilege('class', 'can_edit')) {
-                                                    ?>  
+                                                    ?>
                                                     <a data-placement="left" href="<?php echo base_url(); ?>classes/edit/<?php echo $vehroute->id; ?>" class="btn btn-default btn-xs"  data-toggle="tooltip" title="<?php echo $this->lang->line('edit'); ?>">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
                                                     <?php
                                                 }
                                                 if ($this->rbac->hasPrivilege('class', 'can_delete')) {
-                                                    ?>  
+                                                    ?>
                                                <a data-placement="left" href="<?php echo base_url(); ?>classes/delete/<?php echo $vehroute->id; ?>"class="btn btn-default btn-xs"  data-toggle="tooltip" title="<?php echo $this->lang->line('delete'); ?>" onclick="return confirm('<?php echo $this->lang->line('deleting_class'); ?>');">
                                                 <?php } ?>
                                             </td>

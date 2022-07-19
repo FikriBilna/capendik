@@ -78,7 +78,7 @@
         background-color: #5bc0de; }
     @media (max-width:767px){
         .radio.radio-inline {display: inherit;}
-    }      
+    }
 </style>
 
 <div class="content-wrapper" style="min-height: 946px;">
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                        <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                         <select  id="section_id" name="section_id" class="form-control" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                         </select>
@@ -147,11 +147,11 @@
                                         <span class="text-danger"><?php echo form_error('date'); ?></span>
                                     </div>
                                 </div>
-                                <div class="col-md-12">    
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <button type="submit" name="search" value="search" class="btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-search"></i> <?php echo $this->lang->line('search'); ?></button>
-                                    </div> 
-                                </div>   
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -159,7 +159,7 @@
                     if (isset($resultlist)) {
                         ?>
                         <div class="">
-                            <div class="box-header ptbnull"></div> 
+                            <div class="box-header ptbnull"></div>
                             <div class="box-header with-border">
                                 <h3 class="box-title"><i class="fa fa-users"></i> <?php echo $this->lang->line('student'); ?> <?php echo $this->lang->line('list'); ?></h3>
                                 <div class="box-tools pull-right">
@@ -219,7 +219,7 @@
                                         <input type="hidden" name="section_id" value="<?php echo $section_id; ?>">
                                         <input type="hidden" name="date" value="<?php echo $date; ?>">
                                         <div class="table-responsive ptt10">
-                                            <table class="table table-hover table-striped example"> 
+                                            <table class="table table-hover table-striped example">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
@@ -229,7 +229,7 @@
                                                             ?>
                                                             <th><?php echo $this->lang->line('date'); ?></th>
                                                             <?php
-                                                        } 
+                                                        }
                                                         ?>
                                                         <th><?php echo $this->lang->line('roll_no'); ?></th>
                                                         <th><?php echo $this->lang->line('name'); ?></th>
@@ -272,7 +272,7 @@
 
                                                             <td>
 
-            <?php 
+            <?php
             echo $this->customlib->getFullName($value['firstname'],$value['middlename'],$value['lastname'],$sch_setting->middlename,$sch_setting->lastname);  ?>
                                                             </td>
                                                             <td>
@@ -288,7 +288,7 @@
                                                                                 <input <?php if ($value['attendence_type_id'] == $type['id']) echo "checked"; ?> type="radio" id="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>" value="<?php echo $type['id'] ?>" name="attendencetype<?php echo $value['student_session_id']; ?>" >
 
                                                                                 <label for="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>">
-                        <?php echo $this->lang->line($att_type); ?> 
+                        <?php echo $this->lang->line($att_type); ?>
                                                                                 </label>
 
                                                                             </div>
@@ -309,8 +309,8 @@
                                                                                 ?>
 
 
-                                                                                <label for="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>"> 
-                        <?php echo $this->lang->line($att_type); ?> 
+                                                                                <label for="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>">
+                        <?php echo $this->lang->line($att_type); ?>
                                                                                 </label>
                                                                             </div>
                                                                             <?php
@@ -322,7 +322,7 @@
                                                                 ?>
 
                                                             </td>
-                                                            <?php if ($date == 'xxx') { ?> 
+                                                            <?php if ($date == 'xxx') { ?>
                                                                 <td class="text-right"><input type="text" class="noteinput" name="remark<?php echo $value["student_session_id"] ?>" ></td>
             <?php } else { ?>
 
@@ -346,7 +346,7 @@
                                 ?>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <?php
                 }
                 ?>
@@ -471,7 +471,7 @@
                         init();
                     });
                 });
- 
+
                 $('#checkbox1').change(function () {
 
                     if (this.checked) {

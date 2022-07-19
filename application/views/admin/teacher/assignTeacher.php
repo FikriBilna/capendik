@@ -4,7 +4,7 @@
             <i class="fa fa-mortar-board"></i> <?php echo $this->lang->line('academics'); ?></h1>
     </section>
     <!-- Main content -->
-    <section class="content">       
+    <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-search"></i> <?php echo $this->lang->line('select_criteria'); ?></h3>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                <label>Form</label><small class="req"> *</small>
                                 <select  id="section_id" name="section_id" class="form-control" >
                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
                                 </select>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="search_filter" name="search" value="search_filter" class="btn btn-primary btn-sm checkbox-toggle pull-right"><i class="fa fa-search"></i> <?php echo $this->lang->line('search'); ?></button>                 
+                    <button type="submit" id="search_filter" name="search" value="search_filter" class="btn btn-primary btn-sm checkbox-toggle pull-right"><i class="fa fa-search"></i> <?php echo $this->lang->line('search'); ?></button>
                 </div>
             </form>
         </div>
@@ -68,7 +68,7 @@
                     <button type="submit" class="btn btn-primary btn-sm btn pull-right save_button" style="display: none;"><?php echo $this->lang->line('save'); ?></button>
                 </div>
             </form>
-        </div>       
+        </div>
     </section>
 </div>
 

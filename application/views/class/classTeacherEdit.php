@@ -53,10 +53,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                    <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
 
                                     <select class="form-control" id="section_id" name="section" readonly>
-                                        <option value=""><?php echo $this->lang->line('select') ?></option> 
+                                        <option value=""><?php echo $this->lang->line('select') ?></option>
                                     </select>
 
 
@@ -73,7 +73,7 @@
                                         <input autofocus="" id="class" name="previd[]" placeholder="" type="hidden" class="form-control"  value="<?php echo $result_value["ctid"]; ?>" />
 
                                     <?php }
-                                    ?> 
+                                    ?>
 
                                     <?php
                                     $i = 0;
@@ -130,7 +130,7 @@
 
                                         <th><?php echo $this->lang->line('class'); ?>
                                         </th>
-                                        <th><?php echo $this->lang->line('section'); ?>
+                                        <th>Form
                                         </th>
                                         <th><?php echo $this->lang->line('class_teacher'); ?>
                                         </th>

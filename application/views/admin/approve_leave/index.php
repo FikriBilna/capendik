@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-sm-6">
                             <div class="form-group">
-                                <label><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                <label>Form</label><small class="req"> *</small>
                                 <select  id="secid" name="section_id" class="form-control" >
                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
                                 </select>
@@ -69,7 +69,7 @@
                         </div>
 
                     </div>
- 
+
 
                     <div class="box-body table-responsive">
                         <div class="download_label"> <?php echo $this->lang->line('approve') . " " . $this->lang->line('leave') . " " . $this->lang->line('list'); ?> </div>
@@ -79,7 +79,7 @@
                                     <tr>
                                         <th><?php echo $this->lang->line('student_name') ?></th>
                                         <th><?php echo $this->lang->line('class'); ?></th>
-                                        <th><?php echo $this->lang->line('section'); ?></th>
+                                        <th>Form</th>
                                         <th><?php echo $this->lang->line('apply') . " " . $this->lang->line('date'); ?></th>
                                         <th><?php echo $this->lang->line('from') . " " . $this->lang->line('date'); ?></th>
                                         <th><?php echo $this->lang->line('to') . " " . $this->lang->line('date'); ?></th>

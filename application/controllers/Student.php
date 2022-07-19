@@ -153,6 +153,12 @@ class Student extends Admin_Controller
         $data['student_due_fee']      = $student_due_fee;
         $siblings                     = $this->student_model->getMySiblings($student['parent_id'], $student['id']);
 
+        $class_teacher          = $this->student_model->getClassTeacher($student['section_id'], $student['class_id']);
+        $data['class_teacher']  = $class_teacher;
+
+        $student_achv           = $this->student_model->getStudentAchievement($id);
+        $data['student_achv']   = $student_achv;
+
         $student_doc = $this->student_model->getstudentdoc($id);
 
         $data['student_doc']    = $student_doc;

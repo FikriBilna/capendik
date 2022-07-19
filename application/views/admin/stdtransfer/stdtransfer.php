@@ -8,7 +8,7 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <div class="row">           
+        <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -20,7 +20,7 @@
                         <div class="box-body">
                             <?php echo $this->customlib->getCSRF(); ?>
                             <div class="row">
-                                <div class="col-md-6">                                   
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1"><?php echo $this->lang->line('class'); ?></label><small class="req"> *</small>
                                         <select autofocus="" id="class_id" name="class_id" class="form-control" >
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                        <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                         <select  id="section_id" name="section_id" class="form-control" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                         </select>
@@ -63,7 +63,7 @@
                                                 }
                                                 ?>
                                             </select>
-                                           
+
                                                   <span class="text-danger"><?php echo form_error('session_id'); ?></span>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                            <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                             <select  id="section_promote_id" name="section_promote_id" class="form-control" >
                                                 <option value=""><?php echo $this->lang->line('select'); ?></option>
                                             </select>
@@ -103,7 +103,7 @@
                     <?php
                     if (isset($resultlist)) {
                         ?>
-                      
+
                         <div class="box-header ptbnull">
                             <h3 class="box-title"><i class="fa fa-list"></i><?php echo $this->lang->line('student_list'); ?>  </h3>
                             <div class="box-tools pull-right">
@@ -117,8 +117,8 @@
                                <input type="hidden" class="section_promoted_post" name="section_promote_id" value="<?php echo $section_promoted_post; ?>" >
                                <input type="hidden" class="session_promoted_post" name="session_id" value="<?php echo $session_promoted_post; ?>" >
 
-                
-                                <div class="table-responsive">    
+
+                                <div class="table-responsive">
                                     <table class="table table-striped">
                                         <tbody>
                                             <tr>
@@ -148,7 +148,7 @@
                                                     <td><?php echo $student['father_name']; ?></td>
                                                     <td><?php
 													if($student['dob'] != '0000-00-00' && $student['dob'] != ''){
-													echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob'])); 
+													echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob']));
 													}
 													?></td>
                                                     <td>
@@ -187,7 +187,7 @@
                                         ?>
                                         </tbody>
                                     </table>
-                                </div>    
+                                </div>
                             </form>
                         </div>
 
@@ -203,10 +203,10 @@
                         </div>
 
                     </div>
-                </div>  
+                </div>
                 <?php
             } else {
-                
+
             }
             ?>
     </section>
@@ -403,10 +403,10 @@
                 },
                 success: function (data) {
                     $('.sessionmodal_body').html(data);
-                   
+
                     if (data.status == "fail") {
                         var error_html="";
-                        $.each(data.msg, function (index, value) {                           
+                        $.each(data.msg, function (index, value) {
                             error_html+=value;
                         });
 
@@ -430,4 +430,3 @@ errorMsg(error_html);
 
     });
 </script>
-

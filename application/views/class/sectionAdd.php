@@ -1,25 +1,25 @@
-<div class="content-wrapper"> 
+<div class="content-wrapper">
     <section class="content-header">
         <h1>
             <i class="fa fa-mortar-board"></i> <?php echo $this->lang->line('academics'); ?> <small><?php echo $this->lang->line('student_fees1'); ?></small>        </h1>
     </section>
     <!-- Main content -->
     <section class="content">
-        <div class="row">           
-            <div class="col-md-4">       
+        <div class="row">
+            <div class="col-md-4">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title"><?php echo $this->lang->line('add') . " " . $title . " " . $this->lang->line('section'); ?></h3>
-                    </div>  
+                    </div>
                     <form action="<?php echo site_url('classes/addsection/' . $id) ?>"  id="employeeform" name="employeeform" method="post" accept-charset="utf-8">
                         <div class="box-body">
                             <?php if ($this->session->flashdata('msg')) { ?>
                                 <?php echo $this->session->flashdata('msg') ?>
-                            <?php } ?> 
+                            <?php } ?>
                             <?php echo $this->customlib->getCSRF(); ?>
                             <input type="hidden" name="id" value="<?php echo set_value('id', $id); ?>" >
                             <div class="form-group">
-                                <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label>
+                                <label for="exampleInputEmail1">Form</label>
                                 <select autofocus="" id="section_id" name="section_id" class="form-control" >
                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
                                     <?php
@@ -40,7 +40,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-8">              
+            <div class="col-md-8">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title"><?php echo $title_list . " " . $this->lang->line('section_list') ?></h3>
@@ -48,14 +48,14 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <div class="mailbox-controls">                            
+                        <div class="mailbox-controls">
                             <div class="pull-right">
                             </div>
                         </div>
                         <div class="table-responsive mailbox-messages">
                             <table class="table table-hover table-striped">
                                 <thead>
-                                <th><?php echo $this->lang->line('section'); ?></th>
+                                <th>Form</th>
                                 <th class="pull-right"><?php echo $this->lang->line('action'); ?></th>
                                 </thead>
                                 <tbody>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <div class="mailbox-controls">  
+                        <div class="mailbox-controls">
                             <div class="pull-right">
                             </div>
                         </div>
@@ -97,9 +97,9 @@
                 </div>
             </div>
         </div>
-        <div class="row">          
+        <div class="row">
             <div class="col-md-12">
             </div>
-        </div> 
+        </div>
     </section>
 </div>

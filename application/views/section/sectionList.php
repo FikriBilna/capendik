@@ -13,15 +13,15 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title"><?php echo $this->lang->line('add_section'); ?></h3>
-                        </div> 
+                        </div>
                         <form action="<?php echo site_url('sections/index') ?>"  id="employeeform" name="employeeform" method="post" accept-charset="utf-8">
                             <div class="box-body">
                                 <?php if ($this->session->flashdata('msg')) { ?>
                                     <?php echo $this->session->flashdata('msg') ?>
-                                <?php } ?>  
+                                <?php } ?>
                                 <?php echo $this->customlib->getCSRF(); ?>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1"><?php echo $this->lang->line('section_name'); ?> </label><small class="req"> *</small>
+                                    <label for="exampleInputEmail1">Form Name</label><small class="req"> *</small>
                                     <input autofocus="" id="section" name="section" placeholder="" type="text" class="form-control"  value="<?php echo set_value('section'); ?>" />
                                     <span class="text-danger"><?php echo form_error('section'); ?></span>
                                 </div>
@@ -30,16 +30,16 @@
                                 <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
                             </div>
                         </form>
-                    </div>  
-                </div>   
-            <?php } ?>  
+                    </div>
+                </div>
+            <?php } ?>
             <div class="col-md-<?php
             if ($this->rbac->hasPrivilege('section', 'can_add')) {
                 echo "8";
             } else {
                 echo "12";
             }
-            ?>">             
+            ?>">
                 <div class="box box-primary">
                     <div class="box-header ptbnull">
                         <h3 class="box-title titlefix"><?php echo $this->lang->line('section_list'); ?></h3>
@@ -50,11 +50,11 @@
                             <table class="table table-striped table-bordered table-hover example">
                                 <thead>
                                     <tr>
-                                        <th><?php echo $this->lang->line('section'); ?></th>
+                                        <th>Form</th>
                                         <th class="text-right"><?php echo $this->lang->line('action'); ?></th>
                                     </tr>
                                 </thead>
-                                <tbody>                                   
+                                <tbody>
 
                                     <?php
                                     $count = 1;
@@ -88,8 +88,8 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
 
-        </div> 
+        </div>
     </section>
 </div>

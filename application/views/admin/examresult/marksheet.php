@@ -35,19 +35,19 @@
                                                 ?>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('exam_group_id'); ?></span>
-                                </div>  
+                                </div>
                             </div><!--./col-md-3-->
                             <div class="col-sm-6 col-lg-4 col-md-4">
-                                <div class="form-group">   
+                                <div class="form-group">
                                     <label><?php echo $this->lang->line('exam'); ?></label><small class="req"> *</small>
                                     <select  id="exam_id" name="exam_id" class="form-control select2" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('exam_id'); ?></span>
-                                </div>  
+                                </div>
                             </div><!--./col-md-3-->
                             <div class="col-sm-6 col-lg-4 col-md-4">
-                                <div class="form-group">  
+                                <div class="form-group">
                                     <label><?php echo $this->lang->line('session'); ?></label><small class="req"> *</small>
                                     <select  id="session_id" name="session_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
@@ -64,10 +64,10 @@
                                                 ?>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('session_id'); ?></span>
-                                </div>  
+                                </div>
                             </div>
                             <div class="col-sm-6 col-lg-4 col-md-4">
-                                <div class="form-group">   
+                                <div class="form-group">
                                     <label><?php echo $this->lang->line('class'); ?></label><small class="req"> *</small>
                                     <select id="class_id" name="class_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
@@ -84,12 +84,12 @@
                                                 ?>
                                     </select>
                                     <span class="text-danger"><?php echo form_error('class_id'); ?></span>
-                                </div>  
+                                </div>
                             </div>
 
                             <div class="col-sm-6 col-lg-4 col-md-4">
-                                <div class="form-group"> 
-                                    <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                     <select  id="section_id" name="section_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
                                     </select>
@@ -134,7 +134,7 @@
                             <input type="hidden" name="marksheet_template" value="<?php echo $marksheet_template; ?>">
 
 
-                            <div class="box-header ptbnull"></div>  
+                            <div class="box-header ptbnull"></div>
                             <div class="box-header ptbnull">
                                 <h3 class="box-title titlefix"><i class="fa fa-users"></i> <?php echo $this->lang->line('student'); ?> <?php echo $this->lang->line('list'); ?></h3>
                                 <button  class="btn btn-info btn-sm printSelected pull-right" type="submit" name="generate" title="generate multiple certificate"><?php echo $this->lang->line('generate'); ?></button>
@@ -165,7 +165,7 @@
                                             } else {
                                                 $count = 1;
                                                 foreach ($studentList as $student_key => $student_value) {
-                                                  
+
                                                     ?>
                                                     <tr>
                                                         <td class="text-center"><input type="checkbox" class="checkbox center-block"  name="exam_group_class_batch_exam_student_id[]" data-student_id="<?php echo $student_value->exam_group_class_batch_exam_student_id; ?>" value="<?php echo $student_value->exam_group_class_batch_exam_student_id; ?>">
@@ -180,7 +180,7 @@
                                                         <td><?php echo $student_value->father_name;
                                         ;
                                                     ?></td>
-                                                        <td><?php 
+                                                        <td><?php
 															if (!empty($student_value->dob) && $student_value->dob != '0000-00-00') {
 															echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student_value->dob)); }?></td>
                                                         <td><?php echo $student_value->gender; ?></td>
@@ -194,8 +194,8 @@
                                             ?>
                                         </tbody>
                                     </table>
-                                </div>                                                                           
-                            </div>                                           
+                                </div>
+                            </div>
 
                         </form>
                     </div>

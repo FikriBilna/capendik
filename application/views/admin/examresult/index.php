@@ -1,7 +1,7 @@
 <div class="content-wrapper" style="min-height: 946px;">
     <section class="content-header">
         <h1>
-            <i class="fa fa-map-o"></i> <?php echo $this->lang->line('examinations'); ?> <small><?php echo $this->lang->line('student_fee1'); ?></small>  
+            <i class="fa fa-map-o"></i> <?php echo $this->lang->line('examinations'); ?> <small><?php echo $this->lang->line('student_fee1'); ?></small>
         </h1>
     </section>
     <!-- Main content -->
@@ -36,7 +36,7 @@
                                         <span class="text-danger"><?php echo form_error('exam_group_id'); ?></span>
                                     </div>
                                 </div>
-                                <!--./col-md-3-->    
+                                <!--./col-md-3-->
                                 <div class="col-sm-6 col-lg-3 col-md-3 col20">
                                     <div class="form-group">
                                         <label><?php echo $this->lang->line('exam') ?></label><small class="req"> *</small>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-sm-6 col-lg-3 col-md-12 col20">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                        <label for="exampleInputEmail1">Form</label><small class="req"> *</small>
                                         <select  id="section_id" name="section_id" class="form-control" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                         </select>
@@ -215,7 +215,7 @@
                                                                                 $total_quality_point = $total_quality_point + ($point * $subject_credit_hour);
                                                                                 echo $point . " X " . $subject_credit_hour . " = " . number_format($point * $subject_credit_hour, 2, '.', '');
                                                                                 if ($result->attendence == "absent") {
-                                                                                    ?>  
+                                                                                    ?>
                                                                                     <p class="text">
                                                                                         <?php echo $this->lang->line($result->attendence); ?>
                                                                                     </p>
@@ -247,7 +247,7 @@
                                                                                 }
 
                                                                                 if ($result->attendence == "absent") {
-                                                                                    ?>  
+                                                                                    ?>
                                                                                     <p class="text">
                                                                                         <?php echo $this->lang->line($result->attendence); ?>
                                                                                     </p>
@@ -258,7 +258,7 @@
                                                                                 <?php
                                                                             }
                                                                         } else {
-                                                                            
+
                                                                         }
                                                                         ?>
                                                                     </td>

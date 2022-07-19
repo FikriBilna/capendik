@@ -1,23 +1,23 @@
-<div class="content-wrapper"> 
+<div class="content-wrapper">
     <section class="content-header">
         <h1><i class="fa fa-mortar-board"></i> <?php echo $this->lang->line('academics'); ?> <small><?php echo $this->lang->line('student_fees1'); ?></small></h1>
     </section>
     <!-- Main content -->
     <section class="content">
-        <div class="row">    
+        <div class="row">
             <?php
             if ($this->rbac->hasPrivilege('topic', 'can_add')) {
-                ?>       
-                <div class="col-md-4">       
+                ?>
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title"><?php echo $this->lang->line('add') . " " . $this->lang->line('topic'); ?></h3>
-                        </div>  
+                        </div>
                         <form   id="topic_form" name="lesson_form" method="post" accept-charset="utf-8">
                             <div class="box-body">
                                 <?php if ($this->session->flashdata('msg')) { ?>
                                     <?php echo $this->session->flashdata('msg') ?>
-                                <?php } ?> 
+                                <?php } ?>
                                 <?php echo $this->customlib->getCSRF(); ?>
                                 <div class="form-group">
                                     <label><?php echo $this->lang->line('class'); ?></label><small class="req"> *</small>
@@ -38,7 +38,7 @@
                                     <span class="class_id_error text-danger"><?php echo form_error('class_id'); ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                    <label>Form</label><small class="req"> *</small>
                                     <select  id="secid" name="section_id" class="form-control" >
                                         <option value=""><?php echo $this->lang->line('select'); ?></option>
                                     </select>
@@ -89,7 +89,7 @@
             } else {
                 echo "12";
             }
-            ?>">              
+            ?>">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title"><?php echo $this->lang->line('topic') . " " . $this->lang->line('list') ?></h3>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <div class="mailbox-controls">                            
+                        <div class="mailbox-controls">
                             <div class="pull-right">
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                                 </tr>
                                 <tr>
                                     <th><?php echo $this->lang->line('class'); ?></th>
-                                    <th><?php echo $this->lang->line('section'); ?></th>
+                                    <th>Form</th>
                                     <th><?php echo $this->lang->line('subject') . " " . $this->lang->line('group') ?></th>
                                     <th><?php echo $this->lang->line('subject'); ?></th>
                                     <th><?php echo $this->lang->line('lesson'); ?></th>
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <div class="mailbox-controls">  
+                        <div class="mailbox-controls">
                             <div class="pull-right">
                             </div>
                         </div>
@@ -131,10 +131,10 @@
                 </div>
             </div>
         </div>
-        <div class="row">          
+        <div class="row">
             <div class="col-md-12">
             </div>
-        </div> 
+        </div>
     </section>
 
 </div>
