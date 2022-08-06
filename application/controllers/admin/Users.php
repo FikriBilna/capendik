@@ -156,7 +156,7 @@ class Users extends Admin_Controller
             $findendyear = explode("-", $endsession);
             $endyear = $findendyear[0];
 
-                $viewbtn = "<a  href='".base_url()."student/view/".$student->id."'>".$this->customlib->getFullName($student->firstname,$student->middlename,$student->lastname,$sch_setting->middlename,$sch_setting->lastname)."</a>";
+                $viewbtn = "<a  href='".base_url()."student/view/".$student->sid."'>".$this->customlib->getFullName($student->firstname,$student->middlename,$student->lastname,$sch_setting->middlename,$sch_setting->lastname)."</a>";
              
                 $row   = array();
                 $row[] = $student->admission_no ;
