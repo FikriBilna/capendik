@@ -468,7 +468,7 @@ opacity:0;top:0 !important;}
     z-index: 0;
     font-size: 46px;
     color: rgb(169, 166, 166);
-    right: auto;
+    right: auto !important;
 }
 .halfday{padding-top:5px;}
 .halfday b{display: inline-block;}
