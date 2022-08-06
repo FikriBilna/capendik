@@ -26,7 +26,7 @@ class Calendar_model extends CI_Model {
 
     public function getStudentEvents($id = null) {
 
-        $cond = "(event_type = 'public' or event_type = 'task') and role_id=0 ";
+        $cond = "(event_type = 'public' or event_type = 'task') and role_id IS NULL ";
         $query = $this->db->where($cond)->get("events");
         return $query->result_array();
     }
