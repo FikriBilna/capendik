@@ -52,21 +52,18 @@ foreach ($studentlistbysection as $stkey => $stvalue) {
                                         <div class="studentname">
                                             <a class="" href="<?php echo base_url() . "student/view/" . $stvalue["id"] ?>">
                                                 <div class="icon">
-                                                <?php if ($sch_setting->student_photo) {
-                ?>
+                                                <?php if ($sch_setting->student_photo) {?>
                                                 <img src="<?php
-if (!empty($stvalue["image"])) {
-                    echo base_url() . $stvalue["image"];
-                } else {
-
-                    if ($student['gender'] == 'Female') {
-                        echo base_url() . "uploads/student_images/default_female.jpg";
-                    } elseif ($student['gender'] == 'Male') {
-                        echo base_url() . "uploads/student_images/default_male.jpg";
-                    }
-
-                }
-                ?>" alt="User Image">
+                                                if (!empty($stvalue["image"])) {
+                                                                    echo base_url() . $stvalue["image"];
+                                                                } else {
+                                                                    if ($student['gender'] == 'Female') {
+                                                                        echo base_url() . "uploads/student_images/default_female.jpg";
+                                                                    } elseif ($student['gender'] == 'Male') {
+                                                                        echo base_url() . "uploads/student_images/default_male.jpg";
+                                                                    }
+                                                                }
+                                                                ?>" alt="User Image">
                                                 <?php }?>
                                                 </div>
                                                 <div class="student-tittle"><?php echo $this->customlib->getFullName($stvalue['firstname'], $stvalue['middlename'], $stvalue['lastname'], $sch_setting->middlename, $sch_setting->lastname); ?></div></a>
@@ -105,21 +102,17 @@ if ($student["is_active"] == "no") {
 }
 ?>>
                     <div class="box-body box-profile">
-                        <?php if ($sch_setting->student_photo) {
-    ?>
+                        <?php if ($sch_setting->student_photo) {?>
                         <img class="profile-user-img img-responsive" src="<?php
-if (!empty($student["image"])) {
-        echo base_url() . $student["image"];
-    } else {
-
-        if ($student['gender'] == 'Female') {
-            echo base_url() . "uploads/student_images/default_female.jpg";
-        } else {
-            echo base_url() . "uploads/student_images/default_male.jpg";
-        }
-
-    }
-    ?>" alt="User profile picture">
+                        if (!empty($student["image"])) {
+                            echo base_url() . $student["image"];
+                        } else {
+                            if ($student['gender'] == 'Female') {
+                                echo base_url() . "uploads/student_images/default_female.jpg";
+                            } else {
+                                echo base_url() . "uploads/student_images/default_male.jpg";
+                            }
+                        }?>" alt="User profile picture">
                         <?php }?>
                         <h3 class="profile-username text-center"><?php echo $this->customlib->getFullName($student['firstname'], $student['middlename'], $student['lastname'], $sch_setting->middlename, $sch_setting->lastname); ?></h3>
 
@@ -1430,7 +1423,7 @@ echo ($currency_symbol . number_format($total_balance_amount - $alot_fee_discoun
                                                 </td>
                                                 <td><?php echo $std_acv['achievement_organizer']; ?></td>
                                                 <td><?php echo $std_acv['achievement_cert_no']; ?></td>
-                                                <td><a href="" class="text-aqua">View Certificate</a></td>
+                                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#achvmodal<?php echo $std_acv['id'] ?>">View</button></td>
                                             </tr>
                                             <?php
                                                         $no++;
@@ -1442,6 +1435,38 @@ echo ($currency_symbol . number_format($total_balance_amount - $alot_fee_discoun
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            if (!empty($student_achv)) {
+                                foreach ($student_achv as $std_acv_doc) {
+                        ?>
+                        <div class="modal fade" id="achvmodal<?php echo $std_acv_doc['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Achievement Certificate</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="<?php
+                                            if (!empty($std_acv["achievement_doc"])) {
+                                                echo base_url() ."uploads/student_documents/".$student["id"]."/". $std_acv_doc["achievement_doc"];
+                                            } else {
+                                                echo "File Not Found";
+                                            }
+                                    ?>" alt="Achievement Certificate" style="max-width:50%;">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                                }
+                            }
+                        ?>
 
                         <div class="tab-pane" id="exam">
                                            <div class="download_label">
@@ -2756,6 +2781,12 @@ foreach ($reason as $value) {
             });
         }
     }
+
+    $(document).ready(function (){
+        $('#achvmodal').on('shown.bs.modal', function () {
+
+        });
+    });
 </script>
 
 <script type="text/javascript">

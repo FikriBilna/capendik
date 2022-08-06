@@ -88,7 +88,7 @@ class Syllabus extends Admin_Controller
             
            
        
-             if ($timetableid == '') {
+            if ($timetableid == '') {
 
                 $condition = "  and subject_timetable.id in(0)";
             } else {

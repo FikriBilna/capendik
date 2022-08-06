@@ -100,25 +100,21 @@ $count++;
                                             <?php }?>
                                             <th><?php echo $this->lang->line('date_of_birth'); ?></th>
                                             <th><?php echo $this->lang->line('gender'); ?></th>
-                                            <?php if ($sch_setting->category) {
-    ?>
-                                              <?php if ($sch_setting->category) {?>
+                                            <?php if ($sch_setting->category) {?>
                                             <th><?php echo $this->lang->line('category'); ?></th>
-                                            <?php }
-}if ($sch_setting->mobile_no) {
-    ?>
+                                            <?php } ?>
+                                            <?php if ($sch_setting->mobile_no) { ?>
                                             <th><?php echo $this->lang->line('mobile_no'); ?></th>
+                                            <?php } ?>
                                             <?php
-}
-if (!empty($fields)) {
-
-    foreach ($fields as $fields_key => $fields_value) {
-        ?>
-                                                    <th><?php echo $fields_value->name; ?></th>
-                                                    <?php
-}
-}
-?>
+                                            if (!empty($fields)) {
+                                              foreach ($fields as $fields_key => $fields_value) {
+                                            ?>
+                                            <th><?php echo $fields_value->name; ?></th>
+                                            <?php
+                                              }
+                                            }
+                                            ?>
 
                                             <th class="text-right noExport"><?php echo $this->lang->line('action'); ?></th>
                                         </tr>

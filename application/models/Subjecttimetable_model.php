@@ -203,6 +203,7 @@ class Subjecttimetable_model extends MY_Model {
         $sql = "SELECT GROUP_CONCAT(subject_timetable.id order by subject_timetable.start_time) as timetable_id FROM `subject_timetable`   WHERE subject_timetable.staff_id=" . $this->db->escape($staff_id) . " and subject_timetable.session_id =" . $this->current_session . " and subject_timetable.day=" . $this->db->escape($day_value)." order by subject_timetable.start_time";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
+            // print_r($sql);
             return $query->result();
         } else {
             return false;
