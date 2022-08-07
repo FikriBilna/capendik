@@ -73,10 +73,10 @@
                                         <select  id="month" name="month" class="form-control" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                             <?php
-                                            $lang = "january";
+                                            //$lang = "january";
                                             foreach ($monthlist as $m_key => $month) {
                                                 ?>
-                                                <option value="<?php echo $m_key ?>" <?php echo set_select('month', $month, set_value('month')) ?>><?php echo $this->lang->line(strtolower($month)); ?></option>
+                                                <option value="<?php echo $m_key ?>" <?php echo set_select('month', $month, set_value('month')) ?>><?php echo $month; //$this->lang->line(strtolower()); ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -141,8 +141,9 @@
                                                 if (!empty($resultlist['students_attendances'])) {
                                                     foreach ($resultlist['students_attendances'] as $student_key => $student_value) {
                                                         ?>
-                                                        <tr>
-                                                            <td><b><?php echo $student_value['date'] . " (" . $student_value['day'] . ")"; ?></b></td>
+                                                        <tr>                                                            
+                                                            <td><b><?php $att_day = $this->lang->line(strtolower($student_value['day'])); echo $student_value['date'].' ('.$att_day.')' ; ?></b></td>                                          
+                                                           
                                                             <td class="">
                                                                 <?php
                                                                 if (!empty($student_value['subjects'])) {

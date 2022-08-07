@@ -906,7 +906,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                     <td><?php echo sprintf("%02d",$i) ?></td>
                                                     <?php
                                                     foreach ($monthlist as $key => $value) {
-                                                        $datemonth = date("m", strtotime($value));
+                                                        $datemonth = date("m", strtotime($key));
                                                         $att_dates = date("Y") . "-" . $datemonth . "-" . sprintf("%02d", $i);
                                                      
                                                         ?>

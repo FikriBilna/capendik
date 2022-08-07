@@ -1,4 +1,5 @@
 <script src="<?php echo base_url(); ?>backend/plugins/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url(); ?>backend/js/ckeditor_config.js"></script>
 <style type="text/css">
     .material-switch > input[type="checkbox"] {
         display: none;   
@@ -51,7 +52,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-empire"></i> <?php echo $this->lang->line('front_cms'); ?>
+            <i class="fa fa-empire"></i> <?php //echo $this->lang->line('front_cms'); ?>
         </h1>
     </section>
     <!-- Main content -->
@@ -79,15 +80,11 @@
                             ?>      
                             <?php echo $this->customlib->getCSRF(); ?>  
 
-
-
                             <div class="form-group">
                                 <label for="exampleInputEmail1"><?php echo $this->lang->line('title'); ?></label><small class="req"> *</small>
                                 <input id="title" name="title" placeholder="" type="text" class="form-control"  value="<?php echo set_value('title'); ?>" />
                                 <span class="text-danger"><?php echo form_error('title'); ?></span>
                             </div>
-
-
 
                             <div class="form-group">
                                 <label class="pr20"><?php echo $this->lang->line('page_type'); ?></label>
@@ -157,7 +154,7 @@
                                 <div class="box-tools pull-right">
                                     <!-- Buttons, labels, and many other things can be placed here! -->
                                     <!-- Here is a label for example -->
-                                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" data-placement="left" title="Collapse"><i class="fa fa-minus"></i></button>
+                                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="<?php echo $this->lang->line('collapse'); ?>"><i class="fa fa-minus"></i></button>
                                 </div><!-- /.box-tools -->
                             </div><!-- /.box-header -->
 
@@ -181,7 +178,7 @@
                                 <div class="box-tools pull-right">
                                     <!-- Buttons, labels, and many other things can be placed here! -->
                                     <!-- Here is a label for example -->
-                                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" data-placement="left" title="Collapse"><i class="fa fa-minus"></i></button>
+                                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="<?php echo $this->lang->line('collapse'); ?>"><i class="fa fa-minus"></i></button>
                                 </div><!-- /.box-tools -->
                             </div><!-- /.box-header -->
 
@@ -223,12 +220,18 @@
     $(document).ready(function () {
         var popup_target = 'media_images';
   
-
-        CKEDITOR.replace('editor1',
+CKEDITOR.env.isCompatible = true;
+       
+               CKEDITOR.replace('editor1',
                 {
-                    allowedContent: true
+                    toolbar: "FrontCMS",
+                    extraPlugins: '',
+                    customConfig: baseurl + '/backend/js/ckeditor_config.js',
+                    entities: false//
 
                 });
+
+
         $('#mediaModal').modal({
             backdrop: 'static',
             keyboard: false,
@@ -275,10 +278,6 @@
                 return $(this).closest('td').find('.fee_detail_popover').html();
             }
         });
-
-
-
-
 
         $(document).on('click', '.img_div_modal', function (event) {
             $('.img_div_modal div.fadeoverlay').removeClass('active');
@@ -343,12 +342,12 @@
             load_country_data(page);
         });
     });
+
     function addImage(content_html) {
         $('.feature_image_url').attr('src', content_html);
         $('#image').val(content_html);
         $('#image_preview').css("display", "block");
     }
-
 
     $(document).on('click', '.delete_media', function () {
         $('.feature_image_url').attr('src', '');
@@ -367,14 +366,10 @@
         {
             editor.insertHtml(content_html);
         } else
-            alert('You must be in WYSIWYG mode!');
+            alert('<?php echo $this->lang->line("you_must_be_in_wysiwyg_mode"); ?>');
     }
 
-
-
 </script>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

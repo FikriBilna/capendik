@@ -8,7 +8,7 @@
 <div class="content-wrapper" style="min-height: 946px;">
     <section class="content">
         <div class="">
-          <!-- bacod -->
+
             <?php if ($mysqlVersion && $sqlMode && strpos($sqlMode->mode, 'ONLY_FULL_GROUP_BY') !== false) {?>
                 <div class="alert alert-danger">
                     Smart School may not work properly because ONLY_FULL_GROUP_BY is enabled, consult with your hosting provider to disable ONLY_FULL_GROUP_BY in sql_mode configuration.
@@ -214,7 +214,6 @@ if (($this->module_lib->hasActive('fees_collection')) || ($this->module_lib->has
                     <?php
 }
 }
-// donut graph
 if ($this->module_lib->hasActive('expense')) {
     ?>
     <?php if ($this->rbac->hasPrivilege('expense_donut_graph', 'can_view')) {
@@ -718,7 +717,7 @@ echo '</div>';
                             <input type="hidden" name="eventcolor" autocomplete="off" placeholder="Event Color" id="event_color" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
-
+                            
                             <?php
 $i      = 0;
 $colors = '';
