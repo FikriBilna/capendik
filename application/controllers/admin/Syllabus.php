@@ -83,22 +83,21 @@ class Syllabus extends Admin_Controller
                     $timetableid = $mysubjects[0]->timetable_id;
                 }
             }
-             if ($timetableid == '') {
+            }
+
+            
+           
+       
+            if ($timetableid == '') {
 
                 $condition = "  and subject_timetable.id in(0)";
             } else {
                 $timetableid = implode(',',array_unique(explode(',', $timetableid)));
                 $condition = " and subject_timetable.id in(" . $timetableid . ") ";
             }
-            }
-
-            
-           
-       
-            
            
             $data['timetable'][$day_key] = $this->subjecttimetable_model->getSyllabussubject($staff_id, $day_key, $condition);
-            
+        
         }
 
         $data['staff_id'] = $staff_id;

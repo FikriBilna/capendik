@@ -70,7 +70,7 @@ if (empty($marksheet)) {
                                         if ($template->title != "") {
                                             ?>
                                             <tr>
-                                                <td valign="top" style="font-size: 20px; font-weight: 900; text-align: center; "><?php echo $template->title; ?></td>
+                                                <td valign="top" style="font-size: 20px; font-weight: 900; text-align: center; text-transform: uppercase;"><?php echo $template->title; ?></td>
                                             </tr>
                                             <?php
                                         }
@@ -100,7 +100,7 @@ if (empty($marksheet)) {
                                         <td valign="top">
                                             <table cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
-                                                    <td valign="top" style="font-size: 20px; font-weight: bold; text-align: center; ">
+                                                    <td valign="top" style="font-size: 20px; font-weight: bold; text-align: center; text-transform: uppercase;">
                                                         <?php echo $template->exam_name; ?>
                                                     </td>
                                                 </tr>
@@ -111,7 +111,7 @@ if (empty($marksheet)) {
                                                 if ($template->exam_session) {
                                                     ?>
                                                     <tr>
-                                                        <td valign="top" style="font-weight: bold; text-align: center; ">
+                                                        <td valign="top" style="font-weight: bold; text-align: center; text-transform: uppercase;">
                                                             <?php echo $exam->session; ?>
                                                         </td>
                                                     </tr>
@@ -149,14 +149,14 @@ if (empty($marksheet)) {
                                                         <?php $row = '';
                                                         if ($template->is_admission_no) { 
                                                             ?>
-                                                            <th valign="top" style="text-align: center; ">
+                                                            <th valign="top" style="text-align: center; text-transform: uppercase;">
                                                                 <?php echo $this->lang->line('admission_no') ?>
                                                             </th>
                                                             <?php
                                                         }
                                                         if ($template->is_roll_no) {
                                                             ?>
-                                                            <th valign="top" style="text-align: center;  border-right:1px solid #999"><?php echo $this->lang->line('roll_no') ?></th>
+                                                            <th valign="top" style="text-align: center; text-transform: uppercase; border-right:1px solid #999"><?php echo $this->lang->line('roll_no') ?></th>
                                                             <?php
                                                         }
                                                         ?>
@@ -165,20 +165,20 @@ if (empty($marksheet)) {
                                                         <?php
                                                         if ($template->is_admission_no) { 
                                                             ?>
-                                                            <td valign="" style="text-align: center;"><?php echo $student_value['admission_no']; ?></td>
+                                                            <td valign="" style="text-transform: uppercase;text-align: center;"><?php echo $student_value['admission_no']; ?></td>
                                                             <?php
                                                         }
                                                         if ($template->is_roll_no) {
 
  $roll_no=($exam->use_exam_roll_no) ? $student_value['exam_roll_no']:$student_value['student_roll_no'];
                                                             ?>
-                                                            <td valign="" style="text-align: center;border-right:1px solid #999"><?php echo $roll_no; ?></td>
+                                                            <td valign="" style="text-transform: uppercase;text-align: center;border-right:1px solid #999"><?php echo $roll_no; ?></td>
                                                             <?php
                                                         }
                                                         ?>
                                                     </tr>
                                                     <tr>
-                                                        <td valign="top" colspan="5" style="text-align: center;  border:0">
+                                                        <td valign="top" colspan="5" style="text-align: center; text-transform: uppercase; border:0">
                                                             <?php echo $this->lang->line('certificated_that') ?>
                                                         </td>
                                                     </tr>
@@ -207,7 +207,7 @@ if (empty($marksheet)) {
                                     if ($template->is_name) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('name_prefix'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $this->customlib->getFullName($student_value['firstname'],$student_value['middlename'],$student_value['lastname'],$sch_setting->middlename,$sch_setting->lastname);  ?></span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('name_prefix'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $this->customlib->getFullName($student_value['firstname'],$student_value['middlename'],$student_value['lastname'],$sch_setting->middlename,$sch_setting->lastname);  ?></span></td>
                                         </tr>
                                         <?php
                                     }
@@ -215,7 +215,7 @@ if (empty($marksheet)) {
                                     if ($template->is_father_name) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('marksheet_father_name') ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['father_name']; ?></span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('marksheet_father_name') ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['father_name']; ?></span></td>
                                         </tr>
                                         <?php
                                     }
@@ -223,14 +223,14 @@ if (empty($marksheet)) {
                                     if ($template->is_mother_name) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('exam_mother_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['mother_name']; ?></span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('exam_mother_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['mother_name']; ?></span></td>
                                         </tr>
                                         <?php
                                     }
                                       if ($template->is_dob) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('date_of_birth'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $this->customlib->dateformat($student_value['dob']); ?></span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('date_of_birth'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $this->customlib->dateformat($student_value['dob']); ?></span></td>
                                         </tr>
                                         <?php
                                     }
@@ -238,19 +238,19 @@ if (empty($marksheet)) {
                                     if ($template->is_class && $template->is_section) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class'] . " (" . $student_value['section'] . ")"; ?> </span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class'] . " (" . $student_value['section'] . ")"; ?> </span></td>
                                         </tr>
                                         <?php
                                     } elseif ($template->is_class) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class_id']; ?> </span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class_id']; ?> </span></td>
                                         </tr>
                                         <?php
                                     } elseif ($template->is_section) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['section']; ?> </span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['section']; ?> </span></td>
                                         </tr>
                                         <?php
                                     }
@@ -259,7 +259,7 @@ if (empty($marksheet)) {
                                     if ($template->school_name != "") {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"> <?php echo $this->lang->line('school_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $template->school_name; ?></span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"> <?php echo $this->lang->line('school_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $template->school_name; ?></span></td>
                                         </tr>
                                         <?php
                                     }
@@ -269,7 +269,7 @@ if (empty($marksheet)) {
                                     if ($template->exam_center != "") {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('exam') . " " . $this->lang->line('center') ?><span style=" padding-top: 15px; font-weight: bold; padding-bottom: 20px; padding-left: 30px;"><?php echo $template->exam_center; ?></span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('exam') . " " . $this->lang->line('center') ?><span style="text-transform: uppercase; padding-top: 15px; font-weight: bold; padding-bottom: 20px; padding-left: 30px;"><?php echo $template->exam_center; ?></span></td>
                                         </tr>
                                         <?php
                                     }
@@ -278,7 +278,7 @@ if (empty($marksheet)) {
                                     if ($template->content != "") {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px; line-height: normal;">(<?php echo nl2br($template->content); ?>)</td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px; line-height: normal;"><?php echo $template->content ?></td>
                                         </tr>
                                         <?php
                                     }
@@ -523,8 +523,8 @@ if (empty($marksheet)) {
                             </tr>
                             <tr>
                                 <td valign="top" colspan="5" width="20%" style="font-weight: normal; text-align: left; border-top:0">
-                                   <?php echo $this->lang->line('result') ?>: 
-                                    <span style="border-left:0;text-align: left;font-weight: bold; ">
+                                   <?php echo $this->lang->line('result') ?>
+                                    <span style="border-left:0;text-align: left;font-weight: bold; padding-left: 30px;">
                                         <?php
                                         if ($result_status == 0 || $absent_status) {
                                             echo $this->lang->line('fail');
@@ -545,8 +545,8 @@ if (empty($marksheet)) {
                                 ?>
                                 <tr>
                                     <td valign="top" colspan="5" width="20%" style="font-weight: normal; text-align: left; border-top:0;padding-top: 5px;">
-                                        <?php echo $this->lang->line('division'); ?>: 
-                                        <span style="border-left:0;text-align: left;font-weight: bold; ">
+                                        <?php echo $this->lang->line('division'); ?>
+                                        <span style="border-left:0;text-align: left;font-weight: bold; padding-left: 30px;">
                                             <?php
                                             if ($percentage_total >= 60) {
                                                 echo $this->lang->line('first');
@@ -580,7 +580,7 @@ if (empty($marksheet)) {
                             ?>
                            
                             <tr>
-                                <td valign="top" style="font-weight: bold;  padding-top: 10px;"><?php echo $this->lang->line('date');?>: <?php echo $template->date; ?></td>
+                                <td valign="top" style="font-weight: bold; padding-left: 30px; padding-top: 10px;"><?php echo $template->date; ?></td>
                             </tr>
                             <?php
                         }
@@ -592,7 +592,7 @@ if (empty($marksheet)) {
                         if ($template->content_footer != "") {
                             ?>
                             <tr>
-                                <td valign="top" style=" padding-bottom: 15px; line-height: normal;"><?php echo nl2br($template->content_footer) ?></td>
+                                <td valign="top" style="text-transform: uppercase; padding-bottom: 15px; line-height: normal;"><?php echo $template->content_footer ?></td>
                             </tr>
                             <?php
                         }
@@ -609,7 +609,7 @@ if (empty($marksheet)) {
                                             <?php
                                             if ($template->left_sign != "") {
                                                 ?>
-                                                <td valign="bottom" align="center" style="">
+                                                <td valign="bottom" align="center" style="text-transform: uppercase;">
                                                     <img src="<?php echo base_url('uploads/marksheet/' . $template->left_sign); ?>"  width="100" height="50">
                                                 </td>
                                                 <?php
@@ -618,7 +618,7 @@ if (empty($marksheet)) {
                                             <?php
                                             if ($template->middle_sign != "") {
                                                 ?>
-                                                <td valign="bottom" align="center" style="">
+                                                <td valign="bottom" align="center" style="text-transform: uppercase;">
                                                     <img src="<?php echo base_url('uploads/marksheet/' . $template->middle_sign); ?>" width="100" height="50">
                                                 </td>
                                                 <?php
@@ -627,7 +627,7 @@ if (empty($marksheet)) {
                                             <?php
                                             if ($template->right_sign != "") {
                                                 ?>
-                                                <td valign="bottom" align="center" style="">
+                                                <td valign="bottom" align="center" style="text-transform: uppercase;">
                                                     <img src="<?php echo base_url('uploads/marksheet/' . $template->right_sign); ?>" width="100" height="50">
                                                 </td>
                                                 <?php
@@ -696,7 +696,7 @@ if (empty($marksheet)) {
                                     <td valign="top" style="font-size: 42px; font-weight: bold; text-align: center;"><?php echo $template->heading; ?></td>
                                 </tr>
                                 <tr>
-                                    <td valign="top" style="font-size: 20px; font-weight: 900; text-align: center; "><?php echo $template->title; ?></td>
+                                    <td valign="top" style="font-size: 20px; font-weight: 900; text-align: center; text-transform: uppercase;"><?php echo $template->title; ?></td>
                                 </tr>
                                 <tr>
                                     <td valign="top" height="5"></td>
@@ -714,7 +714,7 @@ if (empty($marksheet)) {
                                     <td valign="top">
                                         <table cellpadding="0" cellspacing="0" width="100%">
                                             <tr>
-                                                <td valign="top" style="font-size: 20px; font-weight: bold; text-align: center; ">
+                                                <td valign="top" style="font-size: 20px; font-weight: bold; text-align: center; text-transform: uppercase;">
                                                     <?php echo $template->exam_name; ?>
                                                 </td>
                                             </tr>
@@ -725,7 +725,7 @@ if (empty($marksheet)) {
                                             if ($template->exam_session) {
                                                 ?>
                                                 <tr>
-                                                    <td valign="top" style="font-weight: bold; text-align: left;  display: inline-block; margin-top: -10px;">
+                                                    <td valign="top" style="font-weight: bold; text-align: left; text-transform: uppercase; display: inline-block; margin-top: -10px;">
                                                         <?php echo $exam->session; ?>
                                                     </td>
                                                 </tr>
@@ -754,14 +754,14 @@ if (empty($marksheet)) {
                                                     <?php
                                                     if ($template->is_admission_no) {
                                                         ?>
-                                                        <th valign="top" style="text-align: center; ">
+                                                        <th valign="top" style="text-align: center; text-transform: uppercase;">
                                                             <?php echo $this->lang->line('admission_no') ?>
                                                         </th>
                                                         <?php
                                                     }
                                                     if ($template->is_roll_no) {
                                                         ?>
-                                                        <th valign="top" style="text-align: center;  border-right:1px solid #999"><?php echo $this->lang->line('roll_no') ?></th>
+                                                        <th valign="top" style="text-align: center; text-transform: uppercase; border-right:1px solid #999"><?php echo $this->lang->line('roll_no') ?></th>
                                                         <?php
                                                     }
                                                     ?>
@@ -770,20 +770,20 @@ if (empty($marksheet)) {
                                                     <?php
                                                     if ($template->is_admission_no) {
                                                         ?>
-                                                        <td valign="" style="text-align: center;"><?php echo $student_value['admission_no']; ?></td>
+                                                        <td valign="" style="text-transform: uppercase;text-align: center;"><?php echo $student_value['admission_no']; ?></td>
                                                         <?php
                                                     }
                                                     if ($template->is_roll_no) {
                                                           $roll_no=($exam->use_exam_roll_no)?$student_value['exam_result']['exam_roll_no_' . $exam->id]:$student_value['student_roll_no'];
                                                         ?>
-                                                        <td valign="" style="text-align: center;border-right:1px solid #999">   <?php echo $roll_no; ?>
+                                                        <td valign="" style="text-transform: uppercase;text-align: center;border-right:1px solid #999">   <?php echo $roll_no; ?>
                                                         </td>
                                                         <?php
                                                     }
                                                     ?>
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top" colspan="5" style="text-align: center;  border:0">
+                                                    <td valign="top" colspan="5" style="text-align: center; text-transform: uppercase; border:0">
                                                         <?php echo $this->lang->line('certificated_that') ?>
                                                     </td>
                                                 </tr>
@@ -812,7 +812,7 @@ if (empty($marksheet)) {
                                 if ($template->is_name) {
                                     ?>
                                     <tr>
-                                        <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('name_prefix'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['firstname'] . " " . $student_value['lastname']; ?></span></td>
+                                        <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('name_prefix'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['firstname'] . " " . $student_value['lastname']; ?></span></td>
                                     </tr>
                                     <?php
                                 }
@@ -820,7 +820,7 @@ if (empty($marksheet)) {
                                 if ($template->is_father_name) {
                                     ?>
                                     <tr>
-                                        <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('marksheet_father_name') ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['father_name']; ?></span></td>
+                                        <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('marksheet_father_name') ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['father_name']; ?></span></td>
                                     </tr>
                                     <?php
                                 }
@@ -828,26 +828,26 @@ if (empty($marksheet)) {
                                 if ($template->is_mother_name) {
                                     ?>
                                     <tr>
-                                        <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('exam_mother_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['mother_name']; ?></span></td>
+                                        <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('exam_mother_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['mother_name']; ?></span></td>
                                     </tr>
                                     <?php
                                 }
 								if ($template->is_class && $template->is_section) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class'] . " (" . $student_value['section'] . ")"; ?> </span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class'] . " (" . $student_value['section'] . ")"; ?> </span></td>
                                         </tr>
                                         <?php
                                     } elseif ($template->is_class) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class']; ?> </span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('class'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['class']; ?> </span></td>
                                         </tr>
                                         <?php
                                     } elseif ($template->is_section) {
                                         ?>
                                         <tr>
-                                            <td valign="top" style=" padding-bottom: 15px;"><?php echo $this->lang->line('section'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['section']; ?> </span></td>
+                                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"><?php echo $this->lang->line('section'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $student_value['section']; ?> </span></td>
                                         </tr>
                                         <?php
                                     }
@@ -857,19 +857,19 @@ if (empty($marksheet)) {
                                 if ($template->school_name != "") {
                                     ?>
                                     <tr>
-                                        <td valign="top" style=" padding-bottom: 15px;"> <?php echo $this->lang->line('school_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $template->school_name; ?></span></td>
+                                        <td valign="top" style="text-transform: uppercase; padding-bottom: 15px;"> <?php echo $this->lang->line('school_name'); ?><span style="padding-left: 30px; font-weight: bold;"><?php echo $template->school_name; ?></span></td>
                                     </tr>
                                     <?php
                                 }
                                 ?>
                                 <tr>
-                                    <td valign="top" style=" padding-bottom: 20px;" ><?php echo $this->lang->line('exam') . " " . $this->lang->line('center') ?><span style=" padding-top: 15px; font-weight: bold; padding-bottom: 20px; padding-left: 30px;"><?php echo $template->exam_center; ?></span></td>
+                                    <td valign="top" style="text-transform: uppercase; padding-bottom: 20px;" ><?php echo $this->lang->line('exam') . " " . $this->lang->line('center') ?><span style="text-transform: uppercase; padding-top: 15px; font-weight: bold; padding-bottom: 20px; padding-left: 30px;"><?php echo $template->exam_center; ?></span></td>
                                 </tr>
                                 <?php
                                 if ($template->content != "") {
                                     ?>
                                     <tr>
-                                        <td valign="top" style=" padding-bottom: 15px; line-height: normal;">(<?php echo nl2br($template->content); ?>)</td>
+                                        <td valign="top" style="text-transform: uppercase; padding-bottom: 15px; line-height: normal;"><?php echo $template->content ?></td>
                                     </tr>
                                     <?php
                                 }
@@ -1093,7 +1093,7 @@ if (empty($marksheet)) {
                             <tr>
                                 <td valign="top" colspan="5" width="20%" style="font-weight: normal; text-align: left; border-top:0">
                                     Result
-                                    <span style="border-left:0;text-align: left;font-weight: bold; ">
+                                    <span style="border-left:0;text-align: left;font-weight: bold; padding-left: 30px;">
                                         <?php
                                         if ($result_status == 0 || $absent_status) {
                                             echo $this->lang->line('fail');
@@ -1115,7 +1115,7 @@ if (empty($marksheet)) {
                                 <tr>
                                     <td valign="top" colspan="5" width="20%" style="font-weight: normal; text-align: left; border-top:0">
                                         Division
-                                        <span style="border-left:0;text-align: left;font-weight: bold; ">
+                                        <span style="border-left:0;text-align: left;font-weight: bold; padding-left: 30px;">
                                             <?php
                                             if ($percentage_total >= 60) {
                                                 echo $this->lang->line('first');
@@ -1147,7 +1147,7 @@ if (empty($marksheet)) {
 
                             ?>
                             <tr>
-                                <td valign="top" style="font-weight: bold; padding-left: 30px; padding-top: 10px;"><?php echo $this->lang->line('date');?>: <?php echo $template->date; ?></td>
+                                <td valign="top" style="font-weight: bold; padding-left: 30px; padding-top: 10px;"><?php echo $template->date; ?></td>
                             </tr>
                             <?php
                         }
@@ -1171,7 +1171,7 @@ if (empty($marksheet)) {
                                         }
                                     }
                                     ?>
-                                    <table cellpadding="0" cellspacing="0" width="100%" class="denifittable" style="text-align: center; ">
+                                    <table cellpadding="0" cellspacing="0" width="100%" class="denifittable" style="text-align: center; text-transform: uppercase;">
                                         <thead>
                                             <tr>
                                                 <th> <?php echo $this->lang->line('exam'); ?></th>
@@ -1255,7 +1255,7 @@ if (empty($marksheet)) {
                                     }
                                     ?>
                                     Division
-                                    <span style="border-left:0;text-align: left;font-weight: bold;">
+                                    <span style="border-left:0;text-align: left;font-weight: bold; padding-left: 30px;">
                                         <?php
                                         $consolidate_percentage_total = ($consolidate_weightage_marks_total * 100) / $consolidate_marks_exam_total;
                                         if ($consolidate_percentage_total >= 60) {
@@ -1284,7 +1284,7 @@ if (empty($marksheet)) {
                     if ($template->content_footer != "") {
                         ?>
                         <tr>
-                            <td valign="top" style=" padding-bottom: 15px; line-height: normal;"><?php echo nl2br($template->content_footer) ?></td>
+                            <td valign="top" style="text-transform: uppercase; padding-bottom: 15px; line-height: normal;"><?php echo $template->content_footer ?></td>
                         </tr>
                         <?php
                     }
@@ -1295,20 +1295,20 @@ if (empty($marksheet)) {
                                 <tr>
                                     <td valign="bottom" style="font-size: 12px;">
                                     </td>
-                                    <td valign="bottom" align="center" style="">
+                                    <td valign="bottom" align="center" style="text-transform: uppercase;">
                                         <?php
                                         if ($template->left_sign != "") {
                                             ?>
                                             <img src="<?php echo base_url('uploads/marksheet/' . $template->left_sign); ?>"  width="100" height="50"><?php } ?>
                                     </td>
-                                    <td valign="bottom" align="center" style="">
+                                    <td valign="bottom" align="center" style="text-transform: uppercase;">
                                         <?php
                                         if ($template->middle_sign != "") {
                                             ?>
                                             <img src="<?php echo base_url('uploads/marksheet/' . $template->middle_sign); ?>" width="100" height="50">
                                         <?php } ?>
                                     </td>
-                                    <td valign="bottom" align="center" style="">
+                                    <td valign="bottom" align="center" style="text-transform: uppercase;">
                                         <?php
                                         if ($template->right_sign != "") {
                                             ?>

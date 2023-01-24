@@ -56,7 +56,7 @@ class Studentsession_model extends CI_Model
         return $query->row_array();
     }
 
-    public function getStudentByStudentId_old($id)
+    public function getStudentByStudentId($id)
     {
         $this->db->select()->from('student_session');
         $this->db->where('student_id', $id);

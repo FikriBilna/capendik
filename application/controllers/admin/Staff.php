@@ -216,7 +216,7 @@ class Staff extends Admin_Controller
         }
 
         foreach ($monthlist as $key => $value) {
-            $datemonth       = date("m", strtotime($key));
+            $datemonth       = date("m", strtotime($value));
             $date_each_month = date('Y-' . $datemonth . '-01');
 
             $date_start = date('01', strtotime($date_each_month));
@@ -347,13 +347,13 @@ class Staff extends Admin_Controller
             $startMonth        = $this->setting_model->getStartMonth();
 
             foreach ($monthlist as $key => $value) {
-                $datemonth       = date("m", strtotime($key));
+                $datemonth       = date("m", strtotime($value));
                 $date_each_month = date('Y-' . $datemonth . '-01');
                 $date_end        = date('t', strtotime($date_each_month));
                 for ($n = 1; $n <= $date_end; $n++) {
                     $att_date           = sprintf("%02d", $n);
                     $attendence_array[] = $att_date;
-                    $datemonth          = date("m", strtotime($key));
+                    $datemonth          = date("m", strtotime($value));
                     $att_dates          = $year . "-" . $datemonth . "-" . sprintf("%02d", $n);
 
                     $date_array[]    = $att_dates;

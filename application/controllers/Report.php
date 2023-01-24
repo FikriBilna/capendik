@@ -1002,22 +1002,22 @@ class Report extends Admin_Controller
         $data['classlist']       = $class;
         $data['class_id']        = $class_id        = $this->input->post('class_id');
         $data['section_id']      = $section_id      = $this->input->post('section_id');
-        $condition1               = "";
-        $condition2              = "";
+        $condition               = "";
         $data['section_list']    = $this->section_model->getClassBySection($this->input->post('class_id'));
-        
-        $data['search_type'] =  '';
-        $data['filter_label'] = '';
         if (isset($_POST['search_type']) && $_POST['search_type'] != '') {
 
             $between_date        = $this->customlib->get_betweendate($_POST['search_type']);
             $data['search_type'] = $search_type = $_POST['search_type'];
-            
-            $from_date = date('Y-m-d', strtotime($between_date['from_date']));
-            $to_date   = date('Y-m-d', strtotime($between_date['to_date']));
-            $condition2 = " date_format(admission_date,'%Y-%m-%d') between  '" . $from_date . "' and '" . $to_date . "'";
-            $data['filter_label'] = date($this->customlib->getSchoolDateFormat(), strtotime($from_date)) . " To " . date($this->customlib->getSchoolDateFormat(), strtotime($to_date));
-        }        
+        } else {
+
+            $between_date        = $this->customlib->get_betweendate('this_year');
+            $data['search_type'] = $search_type = '';
+        }
+
+        $from_date = date('Y-m-d', strtotime($between_date['from_date']));
+        $to_date   = date('Y-m-d', strtotime($between_date['to_date']));
+        $condition .= " date_format(admission_date,'%Y-%m-%d') between  '" . $from_date . "' and '" . $to_date . "'";
+        $data['filter_label'] = date($this->customlib->getSchoolDateFormat(), strtotime($from_date)) . " To " . date($this->customlib->getSchoolDateFormat(), strtotime($to_date));
 
         $data['sch_setting']     = $this->sch_setting_detail;
         $data['adm_auto_insert'] = $this->sch_setting_detail->adm_auto_insert;
@@ -1027,11 +1027,12 @@ class Report extends Admin_Controller
         if ($this->form_validation->run() == false) {
             $data['resultlist'] = array();
         } else {
-            $condition1 = " classes.id='" . $this->input->post('class_id') . "' and sections.id='" . $this->input->post('section_id') . "'";
-            $data['resultlist'] = $this->student_model->student_profile($condition1,$condition2);
+            $condition .= " and classes.id='" . $this->input->post('class_id') . "' and sections.id='" . $this->input->post('section_id') . "'";
+
+            $data['resultlist'] = $this->student_model->student_profile($condition);
         }
         $this->load->view('layout/header', $data);
-        $this->load->view('reports/student_profile', $data); 
+        $this->load->view('reports/student_profile', $data);
         $this->load->view('layout/footer', $data);
     }
 
@@ -2463,10 +2464,10 @@ class Report extends Admin_Controller
                 $grand_total += $value->amount;
 
                 $row       = array();
-                $row[]     = date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($value->date));
+                $row[]     = $value->name;
+                $row[]     = $value->invoice_no;
                 $row[]     = $value->exp_category;
-                $row[]     = $value->name;                
-                $row[]     = $value->invoice_no;             
+                $row[]     = date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($value->date));
                 $row[]     = $currency_symbol . $value->amount;
                 $dt_data[] = $row;
             }
