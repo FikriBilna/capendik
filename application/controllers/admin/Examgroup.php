@@ -671,7 +671,7 @@ class Examgroup extends Admin_Controller
                     $not_be_del[]   = $update_id;
                     $update_array[] = array(
                         'id'                              => $update_id,
-                        'credit_hours'                    => $this->input->post('credit_hours' . $row_value),
+                        'credit_hours'                    => $this->input->post('credit_hours_' . $row_value),
                         'exam_group_class_batch_exams_id' => $this->input->post('exam_group_class_batch_exam_id'),
                         'subject_id'                      => $this->input->post('subject_' . $row_value),
                         'date_from'                       => date('Y-m-d', $this->customlib->datetostrtotime($this->input->post('date_from_' . $row_value))),

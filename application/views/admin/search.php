@@ -217,42 +217,14 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 
 <script>
 $(document).ready(function() {
-     var search_text ='<?php echo utf8_decode($search_text); ?>' ;
+     var search_text ='<?php echo $search_text; ?>' ;
      
      if(search_text!=""){
         search_text = search_text
      }else{
         search_text=0
      }
-     
-     $.ajax({
-           url: base_url+'admin/admin/search_text',
-           type: "POST",
-           dataType:'JSON',
-           data: {search_text:'<?php echo $search_text; ?>'}, // serializes the form's elements.
-              beforeSend: function () {
-               
-              
-               },
-              success: function(response) { // your success handler
-                
-                if(!response.status){
-                    $.each(response.error, function(key, value) {
-                    $('#error_' + key).html(value);
-                    });
-                }else{
-                 initDatatable('header-student-list','admin/admin/dtstudentlist',response.params,[],100);
-                  
-                }
-              },
-             error: function() { // your error handler
-                
-             },
-             complete: function() {
-             
-             }
-         });
-       
+      initDatatable('header-student-list','admin/admin/dtstudentlist/'+search_text);
 
 });
-</script>                                                     
+</script>                                                       

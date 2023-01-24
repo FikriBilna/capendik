@@ -444,8 +444,6 @@ class Studentfeemaster_model extends MY_Model
         if($feetype_id!=null){
         $this->db->where('fee_groups_feetype.feetype_id',$feetype_id);
         }
-        $this->db->where('fee_groups_feetype.session_id',$this->current_session);
-        $this->db->where('student_session.session_id',$this->current_session);
         $this->db->order_by('student_fees_deposite.id');
 
         $query        = $this->db->get();
@@ -566,7 +564,7 @@ class Studentfeemaster_model extends MY_Model
     public function getDepositAmountBetweenDate($start_date, $end_date)
     {
 
-  $this->db->select('`student_fees_deposite`.*')->from('student_fees_deposite')->join('fee_groups_feetype','fee_groups_feetype.id=student_fees_deposite.fee_groups_feetype_id')->where('fee_groups_feetype.session_id',$this->current_session);
+        $this->db->select('`student_fees_deposite`.*')->from('student_fees_deposite');
         $this->db->order_by('student_fees_deposite.id');
         $query        = $this->db->get();
         $result_value = $query->result();

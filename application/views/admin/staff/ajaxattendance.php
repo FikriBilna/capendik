@@ -7,7 +7,7 @@
             </th>
             <?php foreach ($monthlist as $monthkey => $monthvalue) {
                 ?>
-                <th><?php echo $monthvalue; ?></th>
+                <th><?php echo date("M", strtotime($monthvalue)); ?></th>
             <?php }
             ?>
 
@@ -24,7 +24,7 @@
                     <?php
                     foreach ($monthlist as $key => $value) {
 
-                        $datemonth = date("m", strtotime($key));
+                        $datemonth = date("m", strtotime($value));
                         $att_dates = $year . "-" . $datemonth . "-" . sprintf("%02d", $i);
                         ?>
                         <td><span data-toggle="popover" class="detail_popover" data-original-title="" title=""><a href="#" style="color:#333"><?php
