@@ -26,21 +26,17 @@ class Batchsubject_model extends CI_Model {
     //        $result = $query->result();
     //        return $result;
     //    }
-    public function getExamSubjects($id = null) {
-
+	
+    public function getExamSubjects($id = null) 
+	{
         $subject_condition = 0;
         $userdata = $this->customlib->getUserData();
-
         $role_id = $userdata["role_id"];
-
 
         if (isset($role_id) && ($userdata["role_id"] == 2) && ($userdata["class_teacher"] == "yes")) {
             if ($userdata["class_teacher"] == 'yes') {
 
-
-
                 $my_classes = $this->teacher_model->my_classes($userdata['id']);
-
 
                 if (!empty($my_classes)) {
                     $subject_condition = 0;
@@ -51,7 +47,6 @@ class Batchsubject_model extends CI_Model {
             }
         }
 
-
         $this->db->select('exam_group_class_batch_exam_subjects.*,subjects.name as `subject_name`,subjects.code as `subject_code`,subjects.type as `subject_type`')->from('exam_group_class_batch_exam_subjects');
 
         $this->db->join('subjects', 'subjects.id = exam_group_class_batch_exam_subjects.subject_id');
@@ -60,14 +55,14 @@ class Batchsubject_model extends CI_Model {
             $this->db->where_in('subjects.id', $my_subjects);
         }
 
-        $this->db->order_by('exam_group_class_batch_exam_subjects.id');
+        $this->db->order_by('exam_group_class_batch_exam_subjects.date_from', 'ASC');
+        $this->db->order_by('exam_group_class_batch_exam_subjects.time_from', 'ASC');
 
         $query = $this->db->get();
-
         $result = $query->result();
 
         return $result;
-    }
+    }    
 
     public function getExamstudentSubjects($id = null) {
         $this->db->select('exam_group_class_batch_exam_subjects.*,subjects.name as `subject_name`,subjects.code as `subject_code`,subjects.type as `subject_type`')->from('exam_group_class_batch_exam_subjects');

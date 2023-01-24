@@ -51,7 +51,8 @@
                         <h3 class="box-title titlefix pt5"><?php echo $this->lang->line('question') . " " . $this->lang->line('bank'); ?></h3>
                       
 <div class="pull-right">  
-     <button class="btn btn-primary btn-sm deleteSelected" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait..."><i class="fa fa-trash"></i> <?php echo $this->lang->line('bulk_delete'); ?></button>
+      <?php if ($this->rbac->hasPrivilege('question_bank', 'can_delete')) { ?>
+     <button class="btn btn-primary btn-sm deleteSelected" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait..."><i class="fa fa-trash"></i> <?php echo $this->lang->line('bulk_delete'); ?></button> <?Php } ?>
     <?php 
     if ($this->rbac->hasPrivilege('import_question', 'can_view')) {
     ?>
@@ -78,7 +79,7 @@ if ($this->rbac->hasPrivilege('question_bank', 'can_add')) {
                             <table class="table table-striped table-bordered table-hover all-list" data-export-title="<?php echo $this->lang->line('question') . " " . $this->lang->line('bank'); ?>">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" id="masterCheck" value="checkUncheckAll"></th>
+                                        <th><?php if ($this->rbac->hasPrivilege('question_bank', 'can_delete')) { ?><input type="checkbox" id="masterCheck" value="checkUncheckAll"><?php } ?></th>
                                         <th><?php echo $this->lang->line('q_id'); ?></th>
                                         <th><?php echo $this->lang->line('subject') ?></th>
                                         <th><?php echo $this->lang->line('question_type')?></th>

@@ -199,6 +199,14 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                         ?></a>
                                 </li>
                             <?php } ?>
+                            <?php if($staff['user_type'] == 'Teacher'){ ?>
+                            <li class="list-group-item listnoback">
+                                <b>Assigned Subject</b>
+                                <button class="pull-right btn btn-sm btn-primary" data-toggle="modal" data-target="#assignSubject">
+                                    <i class="fa fa-plus"></i> Assign
+                                </button>
+                            </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -906,7 +914,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                     <td><?php echo sprintf("%02d",$i) ?></td>
                                                     <?php
                                                     foreach ($monthlist as $key => $value) {
-                                                        $datemonth = date("m", strtotime($value));
+                                                        $datemonth = date("m", strtotime($key));
                                                         $att_dates = date("Y") . "-" . $datemonth . "-" . sprintf("%02d", $i);
                                                      
                                                         ?>
@@ -1233,6 +1241,21 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                     <button type="submit"  class="btn btn-primary"><?php echo $this->lang->line('save'); ?></button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="assignSubject" tabindex="1" role="dialog" aria-labelledby="assignSubjectLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-media-content">
+            <div class="modal-header modal-media-header">
+                <button type="button" class="close" data-dismis="modal">&times;</button>
+                <h4 class="box-title">Assign Subject</h4>
+            </div>
+            <div class="modal-body pt0 pb0">
+                <div class="row">
+                    cok
+                </div>
+            </div>
         </div>
     </div>
 </div>
