@@ -23,11 +23,14 @@
                             <th>
                                 <?php echo $this->lang->line('teacher'); ?>
                             </th>
+                            <!-- <th>
+                                 <?php //echo $this->lang->line('time') . " " . $this->lang->line('from') ?><small class="astrike"> *</small>
+                            </th> -->
+                            <!-- <th>
+                                <?php //echo $this->lang->line('time') . " " . $this->lang->line('to') ?><small class="astrike"> *</small>
+                            </th> -->
                             <th>
-                                 <?php echo $this->lang->line('time') . " " . $this->lang->line('from') ?><small class="astrike"> *</small>
-                            </th>
-                            <th>
-                                <?php echo $this->lang->line('time') . " " . $this->lang->line('to') ?><small class="astrike"> *</small>
+                                Period
                             </th>
                             <th>
                                 <?php echo $this->lang->line('room') . " " . $this->lang->line('no') ?>
@@ -82,22 +85,41 @@
                                         ?>
                                     </select>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <div class="input-group">
-                                        <input type="text" name="time_from_<?php echo $counter; ?>" class="form-control time_from time" id="time_from_<?php echo $counter; ?>" value="<?php echo ($prev_rec_value->start_time != "") ? $prev_rec_value->time_from :  $this->customlib->timeFormat($prev_rec_value->start_time);?>">
+                                        <input type="text" name="time_from_<?php //echo $counter; ?>" class="form-control time_from time" id="time_from_<?php //echo $counter; ?>" value="<?php //echo ($prev_rec_value->start_time != "") ? $prev_rec_value->time_from :  $this->customlib->timeFormat($prev_rec_value->start_time);?>">
                                         <div class="input-group-addon">
                                             <span class="fa fa-clock-o"></span>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     <div class="input-group">
-                                        <input type="text" name="time_to_<?php echo $counter; ?>" class="form-control time_to time" id="time_to_<?php echo $counter; ?>" value="<?php echo ($prev_rec_value->end_time != "") ? $prev_rec_value->time_to :  $this->customlib->timeFormat($prev_rec_value->end_time);?>">
+                                        <input type="text" name="time_to_<?php //echo $counter; ?>" class="form-control time_to time" id="time_to_<?php //echo $counter; ?>" value="<?php //echo ($prev_rec_value->end_time != "") ? $prev_rec_value->time_to :  $this->customlib->timeFormat($prev_rec_value->end_time);?>">
                                         <div class="input-group-addon">
                                             <span class="fa fa-clock-o"></span>
                                         </div>
                                     </div>
+                                </td> -->
+                                <td>
+                                    <select class="form-control period" id="period_<?php echo $counter; ?>" name="period_<?php echo $counter; ?>">
+                                        <option value="<?php echo ($prev_rec_value->period != "") ? $prev_rec_value->period : ""; ?>" selected="selected"><?php echo ($prev_rec_value->period != "") ? 'P'.$prev_rec_value->period : "Select"; ?></option>
+                                        <option value="">---</option>
+                                        <option value="1">P1</option>
+                                        <option value="2">P2</option>
+                                        <option value="3">P3</option>
+                                        <option value="4">P4</option>
+                                        <option value="5">P5</option>
+                                        <option value="6">P6</option>
+                                        <option value="7">P7</option>
+                                        <option value="8">P8</option>
+                                        <option value="9">P9</option>
+                                        <option value="10">P10</option>
+                                    </select>
                                 </td>
+                                <!-- <td>
+                                        <input type="text" name="period_<?php //echo $counter; ?>" placeholder="period" class="form-control period" id="period_<?php //echo $counter; ?>" value="<?php //echo ($prev_rec_value->period != "") ? 'P'.$prev_rec_value->period : ""; ?>">
+                                </td> -->
                                 <td>
                                     <input type="text" name='room_no_<?php echo $counter; ?>' value="<?php echo $prev_rec_value->room_no; ?>" placeholder='Room no' class="form-control room_no" id="room_no_<?php echo $counter; ?>"/>
                                 </td>
@@ -142,22 +164,37 @@
                                     ?>
                                 </select>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <div class="input-group">
-                                    <input type="text" name="time_from_<?php echo $total_count; ?>" class="form-control time_from time" id="time_from_<?php echo $total_count; ?>" aria-invalid="false">
+                                    <input type="text" name="time_from_<?php //echo $total_count; ?>" class="form-control time_from time" id="time_from_<?php //echo $total_count; ?>" aria-invalid="false">
                                     <div class="input-group-addon">
                                         <span class="fa fa-clock-o"></span>
                                     </div>
                                 </div>
-                            </td>
-                            <td>
+                            </td> -->
+                            <!-- <td>
                                 <div class="input-group">
-                                    <input type="text" name="time_to_<?php echo $total_count; ?>" class="form-control time_to time" id="time_to_<?php echo $total_count; ?>" aria-invalid="false">
+                                    <input type="text" name="time_to_<?php //echo $total_count; ?>" class="form-control time_to time" id="time_to_<?php // echo $total_count; ?>" aria-invalid="false">
                                     <div class="input-group-addon">
                                         <span class="fa fa-clock-o"></span>
                                     </div>
                                 </div>
-                            </td>
+                            </td> -->
+                            <td>
+                                    <select class="form-control period" id="period_<?php echo $counter; ?>" name="period_<?php echo $counter; ?>">
+                                        <option value="">Select</option>
+                                        <option value="1">P1</option>
+                                        <option value="2">P2</option>
+                                        <option value="3">P3</option>
+                                        <option value="4">P4</option>
+                                        <option value="5">P5</option>
+                                        <option value="6">P6</option>
+                                        <option value="7">P7</option>
+                                        <option value="8">P8</option>
+                                        <option value="9">P9</option>
+                                        <option value="10">P10</option>
+                                    </select>
+                                </td>
                             <td>
                                 <input type="text" name='room_no_<?php echo $total_count; ?>' id='room_no_<?php echo $total_count; ?>' placeholder='Room no' class="form-control room_no"/>
                             </td>
