@@ -102,8 +102,8 @@
                                     </div>
                                 </td> -->
                                 <td>
-                                    <select class="form-control period" id="period_<?php echo $counter; ?>" name="period_<?php echo $counter; ?>">
-                                        <option value="<?php echo ($prev_rec_value->period != "") ? $prev_rec_value->period : ""; ?>" selected="selected"><?php echo ($prev_rec_value->period != "") ? 'P'.$prev_rec_value->period : "Select"; ?></option>
+                                    <!-- <select class="form-control period" id="period_<?php //echo $counter; ?>" name="period_<?php //echo $counter; ?>">
+                                        <option value="<?php //echo ($prev_rec_value->period != "") ? $prev_rec_value->period : ""; ?>" selected="selected"><?php //echo ($prev_rec_value->period != "") ? 'P'.$prev_rec_value->period : "Select"; ?></option>
                                         <option value="">---</option>
                                         <option value="1">P1</option>
                                         <option value="2">P2</option>
@@ -115,7 +115,10 @@
                                         <option value="8">P8</option>
                                         <option value="9">P9</option>
                                         <option value="10">P10</option>
-                                    </select>
+                                    </select> -->
+
+                                    <input type="text" name="period_t_<?php echo $counter; ?>" placeholder="period" class="form-control period" id="period_t_<?php echo $counter; ?>" value="<?php echo ($prev_rec_value->period != "") ? 'P'.$prev_rec_value->period : $counter; ?>" disabled/>
+                                    <input type="hidden" name="period_<?php echo $counter;?>" id="period_<?php echo $counter; ?>" value="<?php echo ($prev_rec_value->period != "") ? $prev_rec_value->period : $counter; ?>" >
                                 </td>
                                 <!-- <td>
                                         <input type="text" name="period_<?php //echo $counter; ?>" placeholder="period" class="form-control period" id="period_<?php //echo $counter; ?>" value="<?php //echo ($prev_rec_value->period != "") ? 'P'.$prev_rec_value->period : ""; ?>">
@@ -131,6 +134,7 @@
                             $counter ++;
                         }
                     } else {
+                        $counter = 1;
                         ?>
 
                         <tr id='addr0'>
@@ -181,7 +185,7 @@
                                 </div>
                             </td> -->
                             <td>
-                                    <select class="form-control period" id="period_<?php echo $total_count; ?>" name="period_<?php echo $total_count; ?>">
+                                    <!-- <select class="form-control period" id="period_<?php //echo $total_count; ?>" name="period_<?php //echo $total_count; ?>">
                                         <option value="">Select</option>
                                         <option value="1">P1</option>
                                         <option value="2">P2</option>
@@ -193,7 +197,9 @@
                                         <option value="8">P8</option>
                                         <option value="9">P9</option>
                                         <option value="10">P10</option>
-                                    </select>
+                                    </select> -->
+                                    <input type="text" name="period_t_<?php echo $counter; ?>" placeholder="period" class="form-control period" id="period_t_<?php echo $counter; ?>" value="<?php echo 'P'.$counter; ?>" disabled/>
+                                    <input type="hidden" name="period_<?php echo $counter;?>" id="period_<?php echo $counter; ?>" value="<?php echo $counter; ?>" >
                                 </td>
                             <td>
                                 <input type="text" name='room_no_<?php echo $total_count; ?>' id='room_no_<?php echo $total_count; ?>' placeholder='Room no' class="form-control room_no"/>
