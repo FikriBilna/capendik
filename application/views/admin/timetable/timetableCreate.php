@@ -312,7 +312,8 @@
 
                         //cols += '<td><div class="input-group"><input type="text" name="time_to_' + tot_count + '" class="form-control time_to time" id="time_to_' + tot_count + '"  aria-invalid="false"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div></div></td>';
 
-                        cols += '<td><input type="text" class="form-control period" name="period_' + tot_count + '" id="period_' + tot_count + '"/></td>';
+                        // cols += '<td><input type="text" class="form-control period" name="period_' + tot_count + '" id="period_' + tot_count + '"/></td>';
+                        cols += '<td class="relative"><select class="form-control period" id="period_' + tot_count + '" name="period_' + tot_count + '">' + $("#period_dropdown").text() + '</select></td>';
 
                         cols += '<td><input type="text" class="form-control room_no" name="room_no_' + tot_count + '" id="room_no_' + tot_count + '"/></td>';
                         cols += '<td class="text-right"><button type="button" class="ibtnDel btn btn-danger btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>';
@@ -359,12 +360,25 @@
             <script type="text/template" id="staff_dropdown">
                 <option value=""><?php echo $this->lang->line('select') ?></option>
                 <?php
-foreach ($staff as $staff_key => $staff_value) {
-    ?>
+                    foreach ($staff as $staff_key => $staff_value) {
+                ?>
                     <option value="<?php echo $staff_value['id']; ?>"><?php echo $staff_value['name'] . " " . $staff_value['surname'] . " (" . $staff_value['employee_id'] . ")"; ?></option>
                     <?php
-}
-?>
+                        }
+                    ?>
+            </script>
+            <script type="text/template" id="period_dropdown">
+                <option value="">Select</option>
+                <option value="1">P1</option>
+                <option value="2">P2</option>
+                <option value="3">P3</option>
+                <option value="4">P4</option>
+                <option value="5">P5</option>
+                <option value="6">P6</option>
+                <option value="7">P7</option>
+                <option value="8">P8</option>
+                <option value="9">P9</option>
+                <option value="10">P10</option>
             </script>
 
             <script type="text/template" id="subject_dropdown">

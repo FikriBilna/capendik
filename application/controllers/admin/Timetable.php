@@ -63,15 +63,15 @@ class Timetable extends Admin_Controller
                         if (!empty($result)) {
                             $obj                      = new stdClass();
                             $obj->status              = "Yes";
-                            $obj->start_time          = $result[0]['start_time'];
-                            $obj->end_time            = $result[0]['end_time'];
+                            // $obj->start_time          = $result[0]['start_time'];
+                            // $obj->end_time            = $result[0]['end_time'];
                             $obj->room_no             = $result[0]['room_no'];
                             $result_array[$day_value] = $obj;
                         } else {
                             $obj                      = new stdClass();
                             $obj->status              = "No";
-                            $obj->start_time          = "N/A";
-                            $obj->end_time            = "N/A";
+                            // $obj->start_time          = "N/A";
+                            // $obj->end_time            = "N/A";
                             $obj->room_no             = "N/A";
                             $result_array[$day_value] = $obj;
                         }
@@ -310,8 +310,9 @@ class Timetable extends Admin_Controller
         foreach ($this->input->post('total_row') as $key => $value) {
             $this->form_validation->set_rules('subject_' . $value, 'Subject', 'trim|required');
             $this->form_validation->set_rules('staff_' . $value, 'Staff', 'trim|required');
-            $this->form_validation->set_rules('time_from_' . $value, 'Time From', 'trim|required');
-            $this->form_validation->set_rules('time_to_' . $value, 'Time To', 'trim|required');
+            // $this->form_validation->set_rules('time_from_' . $value, 'Time From', 'trim|required');
+            // $this->form_validation->set_rules('time_to_' . $value, 'Time To', 'trim|required');
+            $this->form_validation->set_rules('period_' . $value, 'Period', 'trim|required');
             $this->form_validation->set_rules('room_no_' . $value, 'Room No', 'trim|required');
         }
 
@@ -326,8 +327,9 @@ class Timetable extends Admin_Controller
             foreach ($this->input->post('total_row') as $key => $value) {
                 $json['subject_' . $value]   = form_error('subject_' . $value, '<li>', '</li>');
                 $json['staff_' . $value]     = form_error('staff_' . $value, '<li>', '</li>');
-                $json['time_from_' . $value] = form_error('time_from_' . $value, '<li>', '</li>');
-                $json['time_to_' . $value]   = form_error('time_to_' . $value, '<li>', '</li>');
+                // $json['time_from_' . $value] = form_error('time_from_' . $value, '<li>', '</li>');
+                // $json['time_to_' . $value]   = form_error('time_to_' . $value, '<li>', '</li>');
+                $json['period_' . $value]   = form_error('period_' . $value, '<li>', '</li>');
                 $json['room_no_' . $value]   = form_error('room_no_' . $value, '<li>', '</li>');
             }
 
@@ -361,10 +363,11 @@ class Timetable extends Admin_Controller
                             'subject_group_id'         => $subject_group_id,
                             'subject_group_subject_id' => $this->input->post('subject_' . $total_value),
                             'staff_id'                 => $this->input->post('staff_' . $total_value),
-                            'time_from'                => $this->input->post('time_from_' . $total_value),
-                            'time_to'                  => $this->input->post('time_to_' . $total_value),
-                            'start_time'               => $this->customlib->timeFormat($this->input->post('time_from_' . $total_value), true),
-                            'end_time'                 => $this->customlib->timeFormat($this->input->post('time_to_' . $total_value), true),
+                            // 'time_from'                => $this->input->post('time_from_' . $total_value),
+                            // 'time_to'                  => $this->input->post('time_to_' . $total_value),
+                            // 'start_time'               => $this->customlib->timeFormat($this->input->post('time_from_' . $total_value), true),
+                            // 'end_time'                 => $this->customlib->timeFormat($this->input->post('time_to_' . $total_value), true),
+                            'period'                  => $this->input->post('period_' . $total_value),
                             'room_no'                  => $this->input->post('room_no_' . $total_value),
                             'session_id'               => $session,
                         );
@@ -378,11 +381,12 @@ class Timetable extends Admin_Controller
                             'subject_group_id'         => $subject_group_id,
                             'subject_group_subject_id' => $this->input->post('subject_' . $total_value),
                             'staff_id'                 => $this->input->post('staff_' . $total_value),
-                            'time_from'                => $this->input->post('time_from_' . $total_value),
-                            'time_to'                  => $this->input->post('time_to_' . $total_value),
+                            // 'time_from'                => $this->input->post('time_from_' . $total_value),
+                            // 'time_to'                  => $this->input->post('time_to_' . $total_value),
+                            'period'                  => $this->input->post('period_' . $total_value),
 
-                            'start_time'               => $this->customlib->timeFormat($this->input->post('time_from_' . $total_value), true),
-                            'end_time'                 => $this->customlib->timeFormat($this->input->post('time_to_' . $total_value), true),
+                            // 'start_time'               => $this->customlib->timeFormat($this->input->post('time_from_' . $total_value), true),
+                            // 'end_time'                 => $this->customlib->timeFormat($this->input->post('time_to_' . $total_value), true),
                             'room_no'                  => $this->input->post('room_no_' . $total_value),
                             'session_id'               => $session,
                         );

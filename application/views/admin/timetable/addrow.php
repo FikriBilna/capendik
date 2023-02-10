@@ -181,7 +181,7 @@
                                 </div>
                             </td> -->
                             <td>
-                                    <select class="form-control period" id="period_<?php echo $counter; ?>" name="period_<?php echo $counter; ?>">
+                                    <select class="form-control period" id="period_<?php echo $total_count; ?>" name="period_<?php echo $total_count; ?>">
                                         <option value="">Select</option>
                                         <option value="1">P1</option>
                                         <option value="2">P2</option>
