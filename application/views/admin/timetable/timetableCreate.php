@@ -342,12 +342,14 @@
                           if (confirm('<?php echo $this->lang->line("are_you_sure_you_want_to_delete"); ?>')) {
                           $(this).closest("tr").remove();
                             counter -= 1
+                            tot_count -= 1
                              }
                     return false;
 
                 }else{
                       $(this).closest("tr").remove();
                             counter -= 1
+                            tot_count -= 1
                 }
                     });
 
