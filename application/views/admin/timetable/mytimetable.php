@@ -58,9 +58,10 @@
                                                             </b><br>
 
                                                             <strong class="text-green"><?php echo $this->lang->line('class') ?>: <?php echo $tm_kue->class . "(" . $tm_kue->section . ")"; ?></strong><br>
-                                                            <strong class="text-green"><?php echo $tm_kue->time_from ?></strong>
-                                                            <b class="text text-center">-</b>
-                                                            <strong class="text-green"><?php echo $tm_kue->time_to; ?></strong><br>
+                                                            <!-- <strong class="text-green"><?php //echo $tm_kue->time_from ?></strong> -->
+                                                            <!-- <b class="text text-center">-</b> -->
+                                                            <!-- <strong class="text-green"><?php //echo $tm_kue->time_to; ?></strong><br> -->
+                                                            <strong class="text-green">Period : P <?php echo $tm_kue->period; ?></strong><br>
 
                                                             <strong class="text-green"><?php echo $this->lang->line('room_no'); ?>: <?php echo $tm_kue->room_no; ?></strong><br>
 

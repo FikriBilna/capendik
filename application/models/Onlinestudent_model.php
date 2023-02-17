@@ -83,7 +83,7 @@ class Onlinestudent_model extends MY_Model
             online_admissions.guardian_is,
             online_admissions.permanent_address,IFNULL(online_admissions.category_id, 0) as `category_id`,IFNULL(categories.category, "") as `category`,online_admissions.adhar_no,online_admissions.samagra_id,online_admissions.bank_account_no,online_admissions.bank_name, online_admissions.ifsc_code , online_admissions.guardian_name , online_admissions.father_pic ,online_admissions.height ,online_admissions.weight,online_admissions.measurement_date, online_admissions.mother_pic , online_admissions.guardian_pic , online_admissions.guardian_relation,online_admissions.guardian_phone,online_admissions.guardian_address,online_admissions.is_enroll ,online_admissions.created_at,online_admissions.document ,online_admissions.updated_at,online_admissions.father_name,online_admissions.father_phone,online_admissions.blood_group,online_admissions.school_house_id,online_admissions.father_occupation,online_admissions.mother_name,online_admissions.mother_phone,online_admissions.mother_occupation,online_admissions.guardian_occupation,online_admissions.gender,online_admissions.guardian_is,online_admissions.rte,online_admissions.guardian_email,online_admissions.reference_no,online_admissions.paid_status,online_admissions.form_status')
             ->orderable('online_admissions.reference_no,online_admissions.firstname,classes.class,online_admissions.father_name,online_admissions.dob,online_admissions.gender,categories.category,online_admissions.mobileno," "," "," " ')
-            ->searchable('online_admissions.reference_no,online_admissions.firstname,classes.class,online_admissions.father_name,online_admissions.dob,online_admissions.gender,categories.category,online_admissions.mobileno')
+            ->searchable('online_admissions.id,online_admissions.firstname,classes.class,online_admissions.father_name,online_admissions.dob,online_admissions.gender,categories.category,online_admissions.mobileno')
             ->join('class_sections', 'class_sections.id = online_admissions.class_section_id', 'left')
             ->join('classes', 'class_sections.class_id = classes.id', 'left')
             ->join('sections', 'sections.id = class_sections.section_id', 'left')
@@ -96,8 +96,7 @@ class Onlinestudent_model extends MY_Model
             ->join('vehicles', 'vehicles.id = vehicle_routes.vehicle_id', 'left')
             ->join('school_houses', 'school_houses.id = online_admissions.school_house_id', 'left')
 
-            ->from('online_admissions')
-            ->sort('online_admissions.id','desc');
+            ->from('online_admissions');
 
         return $this->datatables->generate('json');
 

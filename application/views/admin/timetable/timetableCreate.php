@@ -60,16 +60,16 @@
                                         <select autofocus="" id="class_id" name="class_id" class="form-control" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                             <?php
-foreach ($classlist as $class) {
-    ?>
+                                                foreach ($classlist as $class) {
+                                            ?>
                                                 <option value="<?php echo $class['id'] ?>" <?php
-if (set_value('class_id') == $class['id']) {
-        echo "selected=selected";
-    }
-    ?>><?php echo $class['class'] ?></option>
-                                                        <?php
-}
-?>
+                                                if (set_value('class_id') == $class['id']) {
+                                                        echo "selected=selected";
+                                                    }
+                                                    ?>><?php echo $class['class'] ?></option>
+                                            <?php
+                                                }
+                                            ?>
                                         </select>
                                         <span class="text-danger"><?php echo form_error('class_id'); ?></span>
                                     </div>
@@ -100,49 +100,43 @@ if (set_value('class_id') == $class['id']) {
                     </form>
 
                     <?php
-if (isset($getDaysnameList)) {
-    ?>
+                        if (isset($getDaysnameList)) {
+                    ?>
                         <div class="box-header ptbnull"></div>
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs" id="myTabs">
                                 <?php
-$count = 1;
+                                    $count = 1;
 
-    foreach ($getDaysnameList as $days_key => $days_value) {
-        $cls = "";
-        if ($count == 1) {
-        }
-        ?>
+                                    foreach ($getDaysnameList as $days_key => $days_value) {
+                                        $cls = "";
+                                        if ($count == 1) {
+                                        }
+                                ?>
                                     <li <?php echo $cls; ?>><a href="#tab_<?php echo $count; ?>" data-c="<?php echo set_value('class_id'); ?>" data-days="<?php echo $days_value; ?>" data-s="<?php echo set_value('section_id'); ?>" data-group="<?php echo set_value('subject_group_id'); ?>" data-day="<?php echo $days_key; ?>" data-toggle="tab" aria-expanded="true"><?php echo $days_value; ?></a></li>
-
-                                    <?php
-$count++;
-    }
-    ?>
+                                <?php
+                                        $count++;
+                                    }
+                                ?>
                             </ul>
                             <div class="tab-content">
                                 <?php
-$count = 1;
-    foreach ($getDaysnameList as $days_key => $days_value) {
-        $cls = "class='tab-pane'";
-        if ($count == 1) {
-
-        }
-        ?>
-                                    <div <?php echo $cls; ?> id="tab_<?php echo $count; ?>">
-                                    </div>
-
-                                    <?php
-$count++;
-    }
-    ?>
-
+                                    $count = 1;
+                                    foreach ($getDaysnameList as $days_key => $days_value) {
+                                        $cls = "class='tab-pane'";
+                                        if ($count == 1) {}
+                                ?>
+                                    <div <?php echo $cls; ?> id="tab_<?php echo $count; ?>"></div>
+                                <?php
+                                        $count++;
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
                     <?php
-}
-?>
+                        }
+                    ?>
                 </section>
             </div>
             <script type="text/javascript">
@@ -314,10 +308,16 @@ $count++;
                         cols += '<td class="relative"><input type="hidden" name="total_row[]" value="' + tot_count + '"><input type="hidden" name="prev_id_' + tot_count + '" value="0"><select class="form-control subject" id="subject_id_' + tot_count + '" name="subject_' + tot_count + '">' + $("#subject_dropdown").text() + '</select></td>';
                         cols += '<td class="relative"><select class="form-control staff" id="staff_id_' + tot_count + '" name="staff_' + tot_count + '">' + $("#staff_dropdown").text() + '</select></td>';
 
-                        cols += '<td><div class="input-group"><input type="text" name="time_from_' + tot_count + '" class="form-control time_from time" id="time_from_' + tot_count + '"  aria-invalid="false"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div></div></td>';
+                        //cols += '<td><div class="input-group"><input type="text" name="time_from_' + tot_count + '" class="form-control time_from time" id="time_from_' + tot_count + '"  aria-invalid="false"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div></div></td>';
 
-                        cols += '<td><div class="input-group"><input type="text" name="time_to_' + tot_count + '" class="form-control time_to time" id="time_to_' + tot_count + '"  aria-invalid="false"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div></div></td>';
+                        //cols += '<td><div class="input-group"><input type="text" name="time_to_' + tot_count + '" class="form-control time_to time" id="time_to_' + tot_count + '"  aria-invalid="false"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div></div></td>';
 
+                        // cols += '<td><input type="text" class="form-control period" name="period_' + tot_count + '" id="period_' + tot_count + '"/></td>';
+                        //cols += '<td class="relative"><select class="form-control period" id="period_' + tot_count + '" name="period_' + tot_count + '">' + $("#period_dropdown").text() + '</select></td>';
+
+                        cols += '<td><input type="text" class="form-control period" name="period_t_' + tot_count + '" id="period_t_' + tot_count + '" value="P'+ tot_count +'" disabled/></td>';
+                        cols += '<input type="hidden" class="form-control period" name="period_' + tot_count + '" id="period_' + tot_count + '" value="'+ tot_count +'"/>';
+                        
                         cols += '<td><input type="text" class="form-control room_no" name="room_no_' + tot_count + '" id="room_no_' + tot_count + '"/></td>';
                         cols += '<td class="text-right"><button type="button" class="ibtnDel btn btn-danger btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>';
                         newRow.append(cols);
@@ -342,12 +342,14 @@ $count++;
                           if (confirm('<?php echo $this->lang->line("are_you_sure_you_want_to_delete"); ?>')) {
                           $(this).closest("tr").remove();
                             counter -= 1
+                            tot_count -= 1
                              }
                     return false;
 
                 }else{
                       $(this).closest("tr").remove();
                             counter -= 1
+                            tot_count -= 1
                 }
                     });
 
@@ -363,12 +365,25 @@ $count++;
             <script type="text/template" id="staff_dropdown">
                 <option value=""><?php echo $this->lang->line('select') ?></option>
                 <?php
-foreach ($staff as $staff_key => $staff_value) {
-    ?>
+                    foreach ($staff as $staff_key => $staff_value) {
+                ?>
                     <option value="<?php echo $staff_value['id']; ?>"><?php echo $staff_value['name'] . " " . $staff_value['surname'] . " (" . $staff_value['employee_id'] . ")"; ?></option>
                     <?php
-}
-?>
+                        }
+                    ?>
+            </script>
+            <script type="text/template" id="period_dropdown">
+                <option value="">Select</option>
+                <option value="1">P1</option>
+                <option value="2">P2</option>
+                <option value="3">P3</option>
+                <option value="4">P4</option>
+                <option value="5">P5</option>
+                <option value="6">P6</option>
+                <option value="7">P7</option>
+                <option value="8">P8</option>
+                <option value="9">P9</option>
+                <option value="10">P10</option>
             </script>
 
             <script type="text/template" id="subject_dropdown">
