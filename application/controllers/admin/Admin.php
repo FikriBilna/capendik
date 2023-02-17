@@ -897,12 +897,15 @@ class Admin extends Admin_Controller
         echo json_encode($array);
     }
 
-
-     public function dtstudentlist($search_text)
+    public function search_text(){
+        $search_text1       = $this->input->post('search_text');
+        $params      = array('search_text'=> $search_text1);
+        $array       = array('status' => 1, 'error' => '', 'params' => $params);
+        echo json_encode($array);
+    }
+     public function dtstudentlist()
     {
-       if($search_text==="0"){           
-            $search_text="";
-        }
+       $search_text       = $this->input->post('search_text');
        $sch_setting    = $this->sch_setting_detail;
        $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
         $classlist                   = $this->class_model->get();

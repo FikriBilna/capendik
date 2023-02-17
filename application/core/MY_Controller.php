@@ -181,7 +181,7 @@ class Front_Controller extends CI_Controller
         $this->load->model('frontcms_setting_model');
 
         $this->front_setting = $this->frontcms_setting_model->get();
-
+        
         if (!$this->front_setting) {
             redirect('site/userlogin');
         } else {
@@ -196,12 +196,12 @@ class Front_Controller extends CI_Controller
 
             if(!$this->front_setting->is_active_front_cms && !$this->school_details->online_admission){
                  redirect('site/userlogin');
-            }
+            }  
 
             if($this->school_details->online_admission){
-                if (!$this->front_setting->is_active_front_cms &&
+                if (!$this->front_setting->is_active_front_cms && 
                     !($front_cms_class == "welcome" && $front_cms_method == "admission") &&
-                    !($front_cms_class == "welcome" && $front_cms_method == "editonlineadmission") &&
+                    !($front_cms_class == "welcome" && $front_cms_method == "editonlineadmission") && 
                     !($front_cms_class == "welcome" && $front_cms_method == "online_admission_review") &&
                     !($front_cms_class == "welcome" && $front_cms_method == "getSections") &&
                     !($front_cms_class == "welcome" && $front_cms_method == "submitadmission") &&
@@ -209,7 +209,7 @@ class Front_Controller extends CI_Controller
                     !($front_cms_class == "checkout" && $front_cms_method == "successinvoice") &&
                     !($front_cms_class == "checkout" && $front_cms_method == "paymentfailed") &&
                     !($front_cms_class == "welcome" && $front_cms_method == "checkadmissionstatus")
-                ) {
+                ) {                    
                     redirect('site/userlogin');
                 }
             }

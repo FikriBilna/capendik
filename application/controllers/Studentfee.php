@@ -813,7 +813,7 @@ class Studentfee extends Admin_Controller
             echo json_encode($array);
         } else {
             $collected_array = array();
-            $collected_by    = " Collected By: " . $this->customlib->getAdminSessionUserName();
+            $collected_by             = $this->customlib->getAdminSessionUserName() . "(" . $staff_record['employee_id'] . ")";
 
             $send_to            = $this->input->post('guardian_phone');
             $email              = $this->input->post('guardian_email');
@@ -828,8 +828,9 @@ class Studentfee extends Admin_Controller
                 $json_array = array(
                     'amount'          => $this->input->post('fee_amount_' . $total_row_value),
                     'date'            => date('Y-m-d', $this->customlib->datetostrtotime($this->input->post('collected_date'))),
-                    'description'     => $this->input->post('fee_gupcollected_note') . $collected_by,
+                    'description'     => $this->input->post('fee_gupcollected_note'),
                     'amount_discount' => 0,
+                    'collected_by'=>$collected_by,
                     'amount_fine'     => $this->input->post('fee_groups_feetype_fine_amount_' . $total_row_value),
                     'payment_mode'    => $this->input->post('payment_mode_fee'),
                     'received_by'     => $staff_record['id'],

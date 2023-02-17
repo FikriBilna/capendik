@@ -1,5 +1,5 @@
 <?php
-
+// baru
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Welcome extends Front_Controller
@@ -23,11 +23,23 @@ class Welcome extends Front_Controller
         $this->sch_setting_detail     = $this->setting_model->getSetting();
         $this->data['banner_notices'] = $this->cms_program_model->getByCategory($ban_notice_type, array('start' => 0, 'limit' => 5));
 
-    }
-
+    } 
+    
     public function show_404()
     {
-        $this->load->view('errors/error_message');
+
+        if ($this->session->has_userdata('admin') || $this->session->has_userdata('student')) {
+            $this->load->view('errors/error_message');
+        } else {
+            $front_setting = $this->frontcms_setting_model->get();
+            if (!$front_setting) {
+                $this->load->view('errors/error_message');
+            } elseif ($this->front_setting->is_active_front_cms) {
+                redirect('page/404-page', 'refresh');
+            }else{
+                $this->load->view('errors/error_message');                
+            }
+        }
     }
 
     public function index()

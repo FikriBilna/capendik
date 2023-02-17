@@ -277,7 +277,10 @@ class Smsgateway
                 $this->_CI->africastalking_lib->sendSms($to, $msg);
 
             } else if ($sms_detail->type == 'custom') {
-                $this->_CI->load->library('customsms');
+                 $params = array(
+                    'templateid'       => $template_id,
+                );
+                $this->_CI->load->library('customsms',$params);
                 $from    = $sms_detail->contact;
                 $to      = $send_to;
                 $message = $msg;
@@ -524,7 +527,10 @@ class Smsgateway
                 $this->_CI->africastalking_lib->sendSms($to, $msg);
 
             } else if ($sms_detail->type == 'custom') {
-                $this->_CI->load->library('customsms');
+                $params = array(
+                    'templateid'       => $template_id,
+                );
+                $this->_CI->load->library('customsms',$params);
                 $from    = $sms_detail->contact;
                 $to      = $send_to;
                 $message = $msg;
@@ -676,7 +682,10 @@ class Smsgateway
                 $this->_CI->africastalking_lib->sendSms($to, $msg);
 
             } else if ($sms_detail->type == 'custom') {
-                $this->_CI->load->library('customsms');
+                 $params = array(
+                    'templateid'       => $template_id,
+                );
+                $this->_CI->load->library('customsms',$params);
                 $from    = $sms_detail->contact;
                 $to      = $send_to;
                 $message = $msg;
@@ -994,7 +1003,10 @@ class Smsgateway
                         $this->_CI->africastalking_lib->sendSms($to, $msg);
 
                     } else if ($sms_detail->type == 'custom') {
-                        $this->_CI->load->library('customsms');
+                         $params = array(
+                    'templateid'       => $template_id,
+                );
+                $this->_CI->load->library('customsms',$params);
                         $from    = $sms_detail->contact;
                         $to      = $send_to;
                         $message = $msg;
@@ -1120,7 +1132,10 @@ class Smsgateway
                         $this->_CI->africastalking_lib->sendSms($to, $msg);
 
                     } else if ($sms_detail->type == 'custom') {
-                        $this->_CI->load->library('customsms');
+                         $params = array(
+                            'templateid'       => $template_id,
+                        );
+                        $this->_CI->load->library('customsms',$params);
                         $from    = $sms_detail->contact;
                         $to      = $send_to;
                         $message = $msg;
@@ -1250,7 +1265,10 @@ class Smsgateway
                     $this->_CI->africastalking_lib->sendSms($to, $msg);
 
                 } else if ($sms_detail->type == 'custom') {
-                    $this->_CI->load->library('customsms');
+                     $params = array(
+                    'templateid'       => $template_id,
+                    );
+                    $this->_CI->load->library('customsms',$params);
                     $from    = $sms_detail->contact;
                     $to      = $send_to;
                     $message = $msg;
@@ -1443,6 +1461,7 @@ class Smsgateway
                         $this->_CI->africastalking_lib->sendSms($to, $msg);
 
                     } else if ($sms_detail->type == 'custom') {
+                       
                         $this->_CI->load->library('customsms');
                         $from    = $sms_detail->contact;
                         $to      = $send_to;
@@ -1570,6 +1589,7 @@ class Smsgateway
                         $this->_CI->africastalking_lib->sendSms($to, $msg);
 
                     } else if ($sms_detail->type == 'custom') {
+                        
                         $this->_CI->load->library('customsms');
                         $from    = $sms_detail->contact;
                         $to      = $send_to;
@@ -1696,7 +1716,10 @@ class Smsgateway
                     $this->_CI->africastalking_lib->sendSms($to, $msg);
 
                 } else if ($sms_detail->type == 'custom') {
-                    $this->_CI->load->library('customsms');
+                     $params = array(
+                        'templateid'       => $template_id,
+                    );
+                    $this->_CI->load->library('customsms',$params);
                     $from    = $sms_detail->contact;
                     $to      = $send_to;
                     $message = $msg;
@@ -1975,6 +1998,7 @@ class Smsgateway
                 $this->_CI->africastalking_lib->sendSms($to, $msg);
 
             } else if ($sms_detail->type == 'custom') {
+               
                 $this->_CI->load->library('customsms');
                 $from    = $sms_detail->contact;
                 $to      = $send_to;
