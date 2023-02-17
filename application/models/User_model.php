@@ -230,7 +230,7 @@ class User_model extends MY_Model {
 
     public function read_single_child($child_id) {
         $this->db->select('*');
-        $this->db->where('childs', $child_id);
+        $this->db->where('users.id', $child_id);
         $this->db->from('users');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
