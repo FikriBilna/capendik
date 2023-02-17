@@ -313,8 +313,11 @@
                         //cols += '<td><div class="input-group"><input type="text" name="time_to_' + tot_count + '" class="form-control time_to time" id="time_to_' + tot_count + '"  aria-invalid="false"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div></div></td>';
 
                         // cols += '<td><input type="text" class="form-control period" name="period_' + tot_count + '" id="period_' + tot_count + '"/></td>';
-                        cols += '<td class="relative"><select class="form-control period" id="period_' + tot_count + '" name="period_' + tot_count + '">' + $("#period_dropdown").text() + '</select></td>';
+                        //cols += '<td class="relative"><select class="form-control period" id="period_' + tot_count + '" name="period_' + tot_count + '">' + $("#period_dropdown").text() + '</select></td>';
 
+                        cols += '<td><input type="text" class="form-control period" name="period_t_' + tot_count + '" id="period_t_' + tot_count + '" value="P'+ tot_count +'" disabled/></td>';
+                        cols += '<input type="hidden" class="form-control period" name="period_' + tot_count + '" id="period_' + tot_count + '" value="'+ tot_count +'"/>';
+                        
                         cols += '<td><input type="text" class="form-control room_no" name="room_no_' + tot_count + '" id="room_no_' + tot_count + '"/></td>';
                         cols += '<td class="text-right"><button type="button" class="ibtnDel btn btn-danger btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>';
                         newRow.append(cols);
@@ -339,12 +342,14 @@
                           if (confirm('<?php echo $this->lang->line("are_you_sure_you_want_to_delete"); ?>')) {
                           $(this).closest("tr").remove();
                             counter -= 1
+                            tot_count -= 1
                              }
                     return false;
 
                 }else{
                       $(this).closest("tr").remove();
                             counter -= 1
+                            tot_count -= 1
                 }
                     });
 

@@ -365,43 +365,48 @@ if ($this->module_lib->hasActive('examination')) {
                         </a>
                         <ul class="treeview-menu">
 
-                            <?php if ($this->rbac->hasPrivilege('exam_group', 'can_view')) {?>
-                                <li class="<?php echo set_Submenu('Examinations/examgroup'); ?>"><a href="<?php echo site_url('admin/examgroup'); ?>"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('exam') . " " . $this->lang->line('group') ?></a></li>
-                            <?php }
-        ?>
                             <li class="<?php echo set_Submenu('Examinations/Examschedule'); ?>"><a href="<?php echo site_url('admin/exam_schedule'); ?>"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('exam_schedule'); ?></a></li>
-                            <?php if ($this->rbac->hasPrivilege('exam_result', 'can_view')) {
-            ?>
+                            <?php 
+                                if ($this->rbac->hasPrivilege('exam_result', 'can_view')) { 
+                            ?>
                                 <li class="<?php echo set_Submenu('Examinations/Examresult'); ?>"><a href="<?php echo site_url('admin/examresult'); ?>"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('exam') . " " . $this->lang->line('result'); ?></a></li>
-                                <?php
-}
-        if ($this->rbac->hasPrivilege('design_admit_card', 'can_view')) {
-            ?>
+                            <?php
+                                }
+                            ?>
+                            <?php 
+                                if ($this->rbac->hasPrivilege('exam_group', 'can_view')) {
+                            ?>
+                                <li class="<?php echo set_Submenu('Examinations/examgroup'); ?>"><a href="<?php echo site_url('admin/examgroup'); ?>"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('exam') . " " . $this->lang->line('group') ?></a></li>
+                            <?php 
+                                } 
+                            ?>
+                            <?php
+                                if ($this->rbac->hasPrivilege('design_admit_card', 'can_view')) {
+                            ?>
                                 <li class="<?php echo set_Submenu('Examinations/admitcard'); ?>"><a href="<?php echo base_url(); ?>admin/admitcard"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('design') . " " . $this->lang->line('admit') . " " . $this->lang->line('card'); ?></a></li>
-                                <?php
-}
-        if ($this->rbac->hasPrivilege('print_admit_card', 'can_view')) {
-            ?>
+                            <?php
+                                }
+                                if ($this->rbac->hasPrivilege('print_admit_card', 'can_view')) {
+                            ?>
                                 <li class="<?php echo set_Submenu('Examinations/examresult/admitcard'); ?>"><a href="<?php echo base_url(); ?>admin/examresult/admitcard"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('print') . " " . $this->lang->line('admit') . " " . $this->lang->line('card'); ?></a></li>
-                                <?php
-}
-        if ($this->rbac->hasPrivilege('design_marksheet', 'can_view')) {
-            ?>
+                            <?php
+                                }
+                                if ($this->rbac->hasPrivilege('design_marksheet', 'can_view')) {
+                            ?>
                                 <li class="<?php echo set_Submenu('Examinations/marksheet'); ?>"><a href="<?php echo site_url('admin/marksheet'); ?>"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('design') . " " . $this->lang->line('marksheet') ?></a></li>
-                                <?php
-}
-        if ($this->rbac->hasPrivilege('print_marksheet', 'can_view')) {
-            ?>
+                            <?php
+                                }
+                                if ($this->rbac->hasPrivilege('print_marksheet', 'can_view')) {
+                            ?>
                                 <li class="<?php echo set_Submenu('Examinations/examresult/marksheet'); ?>"><a href="<?php echo base_url(); ?>admin/examresult/marksheet"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('print') . " " . $this->lang->line('marksheet'); ?></a></li>
-                                <?php
-}
-
-        if ($this->rbac->hasPrivilege('marks_grade', 'can_view')) {
-            ?>
-                                <li class="<?php echo set_Submenu('Examinations/grade'); ?>"><a href="<?php echo base_url(); ?>admin/grade"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('marks_grade'); ?></a></li> <?php }?>
-
-
-
+                            <?php
+                                }
+                                if ($this->rbac->hasPrivilege('marks_grade', 'can_view')) {
+                            ?>
+                                <li class="<?php echo set_Submenu('Examinations/grade'); ?>"><a href="<?php echo base_url(); ?>admin/grade"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('marks_grade'); ?></a></li> 
+                            <?php 
+                                } 
+                            ?>
                         </ul>
                     </li>
                 <?php
@@ -447,17 +452,20 @@ if ($this->module_lib->hasActive('lesson_plan')) {
                             <i class="fa fa-list-alt ftlayer"></i> <span><?php echo $this->lang->line('lesson_plan'); ?></span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
+                            
                             <?php if ($this->rbac->hasPrivilege('manage_lesson_plan', 'can_view')) {?>
                                 <li class="<?php echo set_Submenu('admin/syllabus'); ?>"><a href="<?php echo base_url(); ?>admin/syllabus"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('manage_lesson_plan'); ?></a></li>
                             <?php }?>
                             <?php if ($this->rbac->hasPrivilege('manage_syllabus_status', 'can_view')) {?>
                                 <li class="<?php echo set_Submenu('admin/lessonplan'); ?>"><a href="<?php echo base_url(); ?>admin/syllabus/status"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('manage_syllabus_status'); ?></a></li>
-                            <?php }if ($this->rbac->hasPrivilege('lesson', 'can_view')) {?>
+                            <?php } ?>
+                            <?php if ($this->rbac->hasPrivilege('lesson', 'can_view')) {?>
                                 <li class="<?php echo set_Submenu('admin/lessonplan/lesson'); ?>"><a href="<?php echo base_url(); ?>admin/lessonplan/lesson"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('lesson'); ?></a></li>
-                            <?php }if ($this->rbac->hasPrivilege('topic', 'can_view')) {?>
+                            <?php } ?> 
+                            <?php if ($this->rbac->hasPrivilege('topic', 'can_view')) {?>
                                 <li class="<?php echo set_Submenu('admin/lessonplan/topic'); ?>"><a href="<?php echo base_url(); ?>admin/lessonplan/topic"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('topic'); ?></a></li>
-        <?php }?>
-
+                            <?php }?>  
+                            
                         </ul>
                     </li>
                 <?php }
