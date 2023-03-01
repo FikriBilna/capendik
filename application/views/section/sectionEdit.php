@@ -12,7 +12,8 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title"><?php echo $this->lang->line('edit'); ?> <?php echo $this->lang->line('section'); ?></h3>
+                            <!-- <h3 class="box-title"><?php //echo $this->lang->line('edit'); ?> <?php //echo $this->lang->line('section'); ?></h3> -->
+                            <h3 class="box-title"><?php echo $this->lang->line('edit'); ?> Form</h3>
                         </div>
                         <form action="<?php echo site_url("sections/edit/" . $id) ?>"  id="employeeform" name="employeeform" method="post" accept-charset="utf-8">
                             <div class="box-body">
@@ -21,7 +22,7 @@
                                 <?php } ?>   
                                 <?php echo $this->customlib->getCSRF(); ?>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                    <label for="exampleInputEmail1"><?php echo "Form" //$this->lang->line('section'); ?></label><small class="req"> *</small>
                                     <input autofocus="" id="section" name="section" placeholder="" type="text" class="form-control"  value="<?php echo set_value('section', $section['section']); ?>" />
                                     <span class="text-danger"><?php echo form_error('section'); ?></span>
                                 </div>
@@ -42,15 +43,15 @@
             ?>">             
                 <div class="box box-primary">
                     <div class="box-header ptbnull">
-                        <h3 class="box-title titlefix"><?php echo $this->lang->line('section_list'); ?></h3>
+                        <h3 class="box-title titlefix"><?php echo "Form List" //$this->lang->line('section_list'); ?></h3>
                     </div>
                     <div class="box-body ">
                         <div class="table-responsive mailbox-messages">
-                            <div class="download_label"><?php echo $this->lang->line('section_list'); ?></div>
+                            <div class="download_label"><?php echo "Form List" //$this->lang->line('section_list'); ?></div>
                             <table class="table table-striped table-bordered table-hover example">
                                 <thead>
                                     <tr>
-                                        <th><?php echo $this->lang->line('section'); ?></th>
+                                        <th><?php echo "Form"; // $this->lang->line('section'); ?></th>
                                         <th class="text-right"><?php echo $this->lang->line('action'); ?></th>
                                     </tr>
                                 </thead>
@@ -61,7 +62,7 @@
                                     foreach ($sectionlist as $section) {
                                         ?>
                                         <tr>
-                                            <td class="mailbox-name"> <?php echo $section['section'] ?></td>
+                                            <td class="mailbox-name"> <?php echo $section['section']; ?></td>
                                             <td class="mailbox-date pull-right">
                                                 <?php
                                                 if ($this->rbac->hasPrivilege('section', 'can_edit')) {

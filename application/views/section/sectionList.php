@@ -12,7 +12,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title"><?php echo $this->lang->line('add_section'); ?></h3>
+                            <h3 class="box-title"><?php //echo $this->lang->line('add_section'); ?> Add Form</h3>
                         </div>
                         <form action="<?php echo site_url('sections/index') ?>"  id="employeeform" name="employeeform" method="post" accept-charset="utf-8">
                             <div class="box-body">
@@ -42,7 +42,7 @@
             ?>">
                 <div class="box box-primary">
                     <div class="box-header ptbnull">
-                        <h3 class="box-title titlefix"><?php echo $this->lang->line('section_list'); ?></h3>
+                        <h3 class="box-title titlefix"><?php //echo $this->lang->line('section_list'); ?> Form List</h3>
                     </div>
                     <div class="box-body ">
                         <div class="table-responsive mailbox-messages">
