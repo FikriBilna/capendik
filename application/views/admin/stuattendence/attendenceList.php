@@ -299,7 +299,7 @@
                                                                                 <?php
                                                                                 if ($sch_setting->biometric) {
                                                                                     ?>
-                                                                                    <input <?php if ($att_type == "absent") echo "checked"; ?> type="radio" id="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>" value="<?php echo $type['id'] ?>" name="attendencetype<?php echo $value['student_session_id']; ?>" >
+                                                                                    <input <?php if ($att_type == "present") echo "checked"; ?> type="radio" id="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>" value="<?php echo $type['id'] ?>" name="attendencetype<?php echo $value['student_session_id']; ?>" >
                                                                                     <?php
                                                                                 }else {
                                                                                     ?>

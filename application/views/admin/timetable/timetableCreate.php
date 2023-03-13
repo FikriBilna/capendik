@@ -318,7 +318,8 @@
                         cols += '<td><input type="text" class="form-control period" name="period_t_' + tot_count + '" id="period_t_' + tot_count + '" value="P'+ tot_count +'" disabled/></td>';
                         cols += '<input type="hidden" class="form-control period" name="period_' + tot_count + '" id="period_' + tot_count + '" value="'+ tot_count +'"/>';
                         
-                        cols += '<td><input type="text" class="form-control room_no" name="room_no_' + tot_count + '" id="room_no_' + tot_count + '"/></td>';
+                        // cols += '<td><input type="text" class="form-control room_no" name="room_no_' + tot_count + '" id="room_no_' + tot_count + '"/></td>';
+                        cols += '<td class="relative"><select class="form-control room" id="room_id_' + tot_count + '" name="room_no_' + tot_count + '">' + $("#room_dropdown").text() + '</select></td>';
                         cols += '<td class="text-right"><button type="button" class="ibtnDel btn btn-danger btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>';
                         newRow.append(cols);
 
@@ -368,6 +369,16 @@
                     foreach ($staff as $staff_key => $staff_value) {
                 ?>
                     <option value="<?php echo $staff_value['id']; ?>"><?php echo $staff_value['name'] . " " . $staff_value['surname'] . " (" . $staff_value['employee_id'] . ")"; ?></option>
+                    <?php
+                        }
+                    ?>
+            </script>
+            <script type="text/template" id="room_dropdown">
+                <option value=""><?php echo $this->lang->line('select') ?></option>
+                <?php
+                    foreach ($room as $room_key => $room_value) {
+                ?>
+                    <option value="<?php echo $room_value['id']; ?>"><?php echo $room_value['room_name'] . " (" . $room_value['room_code'] . ")"; ?></option>
                     <?php
                         }
                     ?>

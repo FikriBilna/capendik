@@ -12,6 +12,7 @@ class Timetable extends Admin_Controller
         parent::__construct();
         $this->load->model("staff_model");
         $this->load->model("classteacher_model");
+        $this->load->model("room_model");
     }
 
     public function index()
@@ -111,6 +112,13 @@ class Timetable extends Admin_Controller
         $data['timetable'] = array();
         $days              = $this->customlib->getDaysname();
 
+        // $room = $this->subjecttimetable_model->getRooms();
+        // $data['rooms'] = $room;
+
+        // foreach ($rooms as $rooms_key => $rooms_val) {
+        //     $data['room'] = $this->room_model->get($rooms_key['subject_timetable_room_id']);
+        // }
+
         foreach ($days as $day_key => $day_value) {
             $data['timetable'][$day_value] = $this->subjecttimetable_model->getByStaffandDay($staff_id, $day_key);
         }
@@ -163,6 +171,8 @@ class Timetable extends Admin_Controller
         $data['examlist']   = $exam;
         $data['classlist']  = $class;
         $userdata           = $this->customlib->getUserData();
+
+        $data['room']       = $this->room_model->get();
 
         $staff                   = $this->staff_model->getStaffbyrole(2);
         $data['staff']           = $staff;
@@ -281,6 +291,8 @@ class Timetable extends Admin_Controller
         $subject             = $this->subjectgroup_model->getGroupsubjects($subject_group_id);
 
         $prev_record = $this->subjecttimetable_model->getBySubjectGroupDayClassSection($subject_group_id, $day, $class_id, $section_id);
+
+        $data['room']  = $this->room_model->get() ;
 
         $staff         = $this->staff_model->getStaffbyrole(2);
         $data['staff'] = $staff;

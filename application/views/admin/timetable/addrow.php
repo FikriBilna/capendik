@@ -33,7 +33,7 @@
                                 Period
                             </th>
                             <th>
-                                <?php echo $this->lang->line('room') . " " . $this->lang->line('no') ?>
+                                <?php echo $this->lang->line('room')?>
                             </th>
                             <th class="text-right">
                                 <?php echo $this->lang->line('action') ?>
@@ -124,7 +124,17 @@
                                         <input type="text" name="period_<?php //echo $counter; ?>" placeholder="period" class="form-control period" id="period_<?php //echo $counter; ?>" value="<?php //echo ($prev_rec_value->period != "") ? 'P'.$prev_rec_value->period : ""; ?>">
                                 </td> -->
                                 <td>
-                                    <input type="text" name='room_no_<?php echo $counter; ?>' value="<?php echo $prev_rec_value->room_no; ?>" placeholder='Room no' class="form-control room_no" id="room_no_<?php echo $counter; ?>"/>
+                                    <!-- <input type="text" name='room_no_<?php //echo $counter; ?>' value="<?php //echo $prev_rec_value->room_no; ?>" placeholder='Room no' class="form-control room_no" id="room_no_<?php //echo $counter; ?>"/> -->
+                                   <select class="form-control room_no" id="room_no_<?php echo $counter; ?>" name="room_no_<?php echo $counter; ?>">
+                                        <option value=""><?php echo $this->lang->line('select') ?></option>
+                                        <?php 
+                                        foreach ($room as $room_key => $room_value){
+                                        ?>
+                                            <option value="<?php echo $room_value['id'] ?>" <?php echo set_select('room_'. $counter, $room_value['id'], ($prev_rec_value->room_no == $room_value['id'])? TRUE : FALSE ); ?>><?php echo $room_value['room_name']." (".$room_value['room_code'].")"; ?></option>
+                                        <?php  
+                                            }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td class="text-right"><button class="ibtnDel btn btn-danger btn-sm btn-danger"> <i class="fa fa-trash"></i></button></td>
 
@@ -202,7 +212,17 @@
                                     <input type="hidden" name="period_<?php echo $counter;?>" id="period_<?php echo $counter; ?>" value="<?php echo $counter; ?>" >
                                 </td>
                             <td>
-                                <input type="text" name='room_no_<?php echo $total_count; ?>' id='room_no_<?php echo $total_count; ?>' placeholder='Room no' class="form-control room_no"/>
+                                <!-- <input type="text" name='room_no_<?php //echo $total_count; ?>' id='room_no_<?php //echo $total_count; ?>' placeholder='Room no' class="form-control room_no"/> -->
+                                <select class="form-control room_no" id="room_no_<?php echo $counter; ?>" name="room_no_<?php echo $counter; ?>">
+                                        <option value=""><?php echo $this->lang->line('select') ?></option>
+                                        <?php 
+                                        foreach ($room as $room_key => $room_value){
+                                        ?>
+                                            <option value="<?php echo $room_value['id'] ?>"><?php echo $room_value['room_name']." (".$room_value['room_code'].")"; ?></option>
+                                        <?php  
+                                            }
+                                        ?>
+                                    </select>
                             </td>
                             <td class="text-right"><button class="ibtnDel btn btn-danger btn-sm btn-danger"> <i class="fa fa-trash"></i></button></td>
 
