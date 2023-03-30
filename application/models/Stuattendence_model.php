@@ -162,4 +162,8 @@ class Stuattendence_model extends MY_Model {
         return $count_studentattendance;
     }
 
+    public function get_attendencebyrange($date1, $date2){
+        
+    }
+
 }

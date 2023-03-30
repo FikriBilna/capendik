@@ -37,7 +37,7 @@ class Room_model extends MY_model
         //====================Code Start=======================
         $this->db->where('id', $id);
         $this->db->delete('rooms');
-        $message = DELETE_RECORD_CONSTANT . "On rooms id" . $id;
+        $message = DELETE_RECORD_CONSTANT . " On rooms id" . $id;
         $action = "Delete";
         $record_id = $id;
         $this->log($message, $record_id, $action);

@@ -101,8 +101,6 @@ class Stuattendence extends Admin_Controller {
                                 'date' => date('Y-m-d', $this->customlib->datetostrtotime($date))
                             );
                         } else {
-
-
                             $arr = array(
                                 'student_session_id' => $value,
                                 'attendence_type_id' => $this->input->post('attendencetype' . $value),
@@ -134,6 +132,16 @@ class Stuattendence extends Admin_Controller {
             $this->load->view('admin/stuattendence/attendenceList', $data);
             $this->load->view('layout/footer', $data);
         }
+    }
+
+    function weekAttendence(){
+        if(!$this->rbac->hasPrivilege('attendence_by_date_selected', 'can_view')){
+            access_denied();
+        }
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('admin/stuattendence/attendenceList', $data);
+        $this->load->view('layout/footer', $data);
     }
 
     function attendencereport() {
@@ -351,6 +359,8 @@ class Stuattendence extends Admin_Controller {
 
         return $record;
     }
+
+    
 
 }
 

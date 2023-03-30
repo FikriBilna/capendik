@@ -326,7 +326,7 @@ class Customlib
         $status         = array();
         $setting_result = $this->CI->setting_model->getSchoolDetail();
         $start = strtotime('last week ' . $setting_result->start_week);
-        $end   = $start + (86400 * 7);
+        $end   = $start + (86400 * 6);
         for ($i = $start; $i < $end; $i += 86400) {
             $key          = date('l', $i);
             $status[$key] = $this->CI->lang->line(strtolower($key));
@@ -343,7 +343,7 @@ class Customlib
         $status['Thursday']  = 'thursday';
         $status['Friday']    = 'friday';
         $status['Saturday']  = 'saturday';
-        $status['Sunday']    = 'sunday';
+        // $status['Sunday']    = 'sunday';
         return $status;
     }
 

@@ -473,7 +473,8 @@ if ($this->module_lib->hasActive('academics')) {
         $this->rbac->hasPrivilege('section', 'can_view') ||
         $this->rbac->hasPrivilege('subject', 'can_view') ||
         $this->rbac->hasPrivilege('class', 'can_view') ||
-        $this->rbac->hasPrivilege('section', 'can_view')
+        $this->rbac->hasPrivilege('section', 'can_view') ||
+        $this->rbac->hasPrivilege('room', 'can_view')
     )) {
         ?>
                     <li class="treeview <?php echo set_Topmenu('Academics'); ?>">
@@ -524,9 +525,14 @@ if ($this->module_lib->hasActive('academics')) {
 
         if ($this->rbac->hasPrivilege('section', 'can_view')) {
             ?>
-                                <li class="<?php echo set_Submenu('sections/index'); ?>"><a href="<?php echo base_url(); ?>sections"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('sections'); ?></a></li>
+                                <li class="<?php echo set_Submenu('sections/index'); ?>"><a href="<?php echo base_url(); ?>sections"><i class="fa fa-angle-double-right"></i> <?php echo "Form" ?></a></li>
                                 <?php
 }
+        if ($this->rbac->hasPrivilege('room', 'can_view')){ 
+        ?>
+            <li class="<?php echo set_Submenu('rooms/index'); ?>"><a href="<?php echo base_url(); ?>admin/room"><i class="fa fa-angle-double-right"></i> <?php echo "Room" ?></a></li>
+        <?php
+        }
         ?>
 
                         </ul>
