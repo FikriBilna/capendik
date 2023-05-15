@@ -79,7 +79,6 @@
         .radio.radio-inline {display: inherit;}
     }
 </style>
-
 <div class="content-wrapper" style="min-height: 946px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -95,7 +94,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title"><i class="fa fa-search"></i> <?php echo $this->lang->line('select_criteria'); ?></h3>
                     </div>
-                    <form id='form1' action="<?php echo site_url('admin/stuattendence/index') ?>"  method="post" accept-charset="utf-8">
+                    <form id='form1' action="<?php echo site_url('admin/stuattendence/rangeAttendence') ?>"  method="post" accept-charset="utf-8">
                         <div class="box-body">
                             <?php
                             if ($this->session->flashdata('msg')) {
@@ -137,13 +136,23 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">
-                                            <?php echo $this->lang->line('attendance'); ?>
-                                            <?php echo $this->lang->line('date'); ?>
-                                        </label>
-                                        <input id="date" name="date" placeholder="" type="text" class="form-control date"  value="<?php echo set_value('date', date($this->customlib->getSchoolDateFormat())); ?>" readonly="readonly"/>
-                                        <span class="text-danger"><?php echo form_error('date'); ?></span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">
+                                                Date Start
+                                            </label>
+                                            <input id="date" name="dateStart" placeholder="" type="text" class="form-control date"  value="<?php echo set_value('dateStart', date($this->customlib->getSchoolDateFormat())); ?>" readonly="readonly"/>
+                                            <span class="text-danger"><?php echo form_error('date'); ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">
+                                                Date End
+                                            </label>
+                                            <input id="date" name="dateEnd" placeholder="" type="text" class="form-control date"  value="<?php echo set_value('dateEnd', date($this->customlib->getSchoolDateFormat())); ?>" readonly="readonly"/>
+                                            <span class="text-danger"><?php echo form_error('date'); ?></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -154,201 +163,131 @@
                             </div>
                         </div>
                     </form>
+                    <div>
+                    </div>
                     <?php
-                    if (isset($resultlist)) {
-                        ?>
+                    if(isset($resultlist)){
+                    ?>
                         <div class="">
                             <div class="box-header ptbnull"></div>
                             <div class="box-header with-border">
                                 <h3 class="box-title"><i class="fa fa-users"></i> <?php echo $this->lang->line('student'); ?> <?php echo $this->lang->line('list'); ?></h3>
-                                <div class="box-tools pull-right">
-                                </div>
+                                <div class="box-tools pull-right"></div>
                             </div>
                             <div class="box-body">
                                 <?php
-                                if (!empty($resultlist)) {
-                                    $can_edit = 1;
-                                    $checked = "";
-                                    if (!isset($msg)) {
-                                        if ($resultlist[0]['attendence_type_id'] != "") {
-                                            if ($resultlist[0]['attendence_type_id'] != 5) {
-                                                if ($this->rbac->hasPrivilege('student_attendance', 'can_edit')) {
-
-                                                    $can_edit = 1;
-                                                } else {
-                                                    $can_edit = 0;
+                                    if(!empty($resultlist)){
+                                        $can_edit =1;
+                                        $checked = "";
+                                        if(!isset($msg)){
+                                                if($resultlist[0]['attendence_type_id'] != ""){
+                                                    if($resultlist[0]['attendence_type_id'] != 5){
+                                                        if($this->rbac->hasPrivilege('student_attendence', 'can_edit')){
+                                                            $can_edit = 1;
+                                                            // echo "edit";
+                                                        }else{
+                                                            $can_edit = 0;
+                                                            // echo "not edit";
+                                                        }
+                                                        ?>
+                                                        <div class="alert alert-success"><?php echo $this->lang->line('attendance_already_submitted_you_can_edit_record'); ?></div>
+                                                        <?php
+                                                    }else{
+                                                        $checked = "checked='checked'";
+                                                        ?>
+                                                        <div class="alert alert-warning"><?php echo $this->lang->line('attendance_already_submitted_as_holiday'); ?>. <?php echo $this->lang->line('you_can_edit_record'); ?></div>
+                                                        <?php
+                                                    }
                                                 }
-                                                ?>
-                                                <div class="alert alert-success"><?php echo $this->lang->line('attendance_already_submitted_you_can_edit_record'); ?></div>
-                                                <?php
-                                            } else {
-                                                $checked = "checked='checked'";
-                                                ?>
-                                                <div class="alert alert-warning"><?php echo $this->lang->line('attendance_already_submitted_as_holiday'); ?>. <?php echo $this->lang->line('you_can_edit_record'); ?></div>
-                                                <?php
-                                            }
-                                        }
-                                    } else {
+                                        }else{
                                         ?>
-                                        <div class="alert alert-success"><?php echo $this->lang->line('attendance_saved_successfully'); ?></div>
+                                            <div class="alert alert-success"><?php echo $this->lang->line('attendance_saved_successfully'); ?></div>
                                         <?php
-                                    }
-                                    ?>
-                                    <form action="<?php echo site_url('admin/stuattendence/index') ?>" method="post" class="form_attendence">
-                                        <?php echo $this->customlib->getCSRF(); ?>
-                                        <div class="mailbox-controls">
-                                            <span class="button-checkbox">
-                                                <?php if ($this->rbac->hasPrivilege('student_attendance', 'can_add')) { ?>
-                                                    <button type="button" class="btn btn-sm btn-primary" data-color="primary"><?php echo $this->lang->line('mark_as_holiday'); ?></button>
-                                                    <input type="checkbox" id="checkbox1" class="hidden" name="holiday" value="checked" <?php echo $checked; ?>/>
+                                        }
+                                        ?>
+                                        <form action="<?php echo site_url('admin/stuattendence/rangeAttendence') ?>" method="post" class="form_attendence">
+                                            <?php echo $this->customlib->getCSRF(); ?>
+                                            <div class="mailbox-controls">
+                                                <span>
+                                                    <?php if($this->rbac->hasPrivilege('student_attendence', 'can_edit')){ ?>
+                                                        <button type="button" class="btn btn-sm btn-primary" data-color="primary"><?php echo $this->lang->line('mark_as_holiday'); ?></button>
+                                                        <input type="checkbox" id="checkbox1" class="hidden" name="holiday" value="checked" <?php echo $checked; ?>/>
                                                 </span>
                                                 <div class="pull-right">
                                                     <?php
-                                                }
-                                                if ($can_edit == 1) {
-                                                    if ($this->rbac->hasPrivilege('student_attendance', 'can_add')) {
-                                                        ?>
-                                                        <button type="submit" name="search" value="saveattendence" class="btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-save"></i> <?php echo $this->lang->line('save_attendance'); ?> </button>
-                                                    <?php }
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
-                                        <input type="hidden" name="section_id" value="<?php echo $section_id; ?>">
-                                        <input type="hidden" name="date" value="<?php echo $date; ?>">
-                                        <div class="table-responsive ptt10">
-                                            <table class="table table-hover table-striped example">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th><?php echo $this->lang->line('admission_no'); ?></th>
-                                                        <?php
-                                                        if ($sch_setting->biometric) {
-                                                            ?>
-                                                            <th><?php echo $this->lang->line('date'); ?></th>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                        <th><?php echo $this->lang->line('roll_no'); ?></th>
-                                                        <th><?php echo $this->lang->line('name'); ?></th>
-                                                        <th class=""><?php echo $this->lang->line('attendance'); ?></th>
-                                                        <th class="noteinput"><?php echo $this->lang->line('note'); ?></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                                    }
+                                                    if($can_edit ==1){
+                                                        if($this->rbac->hasPrivilege('student_attendence', 'can_add')){
+                                                    ?>
+                                                    <button type="submit" name="search" value="saveattendence" class="btn btn-primary btn-small pull-right checkbox-toggle"><i class="fa fa-save"></i><?php echo $this->lang->line('save_attendence') ?></button>
                                                     <?php
-                                                    $row_count = 1;
-                                                    foreach ($resultlist as $key => $value) {
-
-                                                        ?>
+                                                        }
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
+                                            <input type="hidden" name="section_id" value="<?php echo $section_id; ?>">
+                                            <?php 
+                                                foreach((array)$date as $dates){
+                                            ?>
+                                            <input type="hidden" name="date[]" value="<?php echo $dates; ?>">
+                                            <?php
+                                                }
+                                            ?>
+                                            <div class="table-responsive ptt10">
+                                                <table class="table table-hover table-striped example">
+                                                    <thead>
                                                         <tr>
-                                                            <td>
-                                                                <input type="hidden" name="student_session[]" value="<?php echo $value['student_session_id']; ?>">
-                                                                <input  type="hidden" value="<?php echo $value['attendence_id']; ?>"  name="attendendence_id<?php echo $value['student_session_id']; ?>">
-            <?php echo $row_count; ?>
-                                                            </td>
-                                                            <td>
-                                                            <?php echo $value['admission_no']; ?>
-                                                            </td>
-                                                            <?php
-                                                            if ($sch_setting->biometric) {
-                                                                ?>
+                                                            <th>#</th>
+                                                            <th><?php echo $this->lang->line('admission_no'); ?></th>
+                                                            <th><?php echo $this->lang->line('roll_no'); ?></th>
+                                                            <th><?php echo $this->lang->line('name'); ?></th>
+                                                            <th class=""><?php echo $this->lang->line('attendance'); ?></th>
+                                                            <th class="noteinput"><?php echo $this->lang->line('note'); ?></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $row_count = 1;
+                                                        foreach($resultlist as $key => $res){
+                                                        ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="hidden" name="student_session[]" value="<?php echo $res['student_session_id']; ?>">
+                                                                    <input  type="hidden" value="<?php echo $res['attendence_id']; ?>"  name="attendendence_id<?php echo $res['student_session_id']; ?>">
+                                                                    <?php echo $row_count; ?>
+                                                                </td>
+                                                                <td><?php echo $res['admission_no']; ?></td>
+                                                                <td><?php if(empty($res['roll_no']) || $res['roll_no'] = ""){ echo "-";}else{ echo $res['roll_no'];} ?></td>
+                                                                <td><?php echo $this->customlib->getFullName($res['firstname'],$res['middlename'],$res['lastname'],$sch_setting->middlename,$sch_setting->lastname);  ?></td>
                                                                 <td>
                                                                     <?php
-                                                                    if ($value['biometric_attendence']) {
-
-                                                                        echo $value['attendence_dt'];
+                                                                    if(!empty($date)){
+                                                                        foreach($date as $key => $dates){
+                                                                            echo $dates."|";
+                                                                        }
                                                                     }
                                                                     ?>
                                                                 </td>
-                                                                <?php
-                                                            }
-                                                             ?>
-                                                            <td>
-            <?php echo $value['roll_no']; ?>
-                                                            </td>
-
-                                                            <td>
-
-            <?php
-            echo $this->customlib->getFullName($value['firstname'],$value['middlename'],$value['lastname'],$sch_setting->middlename,$sch_setting->lastname);  ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                $c = 1;
-                                                                $count = 0;
-                                                                foreach ($attendencetypeslist as $key => $type) {
-                                                                    if ($type['key_value'] != "H") {
-                                                                        $att_type = str_replace(" ", "_", strtolower($type['type']));
-                                                                        if ($value['date'] != "xxx") {
-                                                                            ?>
-                                                                            <div class="radio radio-info radio-inline">
-                                                                                <input <?php if ($value['attendence_type_id'] == $type['id']) echo "checked"; ?> type="radio" id="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>" value="<?php echo $type['id'] ?>" name="attendencetype<?php echo $value['student_session_id']; ?>" >
-
-                                                                                <label for="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>">
-                        <?php echo $this->lang->line($att_type); ?>
-                                                                                </label>
-
-                                                                            </div>
-                                                                            <?php
-                                                                        }else {
-                                                                            ?>
-                                                                            <div class="radio radio-info radio-inline">
-                                                                                <?php
-                                                                                if ($sch_setting->biometric) {
-                                                                                    ?>
-                                                                                    <input <?php if ($att_type == "present") echo "checked"; ?> type="radio" id="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>" value="<?php echo $type['id'] ?>" name="attendencetype<?php echo $value['student_session_id']; ?>" >
-                                                                                    <?php
-                                                                                }else {
-                                                                                    ?>
-                                                                                    <input <?php if ($c == 1) echo "checked"; ?> type="radio" id="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>" value="<?php echo $type['id'] ?>" name="attendencetype<?php echo $value['student_session_id']; ?>" >
-                                                                                    <?php
-                                                                                }
-                                                                                ?>
-
-
-                                                                                <label for="attendencetype<?php echo $value['student_session_id'] . "-" . $count; ?>">
-                        <?php echo $this->lang->line($att_type); ?>
-                                                                                </label>
-                                                                            </div>
-                                                                            <?php
-                                                                        }
-                                                                        $c++;
-                                                                        $count++;
-                                                                    }
-                                                                }
-                                                                ?>
-
-                                                            </td>
-                                                            <?php if ($date == 'xxx') { ?>
-                                                                <td class="text-right"><input type="text" class="noteinput" name="remark<?php echo $value["student_session_id"] ?>" ></td>
-            <?php } else { ?>
-
-                                                                <td class="text-right"><input type="text" class="noteinput" name="remark<?php echo $value["student_session_id"] ?>" value="<?php echo $value["remark"]; ?>" ></td>
-                                                        <?php } ?>
-                                                        </tr>
+                                                                <td>cok</td>
+                                                            </tr>
                                                         <?php
                                                         $row_count++;
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </form>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <div class="alert alert-info"><?php echo $this->lang->line('admited_alert'); ?></div>
-                                    <?php
-                                }
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form>
+                                        <?php
+                                    }
                                 ?>
                             </div>
                         </div>
-                    </div>
                     <?php
-                }
-                ?>
+                    }
+                    ?>
                 </section>
             </div>
             <script type="text/javascript">
