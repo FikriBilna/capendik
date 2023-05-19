@@ -12,7 +12,7 @@ class Stuattendence extends Admin_Controller {
         $this->load->library('mailsmsconf');
         $this->config_attendance = $this->config->item('attendence');
         $this->load->model("classteacher_model");
-         $this->sch_setting_detail = $this->setting_model->getSetting();
+        $this->sch_setting_detail = $this->setting_model->getSetting();
     }
 
     function index() {
@@ -128,20 +128,165 @@ class Stuattendence extends Admin_Controller {
             $data['attendencetypeslist'] = $attendencetypes;
             $resultlist = $this->stuattendence_model->searchAttendenceClassSection($class, $section, date('Y-m-d', $this->customlib->datetostrtotime($date)));
             $data['resultlist'] = $resultlist;
+
+            // print_r($resultlist);
             $this->load->view('layout/header', $data);
             $this->load->view('admin/stuattendence/attendenceList', $data);
             $this->load->view('layout/footer', $data);
         }
     }
 
-    function weekAttendence(){
+    function rangeAttendence(){
         if(!$this->rbac->hasPrivilege('attendence_by_date_selected', 'can_view')){
             access_denied();
         }
 
-        $this->load->view('layout/header', $data);
-        $this->load->view('admin/stuattendence/attendenceList', $data);
-        $this->load->view('layout/footer', $data);
+        $this->session->set_userdata('top_menu', 'Attendance');
+        $this->session->set_userdata('sub_menu', 'stuattendence/attendenceRange');
+        $data['title'] = 'Add Fees Type';
+        $data['title_list'] = 'Fees Type List';
+        $sch_setting = $this->setting_model->getSchoolDetail();
+        $data['sch_setting'] = $this->sch_setting_detail;
+        $class = $this->class_model->get('', $classteacher = 'yes');
+        $userdata = $this->customlib->getUserData();
+        $carray = array();
+
+        if (!empty($data["classlist"])) {
+            foreach ($data["classlist"] as $ckey => $cvalue) {
+
+                $carray[] = $cvalue["id"];
+            }
+        }
+
+        $userdata = $this->customlib->getUserData();
+        $role_id = $userdata["role_id"];
+        if (isset($role_id) && ($userdata["role_id"] == 2) && ($userdata["class_teacher"] == "yes")) {
+            if ($userdata["class_teacher"] == 'yes') {
+                $carray = array();
+                $class = array();
+                $class = $this->teacher_model->get_daywiseattendanceclass($userdata["id"]);
+            }
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        $data['classlist'] = $class;
+        $data['class_id'] = "";
+        $data['section_id'] = "";
+        $data['date'] = "";
+        $this->form_validation->set_rules('class_id', $this->lang->line('class'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('section_id', $this->lang->line('section'), 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('admin/stuattendence/attendenceRange', $data);
+            $this->load->view('layout/footer', $data);
+        } else {
+            $class = $this->input->post('class_id');
+            $section = $this->input->post('section_id');
+            
+            /// START DATE RANGE PICK
+            $dateStart = new DateTime($this->input->post('dateStart'));
+            $dateEnd = new DateTime($this->input->post('dateEnd'));
+            $dateEnd->modify('+1 day');
+            $dateInterval = new DateInterval('P1D');
+
+            $date = new DatePeriod($dateStart, $dateInterval, $dateEnd);
+
+            $data['date'] = array();
+            foreach($date as $dates){
+                $data['date'][] = $dates->format('Y-m-d');
+            }
+            /// END DATE RANGE PICK
+
+            // $date = $this->input->post('date');
+            // $student_list = $this->stuattendence_model->get();
+            // $data['studentlist'] = $student_list;
+            $data['class_id'] = $class;
+            $data['section_id'] = $section;
+            $search = $this->input->post('search');
+            $holiday = $this->input->post('holiday');
+
+            if ($search == "saveattendence") {
+                $session_ary = $this->input->post('student_session');
+                $absent_student_list = array();
+                foreach ($session_ary as $key => $value) {
+                    $checkForUpdate = $this->input->post('attendendence_id' . $value);
+                    if ($checkForUpdate != 0) { //UPDATE RECORD
+                        if (isset($holiday)) {
+                            $arr = array(
+                                'id' => $checkForUpdate,
+                                'student_session_id' => $value,
+                                'attendence_type_id' => 5,
+                                'remark' => $this->input->post("remark" . $value),
+                                'date' => date('Y-m-d', $this->customlib->datetostrtotime($date))
+                            );
+                        } else {
+                            $arr = array(
+                                'id' => $checkForUpdate,
+                                'student_session_id' => $value,
+                                'attendence_type_id' => $this->input->post('attendencetype' . $value),
+                                'remark' => $this->input->post("remark" . $value),
+                                'date' => date('Y-m-d', $this->customlib->datetostrtotime($date))
+                            );
+                        }
+                        $insert_id = $this->stuattendence_model->add($arr);
+                    } else { //NEW RECORD
+                        if (isset($holiday)) {
+                            foreach($date as $dates){
+                                $arr = array(
+                                    'student_session_id' => $value,
+                                    'attendence_type_id' => 5,
+                                    'remark' => $this->input->post("remark" . $value),
+                                    'date' => date('Y-m-d', $this->customlib->datetostrtotime($dates))
+                                );        
+                            }
+                        } else {
+                            foreach($date as $dates){
+                                $arr = array(
+                                    'student_session_id' => $value,
+                                    'attendence_type_id' => $this->input->post('attendencetype' . $value),
+                                    'remark' => $this->input->post("remark" . $value),
+                                    'date' => date('Y-m-d', $this->customlib->datetostrtotime($dates))
+                                ); 
+                            }
+                        }
+                        $insert_id = $this->stuattendence_model->add($arr);
+                        $absent_config = $this->config_attendance['absent'];
+                        if ($arr['attendence_type_id'] == $absent_config) {
+                            $absent_student_list[] = $value;
+                        }
+                    }
+                }
+                $absent_config = $this->config_attendance['absent'];
+                if (!empty($absent_student_list)) {
+
+                    $this->mailsmsconf->mailsms('absent_attendence', $absent_student_list, $date);
+                }
+
+                $this->session->set_flashdata('msg', '<div class="alert alert-success text-left">' . $this->lang->line('success_message') . '</div>');
+                redirect('admin/stuattendence/attendenceRange', 'refresh');
+            }
+
+            $attendencetypes = $this->attendencetype_model->get();
+            $data['attendencetypeslist'] = $attendencetypes;
+
+            $resultlist = $this->stuattendence_model->searchAttendenceClassSection($class, $section, $dates->format('Y-m-d'));
+            $data['resultlist'] = $resultlist;
+
+            // foreach($date as $dates){
+            //     $resultlist[] = $this->stuattendence_model->searchAttendenceClassSection($class, $section, $dates->format('Y-m-d'));
+            //     $data['resultlist'] = $resultlist;
+            // }
+            
+            // var_dump($resultlist);
+
+            // foreach($date as $dates){
+            //     $tgl[] = $dates->format("Y-m-d");
+            // }
+            // var_dump($tgl);
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('admin/stuattendence/attendenceRange', $data);
+            $this->load->view('layout/footer', $data);
+        }
     }
 
     function attendencereport() {
