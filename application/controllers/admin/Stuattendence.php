@@ -208,61 +208,42 @@ class Stuattendence extends Admin_Controller {
                 $session_ary = $this->input->post('student_session');
                 $absent_student_list = array();
                 foreach ($session_ary as $key => $value) {
-                    $checkForUpdate = $this->input->post('attendendence_id' . $value);
-                    if ($checkForUpdate != 0) { //UPDATE RECORD
-                        if (isset($holiday)) {
+                    if (isset($holiday)) {
+                        foreach($date as $dates){
                             $arr = array(
-                                'id' => $checkForUpdate,
                                 'student_session_id' => $value,
                                 'attendence_type_id' => 5,
                                 'remark' => $this->input->post("remark" . $value),
-                                'date' => date('Y-m-d', $this->customlib->datetostrtotime($date))
-                            );
-                        } else {
-                            $arr = array(
-                                'id' => $checkForUpdate,
+                                'date' => $dates->format('Y-m-d')
+                            );        
+                        }
+                    } else {
+                        $date_arr = $this->input->post("date");
+                        $arr = array();
+                        foreach($date_arr as $dates){
+                            $arr[] = array(
                                 'student_session_id' => $value,
                                 'attendence_type_id' => $this->input->post('attendencetype' . $value),
                                 'remark' => $this->input->post("remark" . $value),
-                                'date' => date('Y-m-d', $this->customlib->datetostrtotime($date))
-                            );
+                                'date' => $dates
+                            ); 
                         }
-                        $insert_id = $this->stuattendence_model->add($arr);
-                    } else { //NEW RECORD
-                        if (isset($holiday)) {
-                            foreach($date as $dates){
-                                $arr = array(
-                                    'student_session_id' => $value,
-                                    'attendence_type_id' => 5,
-                                    'remark' => $this->input->post("remark" . $value),
-                                    'date' => date('Y-m-d', $this->customlib->datetostrtotime($dates))
-                                );        
-                            }
-                        } else {
-                            foreach($date as $dates){
-                                $arr = array(
-                                    'student_session_id' => $value,
-                                    'attendence_type_id' => $this->input->post('attendencetype' . $value),
-                                    'remark' => $this->input->post("remark" . $value),
-                                    'date' => date('Y-m-d', $this->customlib->datetostrtotime($dates))
-                                ); 
-                            }
-                        }
-                        $insert_id = $this->stuattendence_model->add($arr);
-                        $absent_config = $this->config_attendance['absent'];
-                        if ($arr['attendence_type_id'] == $absent_config) {
-                            $absent_student_list[] = $value;
-                        }
+                        // var_dump($arr);
+                        // return false;
                     }
-                }
-                $absent_config = $this->config_attendance['absent'];
-                if (!empty($absent_student_list)) {
-
-                    $this->mailsmsconf->mailsms('absent_attendence', $absent_student_list, $date);
-                }
-
+                    $insert_id = $this->stuattendence_model->rangeAdd($arr);
+                    $absent_config = $this->config_attendance['absent'];
+                    if ($arr['attendence_type_id'] == $absent_config) {
+                        $absent_student_list[] = $value;
+                    }
+            }
+            
+            $absent_config = $this->config_attendance['absent'];
+            if (!empty($absent_student_list)) {
+                $this->mailsmsconf->mailsms('absent_attendence', $absent_student_list, $date);
+            }
                 $this->session->set_flashdata('msg', '<div class="alert alert-success text-left">' . $this->lang->line('success_message') . '</div>');
-                redirect('admin/stuattendence/attendenceRange', 'refresh');
+                redirect('admin/stuattendence/rangeAttendence', 'refresh');
             }
 
             $attendencetypes = $this->attendencetype_model->get();

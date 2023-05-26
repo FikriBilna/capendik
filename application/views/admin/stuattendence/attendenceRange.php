@@ -209,13 +209,14 @@
                                             <?php echo $this->customlib->getCSRF(); ?>
                                             <div class="mailbox-controls">
                                                 <span>
-                                                    <?php if($this->rbac->hasPrivilege('student_attendence', 'can_edit')){ ?>
-                                                        <button type="button" class="btn btn-sm btn-primary" data-color="primary"><?php echo $this->lang->line('mark_as_holiday'); ?></button>
-                                                        <input type="checkbox" id="checkbox1" class="hidden" name="holiday" value="checked" <?php echo $checked; ?>/>
+                                                    <?php if($this->rbac->hasPrivilege('student_attendence', 'can_add')){ ?>
+                                                        <!-- <button type="button" class="btn btn-sm btn-primary" data-color="primary"><?php //echo $this->lang->line('mark_as_holiday'); ?></button> -->
+                                                        <!-- <input type="checkbox" id="checkbox1" class="hidden" name="holiday" value="checked" <?php //echo $checked; ?>/> -->
+                                                    
                                                 </span>
                                                 <div class="pull-right">
                                                     <?php
-                                                    }
+                                                }
                                                     if($can_edit ==1){
                                                         if($this->rbac->hasPrivilege('student_attendence', 'can_add')){
                                                     ?>
@@ -231,7 +232,7 @@
                                             <?php
                                                 foreach((array)$date as $dates){
                                             ?>
-                                            <!-- <input type="hidden" name="date[]" value="<?php echo $dates; ?>"> -->
+                                                <input type="hidden" name="date[]" value="<?php echo $dates; ?>">
                                             <?php
                                                 }
                                             ?>
@@ -255,7 +256,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <input type="hidden" name="student_session[]" value="<?php echo $res['student_session_id']; ?>">
-                                                                    <input  type="hidden" value="<?php echo $res['attendence_id']; ?>"  name="attendendence_id<?php echo $res['student_session_id']; ?>">
+                                                                    <input  type="hidden" value="<?php echo $res['attendence_id']; ?>"  name="attendendence_id<?php echo $res['student_session_id']; ?>[]">
                                                                     <?php echo $row_count; ?>
                                                                 </td>
                                                                 <td><?php echo $res['admission_no']; ?></td>
@@ -267,8 +268,14 @@
                                                                         $c = 0;
                                                                         foreach($date as $key => $dates){
                                                                     ?> 
-                                                                        <input type="hidden" name="attendencedate<?php echo $res['student_session_id'] ;?>" value="<?php echo $dates; ?>">
-                                                                        <select class="" name="attendencetype<?php echo $res['student_session_id'].$c; ?>" id="attendencetype<?php echo $res['student_session_id'] . "-" . $count; ?>">
+                                                                        <input type="hidden" name="attendencedate<?php echo $res['student_session_id'] ;?>[]" value="<?php echo $dates; ?>">
+                                                                        <label for="attendencetype<?php echo $res['student_session_id']."-".$count; ?>">
+                                                                        <?php
+                                                                        // $lb_date = date("d/m", strtotime($dates));
+                                                                        // echo $lb_date;
+                                                                        ?>
+                                                                        </label>
+                                                                        <select class="" name="attendencetype<?php echo $res['student_session_id'].$c; ?>[]" id="attendencetype<?php echo $res['student_session_id'] . "-" . $count; ?>">
                                                                             <?php 
                                                                              foreach($attendencetypeslist as $key => $type){
                                                                                 $att_type = str_replace(" ", "_", strtolower($type['type']));
@@ -286,7 +293,7 @@
                                                                     }
                                                                     ?>
                                                                 </td>
-                                                                <td>cok</td>
+                                                                <td class="text-right"><input type="text" class="noteinput" name="remark<?php echo $res["student_session_id"]; ?>" ></td>
                                                             </tr>
                                                         <?php
                                                         $row_count++;
