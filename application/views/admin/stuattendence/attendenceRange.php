@@ -78,6 +78,10 @@
     @media (max-width:767px){
         .radio.radio-inline {display: inherit;}
     }
+    .top-label {
+        display: block;
+        margin-bottom: 1px;
+    }
 </style>
 <div class="content-wrapper" style="min-height: 946px;">
     <!-- Content Header (Page header) -->
@@ -176,35 +180,59 @@
                             </div>
                             <div class="box-body">
                                 <?php
-                                    if(!empty($resultlist)){
+                                    // var_dump($resultlistcek);
+                                    // return false;
+                                    if(!empty($resultlistcek)){
                                         $can_edit =1;
                                         $checked = "";
+                                        $hid = "";
                                         if(!isset($msg)){
-                                                if($resultlist[0]['attendence_type_id'] != ""){
-                                                    if($resultlist[0]['attendence_type_id'] != 5){
-                                                        if($this->rbac->hasPrivilege('student_attendence', 'can_edit')){
-                                                            $can_edit = 1;
-                                                            // echo "edit";
-                                                        }else{
-                                                            $can_edit = 0;
-                                                            // echo "not edit";
-                                                        }
-                                                        ?>
-                                                        <div class="alert alert-success"><?php echo $this->lang->line('attendance_already_submitted_you_can_edit_record'); ?></div>
-                                                        <?php
-                                                    }else{
-                                                        $checked = "checked='checked'";
-                                                        ?>
-                                                        <div class="alert alert-warning"><?php echo $this->lang->line('attendance_already_submitted_as_holiday'); ?>. <?php echo $this->lang->line('you_can_edit_record'); ?></div>
-                                                        <?php
+
+                                            $attTypeId = 'attendence_type_id';
+                                            $notEmpty = false;
+
+                                            foreach($resultlistcek as $reslist){
+                                                foreach($reslist as $subreslist){
+                                                    if(isset($subreslist[$attTypeId]) && !empty($subreslist[$attTypeId])){
+                                                        $notEmpty = true;
+                                                        break;
                                                     }
                                                 }
+                                            }
+
+                                            if($notEmpty){
+                                                $hid = "display:none;";
+                                                $tgl = [];
+                                                foreach($resultlistcek as $subresid){
+                                                    foreach($subresid as $item){
+                                                        if(isset($item['attendence_type_id'])){
+                                                            $tgl[] = $item['date']; 
+                                                        }
+                                                    }
+                                                }
+
+                                                $uniqueDates = [];
+                                                foreach($tgl as $dts){
+                                                    $uniqueDates[$dts] = $dts;
+                                                }
+
+                                                $restgl = array_values($uniqueDates);
+
+                                                // var_dump($restgl);
+                                                // return false;
+                                            ?>
+                                                <div class="alert alert-success">Date <?php $formattgl = array_map(function($data){ return date("m/d/Y", strtotime($data));}, $restgl); echo implode(", ", $formattgl); ?> already submited.</div>
+                                            <?php
+                                            }else{
+                                                $hid = "display:block;";
+                                            }
                                         }else{
                                         ?>
                                             <div class="alert alert-success"><?php echo $this->lang->line('attendance_saved_successfully'); ?></div>
                                         <?php
                                         }
                                         ?>
+                                        <div style="<?php echo $hid; ?>">
                                         <form action="<?php echo site_url('admin/stuattendence/rangeAttendence') ?>" method="post" class="form_attendence">
                                             <?php echo $this->customlib->getCSRF(); ?>
                                             <div class="mailbox-controls">
@@ -269,13 +297,14 @@
                                                                         foreach($date as $key => $dates){
                                                                     ?> 
                                                                         <input type="hidden" name="attendencedate<?php echo $res['student_session_id'] ;?>[]" value="<?php echo $dates; ?>">
-                                                                        <label for="attendencetype<?php echo $res['student_session_id']."-".$count; ?>">
+                                                                        <!-- <label for="attendencetype<?php echo $res['student_session_id']."-".$count; ?>"> -->
                                                                         <?php
                                                                         // $lb_date = date("d/m", strtotime($dates));
                                                                         // echo $lb_date;
                                                                         ?>
                                                                         </label>
-                                                                        <select class="" name="attendencetype<?php echo $res['student_session_id'].$c; ?>[]" id="attendencetype<?php echo $res['student_session_id'] . "-" . $count; ?>">
+                                                                        <label for="attendencetype<?php echo $res['student_session_id'] . "-" . $count; ?>" class="top-label"><?php echo $dates; ?></label>
+                                                                        <select class="" name="attendencetype<?php echo $res['student_session_id']; ?>[]" id="attendencetype<?php echo $res['student_session_id'] . "-" . $count; ?>">
                                                                             <?php 
                                                                              foreach($attendencetypeslist as $key => $type){
                                                                                 $att_type = str_replace(" ", "_", strtolower($type['type']));
@@ -303,6 +332,7 @@
                                                 </table>
                                             </div>
                                         </form>
+                                    </div>
                                         <?php
                                     }
                                 ?>
@@ -314,8 +344,24 @@
                 </section>
             </div>
             <script type="text/javascript">
-
                 $(document).ready(function () {
+                    // Get the current date
+                var currentDate = new Date();
+
+                // Calculate the minimum date (six days before)
+                var minDate = new Date(currentDate);
+                minDate.setDate(currentDate.getDate() - 6);
+
+                // Initialize the datepicker
+                $('#date').datepicker({
+                minDate: minDate,
+                maxDate: currentDate
+                });
+                }
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+
                     $.extend($.fn.dataTable.defaults, {
                         searching: false,
                         ordering: true,

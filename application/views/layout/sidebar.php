@@ -315,6 +315,11 @@ if (!is_subAttendence()) {
                                     <li class="<?php echo set_Submenu('stuattendence/index'); ?>"><a href="<?php echo base_url(); ?>admin/stuattendence"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('student_attendance'); ?></a></li>
                                     <?php
 }
+            if ($this->rbac->hasPrivilege('student_attendance', 'can_view')) {
+                ?>
+                                    <li class="<?php echo set_Submenu('stuattendence/rangeAttendence'); ?>"><a href="<?php echo base_url(); ?>admin/stuattendence/rangeAttendence"><i class="fa fa-angle-double-right"></i> Attendence by Date Range</a></li>
+                                    <?php
+            }
             if ($this->rbac->hasPrivilege('attendance_by_date', 'can_view')) {
                 ?>
                                     <li class="<?php echo set_Submenu('stuattendence/attendenceReport'); ?>"><a href="<?php echo base_url(); ?>admin/stuattendence/attendencereport"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('attendance_by_date'); ?></a></li>

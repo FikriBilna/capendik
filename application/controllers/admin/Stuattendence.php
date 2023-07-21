@@ -209,21 +209,15 @@ class Stuattendence extends Admin_Controller {
                 $absent_student_list = array();
                 foreach ($session_ary as $key => $value) {
                     if (isset($holiday)) {
-                        foreach($date as $dates){
-                            $arr = array(
-                                'student_session_id' => $value,
-                                'attendence_type_id' => 5,
-                                'remark' => $this->input->post("remark" . $value),
-                                'date' => $dates->format('Y-m-d')
-                            );        
-                        }
+                        return false;
                     } else {
                         $date_arr = $this->input->post("date");
+                        $att_type = $this->input->post('attendencetype'.$value);
                         $arr = array();
-                        foreach($date_arr as $dates){
+                        foreach($date_arr as $key => $dates){
                             $arr[] = array(
                                 'student_session_id' => $value,
-                                'attendence_type_id' => $this->input->post('attendencetype' . $value),
+                                'attendence_type_id' => $att_type[$key],
                                 'remark' => $this->input->post("remark" . $value),
                                 'date' => $dates
                             ); 
@@ -233,8 +227,10 @@ class Stuattendence extends Admin_Controller {
                     }
                     $insert_id = $this->stuattendence_model->rangeAdd($arr);
                     $absent_config = $this->config_attendance['absent'];
-                    if ($arr['attendence_type_id'] == $absent_config) {
-                        $absent_student_list[] = $value;
+                    if(isset($arr['attendence_type_id'])){
+                        if ($arr['attendence_type_id'] == $absent_config) {
+                            $absent_student_list[] = $value;
+                        }
                     }
             }
             
@@ -252,12 +248,14 @@ class Stuattendence extends Admin_Controller {
             $resultlist = $this->stuattendence_model->searchAttendenceClassSection($class, $section, $dates->format('Y-m-d'));
             $data['resultlist'] = $resultlist;
 
-            // foreach($date as $dates){
-            //     $resultlist[] = $this->stuattendence_model->searchAttendenceClassSection($class, $section, $dates->format('Y-m-d'));
-            //     $data['resultlist'] = $resultlist;
-            // }
+            foreach($date as $dates){
+                $resultlistcek[] = $this->stuattendence_model->searchAttendenceClassSection($class, $section, $dates->format('Y-m-d'));
+                $data['resultlistcek'] = $resultlistcek;
+            }
             
             // var_dump($resultlist);
+            // var_dump($resultlistcek);
+            // return false;
 
             // foreach($date as $dates){
             //     $tgl[] = $dates->format("Y-m-d");
@@ -339,9 +337,10 @@ class Stuattendence extends Admin_Controller {
             }
             $attendencetypes = $this->attendencetype_model->get();
             $data['attendencetypeslist'] = $attendencetypes;
+            
             $resultlist = $this->stuattendence_model->searchAttendenceClassSectionPrepare($class, $section, date('Y-m-d', $this->customlib->datetostrtotime($date)));
-
             $data['resultlist'] = $resultlist;
+
             $data['sch_setting'] =$this->sch_setting_detail;
             $this->load->view('layout/header', $data);
             $this->load->view('admin/stuattendence/attendencereport', $data);
