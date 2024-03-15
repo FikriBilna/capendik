@@ -279,6 +279,21 @@ if($this->studentmodule_lib->hasActive('multi_class')){
                         }
                         ?>
 
+			<?php
+                    if ($this->studentmodule_lib->hasActive('nilai_student')) {
+                    ?>
+                        <li class="<?php echo set_Topmenu('nilai_student'); ?>"><a href="<?php echo base_url(); ?>user/nilai/"><i class="fa fa-book ftlayer"></i> <span>Nilai Student</a></li>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    if ($this->studentmodule_lib->hasActive('nilai_rapor')) {
+                    ?>
+                        <li class="<?php echo set_Topmenu('nilai_rapor'); ?>"><a href="<?php echo base_url(); ?>user/nilai/rapor/"><i class="fa fa-book ftlayer"></i> <span>Nilai Rapor</a></li>
+                    <?php
+                    }
+                    ?>
+
 
 						<?php
                        if($this->module_lib->hasModule('online_course') && $this->studentmodule_lib->hasActive('online_course') && $this->auth->addonchk('ssoclc',false)){

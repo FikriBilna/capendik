@@ -27,6 +27,13 @@ class Subjectgroup_model extends MY_Model {
         return $query->result_array();
     }
 
+    public function getSubject($session_id)
+    {
+        $this->db->where('session_id', $session_id);
+        $query = $this->db->get('subject_groups');
+        return $query->result_array();
+    }
+
     public function update($data) {
 
         if (isset($data['id'])) {

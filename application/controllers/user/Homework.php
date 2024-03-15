@@ -127,6 +127,8 @@ class Homework extends Student_Controller
         $data["created_by"]   = $created_by;
         $data["evaluated_by"] = $evaluated_by;
 
+        // var_dump($data);
+
         $this->load->view("user/homework/homework_detail", $data);
     }
 

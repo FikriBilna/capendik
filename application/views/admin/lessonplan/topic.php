@@ -183,11 +183,13 @@
             });
         }
     }
+
     $(document).on('change', '#secid', function () {
         var class_id = $('#searchclassid').val();
         var section_id = $(this).val();
         getSubjectGroup(class_id, section_id, 0, 'subject_group_id');
     });
+    
     function getSubjectGroup(class_id, section_id, subjectgroup_id, subject_group_target) {
         if (class_id != "" && section_id != "") {
 

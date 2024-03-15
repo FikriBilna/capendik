@@ -19,6 +19,15 @@ class Rapor_model extends MY_model
         $query = $this->db->get('rapor_subject');
         return $query->num_rows();
     }
+	
+    public function getBySession($id)
+    {
+        $this->db->select()->from('rapor');
+        $this->db->where('session_id', $id);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     public function get($id = null)
     {

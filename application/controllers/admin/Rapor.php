@@ -15,6 +15,7 @@ class Rapor extends Admin_Controller
         $this->load->model('subject_model', 'subject');
         $this->load->model('rapor_subject_model', 'rapor_subject');
         $this->load->model('Rapor_subject_weightage_model', 'subject_weightage');
+        $this->load->model('weightage_model', 'weightage');
     }
 
     public function index()
@@ -23,7 +24,7 @@ class Rapor extends Admin_Controller
             access_denied();
         }
 
-        $rapor_result = $this->rapor->get();
+        $rapor_result = $this->rapor->getBySession($this->setting_model->getCurrentSession());
         $session_result = $this->session_model->get();
         $class_result = $this->class->get();
 
@@ -97,13 +98,16 @@ class Rapor extends Admin_Controller
         $rapor_subject = $this->rapor_subject->get('', $id);
         $subjectName = $this->subject->get($rapor_subject['subject_id']);
         $raporName = $this->rapor->get($rapor_subject['rapor_id']);
-        $subject_weightage = $this->subject_weightage->get('', $id);
+        $subject_weightage = $this->subject_weightage->get('', $id, '');
+
+        $weightage_result = $this->weightage->get($_GET['subject']);
         $data = array(
             'title' => 'Add Weightage',
             'id' => $id,
             'raporName' => $raporName,
             'subjectName' => $subjectName,
-            'subjectWeightage' => $subject_weightage
+            'subjectWeightage' => $subject_weightage,
+            'weightageList' => $weightage_result
         );
 
         #VALIDATION
@@ -111,13 +115,13 @@ class Rapor extends Admin_Controller
             $rapor_subject_id = $this->input->post('rapor_subject_id');
             $inputs = $this->input->post('inputs');
             foreach ($inputs as $input) {
-                $weightage_name = $input['weightage_name'];
-                $weightage = $input['weightage'];
+                $weightage_id = $input['weightage_id'];
+                $weightage_score = $input['weightage_score'];
 
                 $data = array(
                     'rapor_subject_id' => $rapor_subject_id,
-                    'weightage_name' => $weightage_name,
-                    'weightage' => $weightage
+                    'weightage_id' => $weightage_id,
+                    'weightage_score' => $weightage_score
                 );
 
                 $this->subject_weightage->add($data);
@@ -129,6 +133,45 @@ class Rapor extends Admin_Controller
             $this->load->view('layout/header', $data);
             $this->load->view('admin/rapor/addWeightage', $data);
             $this->load->view('layout/footer', $data);
+        }
+    }
+
+    public function edit_weightage($id)
+    {
+        if (!$this->rbac->hasPrivilege('rapor', 'can_view')) {
+            access_denied();
+        }
+        // $rapor_subject = $this->rapor_subject->get('', $id);
+        // $subjectName = $this->subject->get($rapor_subject['subject_id']);
+        $weightage = $this->subject_weightage->get('', '', $id);
+        $rapor_subject = $this->rapor_subject->get('', $weightage['rapor_subject_id']);
+        $weightages = $this->weightage->get($rapor_subject['subject_id']);
+        $subject_weightage = $this->subject_weightage->get('', $_GET['rapor_subject'], '');
+        $data = array(
+            'title' => 'Add Weightage',
+            'id' => $id,
+            'subjectWeightage' => $weightage,
+            'weightages' => $weightages,
+            'weightageList' => $subject_weightage
+        );
+
+        #VALIDATION
+        $this->form_validation->set_rules('weightage_id', 'Weightage', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('weightage_score', 'Weightage Score', 'trim|required|xss_clean');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('admin/rapor/weightageEdit', $data);
+            $this->load->view('layout/footer', $data);
+        } else {
+            $data = array(
+                'id' => $id,
+                'weightage_id' => $this->input->post('weightage_id'),
+                'weightage_score' => $this->input->post('weightage_score'),
+            );
+            $this->subject_weightage->add($data);
+            $this->session->set_flashdata('msg', '<div class="alert alert-success text-left">' . $this->lang->line('success_message') . '</div>');
+            redirect('admin/rapor/add_weightage/' . $this->input->post('rapor_subject') . '?aksi=' . $this->input->post('aksi') . '&subject=' . $this->input->post('subject'));
         }
     }
 
@@ -148,10 +191,17 @@ class Rapor extends Admin_Controller
         if (!$this->rbac->hasPrivilege('rapor', 'can_delete')) {
             access_denied();
         }
-        // $rapor_subject_id = $this->rapor_subject->get('',$id);
-        // var_dump($rapor_subject_id);die;
         $this->rapor_subject->remove($id);
 
         redirect('admin/rapor/add_subject/' . $_GET['aksi']);
+    }
+
+    public function delete_weightage($id)
+    {
+        if (!$this->rbac->hasPrivilege('rapor', 'can_delete')) {
+            access_denied();
+        }
+        $this->subject_weightage->remove($id);
+        redirect('admin/rapor/add_weightage/' . $_GET['rapor_subject'] . '?aksi=' . $_GET['aksi'] . '&subject=' . $_GET['subject']);
     }
 }

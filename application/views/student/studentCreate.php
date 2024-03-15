@@ -124,13 +124,13 @@
                                                 </div>
                                             </div>
                                         <?php } ?>
-                                            <div class="col-md-2">
+                                            <!-- <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Preferred Name</label>
                                                     <input id="preferedname" name="preferedname" placeholder="" type="text" class="form-control"  value="<?php echo set_value('preferedname'); ?>" />
-                                                    <span class="text-danger"><?php echo form_error('preferedname'); ?></span>
+                                                    <span class="text-danger"><?php // echo form_error('preferedname'); ?></span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="exampleInputFile"> <?php echo $this->lang->line('gender'); ?></label><small class="req"> *</small>
@@ -384,13 +384,13 @@
                                                     <span class="text-danger"><?php echo form_error('father_name'); ?></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <!-- <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Father Greetings Name</label>
-                                                    <input id="father_greetings_name" name="father_greetings_name" placeholder="" type="text" class="form-control"  value="<?php echo set_value('father_greetings_name'); ?>" />
-                                                    <span class="text-danger"><?php echo form_error('father_greetings_name'); ?></span>
+                                                    <input id="father_greetings_name" name="father_greetings_name" placeholder="" type="text" class="form-control"  value="<?php //echo set_value('father_greetings_name'); ?>" />
+                                                    <span class="text-danger"><?php //echo form_error('father_greetings_name'); ?></span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Father Birth Year</label>
@@ -481,13 +481,13 @@
                                                     <span class="text-danger"><?php echo form_error('mother_name'); ?></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <!-- <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Mother Greetings Name</label>
-                                                    <input id="mother_greetings_name" name="mother_greetings_name" placeholder="" type="text" class="form-control"  value="<?php echo set_value('mother_greetings_name'); ?>" />
-                                                    <span class="text-danger"><?php echo form_error('mother_greetings_name'); ?></span>
+                                                    <input id="mother_greetings_name" name="mother_greetings_name" placeholder="" type="text" class="form-control"  value="<?php //echo set_value('mother_greetings_name'); ?>" />
+                                                    <span class="text-danger"><?php //echo form_error('mother_greetings_name'); ?></span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Mother Birth Year</label>

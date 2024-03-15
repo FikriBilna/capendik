@@ -13,19 +13,23 @@ class Rapor_subject_weightage_model extends MY_model
         $this->current_session = $this->setting_model->getCurrentSession();
     }
 
-    public function get($rapor_id = null, $id = null)
+    public function get($rapor_id = null, $rapor_subject_id = null, $id = null)
     {
         $this->db->select()->from('rapor_subject_weightage');
         if ($rapor_id != null) {
             $this->db->where('rapor_id', $rapor_id);
+        } elseif ($id != null) {
+            $this->db->where('id', $id);
         } else {
-            $this->db->where('rapor_subject_id', $id);
+            $this->db->where('rapor_subject_id', $rapor_subject_id);
         }
 
         $query = $this->db->get();
 
         if ($rapor_id != null) {
             $raporList = $query->result_array();
+        } elseif ($id != null) {
+            $raporList = $query->row_array();
         } else {
             $raporList = $query->result_array();
         }
